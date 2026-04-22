@@ -1,0 +1,77 @@
+{
+  "expo": {
+    "name": "Voyage",
+    "slug": "voyage",
+    "version": "0.1.0",
+    "runtimeVersion": "0.1.0",
+    "scheme": "voyage",
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": false
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "web": {
+      "output": "server",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": false
+        }
+      ],
+      "expo-font",
+      "@react-native-community/datetimepicker",
+      "expo-asset",
+      "expo-sharing",
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "Voyage uses your calendar to save flights and trip plans."
+        }
+      ]
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.expostartup.voyage"
+    },
+    "android": {
+      "package": "com.expostartup.voyage",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "softwareKeyboardLayoutMode": "pan",
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
+      ]
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "94443fbd-292b-4373-92c6-4a0164fe7bd3"
+      }
+    },
+    "owner": "taskr"
+  }
+}
