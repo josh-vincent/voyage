@@ -111,7 +111,7 @@ export default function SignupScreen() {
       setTimeout(() => {
         setIsLoading(false);
         // Navigate to home screen after successful login
-        router.replace('/(drawer)/(tabs)/');
+        router.replace('/(tabs)/(home)');
       }, 1500);
     }
   };

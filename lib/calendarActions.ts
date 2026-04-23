@@ -68,10 +68,11 @@ export type BusyEvent = {
 export async function readDeviceCalendar(
   startISO: string,
   endISO: string,
+  options?: { requestIfNeeded?: boolean },
 ): Promise<{ status: 'granted' | 'denied' | 'undetermined'; events: BusyEvent[] }> {
   const perm = await Calendar.getCalendarPermissionsAsync();
   let status = perm.status;
-  if (status !== 'granted') {
+  if (status !== 'granted' && options?.requestIfNeeded) {
     const req = await Calendar.requestCalendarPermissionsAsync();
     status = req.status;
   }

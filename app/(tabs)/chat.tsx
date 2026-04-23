@@ -60,6 +60,21 @@ const QUICK_PROMPTS = [
 
 const DRAWER_WIDTH = Math.min(320, Math.round(Dimensions.get('window').width * 0.84));
 
+function formatChatErrorMessage(error: Error | null | undefined): string | null {
+  const raw = error?.message?.trim();
+  if (!raw) return null;
+
+  try {
+    const parsed = JSON.parse(raw) as { error?: unknown; message?: unknown };
+    if (typeof parsed.error === 'string' && parsed.error.trim()) return parsed.error;
+    if (typeof parsed.message === 'string' && parsed.message.trim()) return parsed.message;
+  } catch {
+    // Fall through to the raw message if it was not JSON.
+  }
+
+  return raw;
+}
+
 export default function ChatScreen() {
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams<{ chatId?: string }>();
@@ -418,7 +433,9 @@ export default function ChatScreen() {
             </View>
           ) : null}
           {error ? (
-            <ThemedText className="text-red-500 mt-2">{error.message}</ThemedText>
+            <ThemedText className="mt-2 text-red-500">
+              {formatChatErrorMessage(error)}
+            </ThemedText>
           ) : null}
         </ScrollView>
 

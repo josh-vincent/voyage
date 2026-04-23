@@ -4,6 +4,10 @@
   "scripts": {
     "android": "expo run:android",
     "ios": "expo run:ios",
+    "doppler:check": "bash scripts/voyage-env.sh check",
+    "doppler:seed": "bash scripts/doppler-seed.sh",
+    "start:doppler": "bash scripts/voyage-env.sh start",
+    "ios:doppler": "bash scripts/voyage-env.sh ios",
     "start": "expo start",
     "start:dev-client": "expo start --dev-client",
     "ios:dev": "expo run:ios",

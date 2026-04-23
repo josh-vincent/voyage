@@ -10,12 +10,12 @@ export default function LocationPermissionScreen() {
   const handleAllowLocation = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status === 'granted') {
-      router.push('/(drawer)/(tabs)/');
+      router.push('/(tabs)/(home)');
     }
   };
 
   const handleSkip = () => {
-    router.push('/(drawer)/(tabs)/');
+    router.push('/(tabs)/(home)');
   };
 
   return (
