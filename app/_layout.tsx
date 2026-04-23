@@ -1,17 +1,22 @@
+import 'expo-dev-client';
 import '../global.css';
-import React, { useEffect } from 'react';
-import { Platform, View } from 'react-native';
+import { useFonts, YoungSerif_400Regular } from '@expo-google-fonts/young-serif';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as Linking from 'expo-linking';
 import { Stack } from 'expo-router';
 import { NativeWindStyleSheet } from 'nativewind';
+import React, { useEffect } from 'react';
+import { Platform, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useFonts, YoungSerif_400Regular } from '@expo-google-fonts/young-serif';
-import { ThemeProvider } from './contexts/ThemeContext';
+
+import { ActiveTripProvider } from './contexts/ActiveTripContext';
 import { FlightSearchProvider } from './contexts/FlightSearchContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import useThemedNavigation from './hooks/useThemedNavigation';
-import { PriceWatcher } from '@/utils/priceWatcher';
+
 import { handleDeepLink } from '@/lib/links';
+import { PriceWatcher } from '@/utils/priceWatcher';
+import { syncTripStatusWidgetFromStorage } from '@/utils/trackedStorage';
 
 NativeWindStyleSheet.setOutput({
   default: 'native',
@@ -53,6 +58,11 @@ function ThemedLayout() {
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({ YoungSerif_400Regular });
+
+  useEffect(() => {
+    syncTripStatusWidgetFromStorage();
+  }, []);
+
   if (!fontsLoaded) return <View style={{ flex: 1 }} />;
   return (
     <GestureHandlerRootView
@@ -60,10 +70,12 @@ export default function RootLayout() {
       style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <FlightSearchProvider>
-            <PriceWatcher />
-            <ThemedLayout />
-          </FlightSearchProvider>
+          <ActiveTripProvider>
+            <FlightSearchProvider>
+              <PriceWatcher />
+              <ThemedLayout />
+            </FlightSearchProvider>
+          </ActiveTripProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>

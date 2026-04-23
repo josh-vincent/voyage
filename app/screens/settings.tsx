@@ -17,6 +17,7 @@ export default function ProfileScreen() {
                 <View className='px-4'>
                     <ListLink title="Payments" description="Manage payment methods" icon="CreditCard" href="/screens/profile/payments" />
                     <ListLink title="Notifications" description="Push notifications, email notifications" icon="Bell" href="/screens/profile/notifications" />
+                    <ListLink title="Native features" description="Maps, widgets, push token, Face ID" icon="Map" href="/screens/native-features" />
                     <ListLink title="Currency" description="USD - United states dollar" icon="DollarSign" href="/screens/profile/currency" />
                     <ListLink title="Help" description="Contact support" icon="HelpCircle" href="/screens/help" />
                 </View>

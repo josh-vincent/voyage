@@ -17,13 +17,14 @@ Flight-booking travel app with an AI assistant.
 ## Setup
 
 ```bash
-npm install --legacy-peer-deps
+bun install
 cp .env.example .env
 # edit .env with your two keys
-npx expo start -c
+bun run ios:dev
+bun run start:dev-client
 ```
 
-Press `i` for iOS simulator or `a` for Android.
+For this project, prefer a development build over Expo Go. Build the iOS dev client once with `bun run ios:dev`, then run Metro with `bun run start:dev-client`.
 
 ## How it works
 
@@ -32,6 +33,31 @@ Press `i` for iOS simulator or `a` for Android.
 - `app/(tabs)/chat.tsx` — AI assistant with streaming + inline flight cards.
 - `app/(tabs)/favorites.tsx` — tracked routes. Re-polled on app foreground.
 - `app/(tabs)/trips.tsx` — created Duffel orders.
+
+## EAS / TestFlight
+
+Local Metro API routes are not reachable from a TestFlight build. Before building for EAS, deploy the Expo Router API routes and point the native app at that hosted URL.
+
+1. Create production secrets for the hosted API routes:
+   ```bash
+   eas env:create --environment production --name DUFFEL_ACCESS_TOKEN --value duffel_test_...
+   eas env:create --environment production --name AI_GATEWAY_API_KEY --value vck_...
+   ```
+2. Deploy the Expo Router API routes:
+   ```bash
+   eas deploy --environment production
+   ```
+3. Set the public API base URL used by the native app:
+   ```bash
+   eas env:create --environment production --name EXPO_PUBLIC_API_BASE_URL --value https://<your-deployment-host>
+   ```
+4. Create the iOS app record in App Store Connect for bundle id `com.tocld.voyage`.
+5. Build and auto-submit to TestFlight:
+   ```bash
+   bun run eas:testflight
+   ```
+
+If you only want to create the build without submitting, use `bun run eas:build:ios`. To submit an existing build later, use `bun run eas:submit:ios`.
 
 ## Testing
 

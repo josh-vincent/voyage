@@ -222,8 +222,8 @@ export default function ChatScreen() {
     }).start();
   }, [drawerOpen, drawerX]);
 
-  const send = async () => {
-    const text = input.trim();
+  const sendText = async (rawText: string) => {
+    const text = rawText.trim();
     if (!text) return;
     setInput('');
     const now = Date.now();
@@ -284,6 +284,10 @@ export default function ChatScreen() {
       calendarEvents,
     };
     sendMessage({ text }, { body: { userContext } });
+  };
+
+  const send = async () => {
+    await sendText(input);
   };
 
   const startNewChat = () => {
@@ -351,6 +355,8 @@ export default function ChatScreen() {
               onPress={startNewChat}
               className="w-10 h-10 items-center justify-center rounded-full"
               style={{ backgroundColor: 'rgba(19,26,42,0.06)' }}
+              accessibilityRole="button"
+              accessibilityLabel="Start a new chat"
             >
               <Icon name="Plus" size={16} color={INK} />
             </Pressable>
@@ -358,6 +364,8 @@ export default function ChatScreen() {
               onPress={() => setDrawerOpen((v) => !v)}
               className="w-10 h-10 items-center justify-center rounded-full"
               style={{ backgroundColor: 'rgba(19,26,42,0.06)' }}
+              accessibilityRole="button"
+              accessibilityLabel={drawerOpen ? 'Close conversations' : 'Open conversations'}
             >
               <Icon name="Menu" size={16} color={INK} />
             </Pressable>
@@ -379,9 +387,11 @@ export default function ChatScreen() {
               {QUICK_PROMPTS.map((p) => (
                 <Pressable
                   key={p}
-                  onPress={() => sendMessage({ text: p })}
+                  onPress={() => sendText(p)}
                   className="rounded-2xl p-4 mb-2 flex-row items-center"
                   style={{ backgroundColor: PARCHMENT_DEEP }}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Ask: ${p}`}
                 >
                   <ThemedText
                     className="flex-1"
@@ -440,6 +450,8 @@ export default function ChatScreen() {
               onPress={send}
               className="ml-2 w-12 h-12 rounded-full items-center justify-center"
               style={{ backgroundColor: INK }}
+              accessibilityRole="button"
+              accessibilityLabel="Send message"
             >
               <Icon name="Send" size={18} color={PARCHMENT} />
             </Pressable>
@@ -487,6 +499,8 @@ export default function ChatScreen() {
             onPress={() => setDrawerOpen(false)}
             className="ml-auto w-8 h-8 items-center justify-center rounded-full"
             style={{ backgroundColor: 'rgba(19,26,42,0.06)' }}
+            accessibilityRole="button"
+            accessibilityLabel="Close conversations"
           >
             <Icon name="X" size={14} color={INK} />
           </Pressable>

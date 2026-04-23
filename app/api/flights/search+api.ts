@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   }
   try {
     const offers = await searchOffers(parsed.data);
-    return Response.json({ offers });
+    return Response.json({ offers: Array.isArray(offers) ? offers : [] });
   } catch (e: any) {
     return jsonError(500, e?.message ?? 'Flight search failed');
   }

@@ -58,11 +58,13 @@ export default function ProfileScreen() {
           </ThemedText>
         </View>
         <View className="flex-row items-center">
-          <ThemeToggle />
+          <ThemeToggle accessibilityLabel="Toggle color theme" />
           <Pressable
             onPress={() => router.push('/screens/notifications')}
             className="ml-2 w-10 h-10 rounded-full items-center justify-center"
             style={{ backgroundColor: PARCHMENT_DEEP }}
+            accessibilityRole="button"
+            accessibilityLabel="Open notifications"
           >
             <Icon name="Bell" size={16} color={INK} />
           </Pressable>

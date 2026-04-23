@@ -1,8 +1,7 @@
 import { View, Pressable, FlatList, ScrollView, Text } from 'react-native';
-import { useLocalSearchParams, router } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useFocusEffect } from 'expo-router';
 import ThemeScroller from '@/components/ThemeScroller';
 import ThemedText from '@/components/ThemedText';
 import AnimatedView from '@/components/AnimatedView';
@@ -71,8 +70,8 @@ async function fetchOffers(body: Record<string, unknown>): Promise<FlightOffer[]
     const msg = (await res.json().catch(() => ({}))) as { error?: string };
     throw new Error(msg.error || `Search failed (${res.status})`);
   }
-  const data = (await res.json()) as { offers: FlightOffer[] };
-  return data.offers;
+  const data = (await res.json().catch(() => ({}))) as { offers?: FlightOffer[] };
+  return Array.isArray(data.offers) ? data.offers : [];
 }
 
 export default function HomeScreen() {
@@ -124,10 +123,44 @@ export default function HomeScreen() {
           {q.isLoading ? (
             <OfferSkeletons />
           ) : q.error ? (
-            <View className="mt-4 rounded-2xl p-4" style={{ backgroundColor: '#f6e1d7' }}>
-              <Text style={{ fontFamily: SERIF, color: BRICK, fontSize: 14 }}>
-                {(q.error as Error).message}
+            <View className="mt-4 rounded-3xl p-5" style={{ backgroundColor: '#f6e1d7' }}>
+              <Text style={{ fontFamily: SERIF, color: BRICK, fontSize: 22, letterSpacing: -0.2 }}>
+                No live fares just yet.
               </Text>
+              <Text
+                style={{
+                  fontFamily: SERIF,
+                  color: INK,
+                  opacity: 0.75,
+                  fontSize: 14,
+                  marginTop: 8,
+                  fontStyle: 'italic',
+                  lineHeight: 20,
+                }}
+              >
+                The route is saved, but I couldn't bring back prices for this search. Try again in a
+                moment, tweak the dates, or ask the concierge to hunt for alternatives.
+              </Text>
+              <View className="flex-row mt-4">
+                <Pressable
+                  onPress={() => q.refetch()}
+                  className="px-4 py-2 rounded-full mr-2"
+                  style={{ backgroundColor: INK }}
+                >
+                  <ThemedText style={{ color: PARCHMENT, fontWeight: '600', fontSize: 12 }}>
+                    Try again
+                  </ThemedText>
+                </Pressable>
+                <Pressable
+                  onPress={() => router.push('/(tabs)/chat')}
+                  className="px-4 py-2 rounded-full"
+                  style={{ backgroundColor: 'rgba(19,26,42,0.08)' }}
+                >
+                  <ThemedText style={{ color: INK, fontWeight: '600', fontSize: 12 }}>
+                    Ask assistant
+                  </ThemedText>
+                </Pressable>
+              </View>
             </View>
           ) : !q.data?.length ? (
             <EmptyOffers />

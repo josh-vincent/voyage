@@ -4,6 +4,7 @@ import { router, useFocusEffect } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ThemedText from '@/components/ThemedText';
 import Icon from '@/components/Icon';
+import GeoGlyph from '@/components/GeoGlyph';
 import {
   listTracked,
   removeTracked,
@@ -96,12 +97,27 @@ export default function TrackedTab() {
         contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 40 }}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         ListEmptyComponent={
-          <View className="items-center py-20">
-            <Icon name="Bell" size={32} />
-            <ThemedText className="opacity-60 mt-3">Nothing on the watchlist yet</ThemedText>
+          <View
+            className="rounded-3xl mt-6 items-center py-12 px-6"
+            style={{ backgroundColor: '#efece6' }}
+          >
+            <GeoGlyph kind="skyline-generic" size={72} color="#131a2a" accent="#c97d4a" />
+            <ThemedText
+              className="mt-4"
+              style={{ fontFamily: 'YoungSerif_400Regular', fontSize: 22, color: '#131a2a' }}
+            >
+              Nothing on the watchlist yet
+            </ThemedText>
+            <ThemedText
+              className="mt-2 text-center"
+              style={{ color: '#131a2a', opacity: 0.65, fontSize: 13, fontStyle: 'italic' }}
+            >
+              Save a route and I&apos;ll keep watch for soft mornings, sudden drops, and the moment a
+              fare gets interesting.
+            </ThemedText>
             <Pressable
               onPress={() => router.push('/(tabs)/(home)')}
-              className="mt-3 px-4 py-2 bg-black dark:bg-white rounded-full"
+              className="mt-5 px-4 py-2 bg-black dark:bg-white rounded-full"
             >
               <ThemedText className="text-white dark:text-black">Find me a deal</ThemedText>
             </Pressable>

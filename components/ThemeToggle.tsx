@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { View, Animated, TouchableOpacity } from 'react-native';
 import { useTheme } from 'app/contexts/ThemeContext';
 import Icon from './Icon';
@@ -8,9 +8,15 @@ interface ThemeToggleProps {
   value?: boolean;
   onChange?: (value: boolean) => void;
   className?: string;
+  accessibilityLabel?: string;
 }
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onChange, className = '' }) => {
+const ThemeToggle: React.FC<ThemeToggleProps> = ({
+  value,
+  onChange,
+  className = '',
+  accessibilityLabel,
+}) => {
   const { isDark, toggleTheme } = useTheme();
   const colors = useThemeColors();
   
@@ -44,6 +50,8 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onChange, className = 
       activeOpacity={0.7}
       onPress={handlePress}
       className={`flex-row items-center py-1 ${className}`}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel ?? (isActive ? 'Switch to light theme' : 'Switch to dark theme')}
     >
       <View className="w-20 h-10 rounded-full flex-row items-center justify-between">
         <View className="absolute w-full h-full rounded-full bg-light-secondary dark:bg-dark-secondary" />

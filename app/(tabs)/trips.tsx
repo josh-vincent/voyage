@@ -63,7 +63,10 @@ export default function TripsTab() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
         {orders.length === 0 ? (
-          <View className="items-center py-16">
+          <View
+            className="items-center py-14 px-6 rounded-3xl mt-2"
+            style={{ backgroundColor: '#efece6' }}
+          >
             <GeoGlyph iata="compass" size={72} color={INK} accent="#c97d4a" />
             <ThemedText
               className="mt-4"
@@ -71,8 +74,12 @@ export default function TripsTab() {
             >
               No bookings yet
             </ThemedText>
-            <ThemedText className="opacity-60 mt-1" style={{ fontStyle: 'italic' }}>
-              When you book something, it lives here.
+            <ThemedText
+              className="opacity-60 mt-2 text-center"
+              style={{ fontStyle: 'italic', lineHeight: 20 }}
+            >
+              When you book something, it lives here with the boarding-pass view, countdown, and
+              the little things left to do before wheels up.
             </ThemedText>
             <Pressable
               onPress={() => router.push('/(tabs)/(home)')}

@@ -23,7 +23,7 @@ Wait for "BUILD SUCCEEDED" + Metro bundler line `Bundled … Voyage (iOS)`. App 
 
 If you need to relaunch without rebuilding:
 ```bash
-xcrun simctl launch <sim-udid> com.expostartup.voyage
+xcrun simctl launch <sim-udid> com.tocld.voyage
 ```
 
 ## API sanity checks (before UI testing)
@@ -48,6 +48,10 @@ curl -sS -N -X POST http://localhost:8081/api/chat \
 ```
 
 Expected: search returns a positive offer count, offer returns the same id, chat streams SSE lines with `data:` frames.
+
+## TestFlight prerequisite
+
+For EAS/TestFlight builds, `localhost:8081` is invalid. Set `EXPO_PUBLIC_API_BASE_URL` to your deployed Expo API routes host and verify these same endpoints against that hosted base URL before distributing the build.
 
 ## Flow A — Manual flight booking
 
