@@ -3,7 +3,7 @@
 Flight-booking travel app with an AI assistant.
 
 - **Flights**: [Duffel](https://duffel.com) — real search + test-mode bookings (sandbox is free, live bookings are pay-per-order)
-- **AI**: [Vercel AI Gateway](https://vercel.com/ai-gateway) via `ai` SDK v5 (`anthropic/claude-sonnet-4`) with tool-calls for `searchFlights`, `getOffer`, `trackPrice`, `planItinerary`
+- **AI**: [Vercel AI Gateway](https://vercel.com/ai-gateway) via `ai` SDK v5 (model is env-configurable; dev/test defaults to a cheaper model) with tool-calls for `searchFlights`, `getOffer`, `trackPrice`, `planItinerary`
 - **Alerts**: `expo-notifications` local notifications when tracked-route prices drop
 - **Base**: forked from [`ExpoStartup/propia`](https://github.com/ExpoStartup/propia), then gutted
 
@@ -23,6 +23,11 @@ cp .env.example .env
 bun run ios:dev
 bun run start:dev-client
 ```
+
+AI model selection:
+
+- `AI_GATEWAY_MODEL`: explicit override in any environment (e.g. `anthropic/claude-sonnet-4`).
+- `AI_GATEWAY_TEST_MODEL`: development/test fallback when `AI_GATEWAY_MODEL` is not set (default `openai/gpt-4.1-mini`).
 
 For this project, prefer a development build over Expo Go. Build the iOS dev client once with `bun run ios:dev`, then run Metro with `bun run start:dev-client`.
 

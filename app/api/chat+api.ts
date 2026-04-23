@@ -6,7 +6,7 @@ import type {
   CalendarEventSummary,
   CalendarAccess,
 } from '@/lib/chatTools/types';
-import { getGatewayKey, jsonError } from './_env';
+import { getGatewayKey, getGatewayModel, jsonError } from './_env';
 
 const BASE_SYSTEM_PROMPT = `You are Voyage — a personal holiday concierge, not a generic booking tool.
 Voice: warm, concise, quietly excited about travel. Use short sentences and Markdown (**bold**, lists) to make things scannable on mobile.
@@ -95,8 +95,10 @@ type IncomingBody = {
 
 export async function POST(request: Request) {
   let apiKey: string;
+  let gatewayModel: string;
   try {
     apiKey = getGatewayKey();
+    gatewayModel = getGatewayModel();
   } catch (e: any) {
     return jsonError(500, e?.message ?? 'AI Gateway not configured');
   }
@@ -131,7 +133,7 @@ export async function POST(request: Request) {
 
   try {
     const result = streamText({
-      model: 'anthropic/claude-sonnet-4',
+      model: gatewayModel,
       system,
       messages: convertToModelMessages(body.messages),
       tools: buildTools(ctx),
