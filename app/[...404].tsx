@@ -1,34 +1,53 @@
-import { Dimensions, View } from 'react-native';
-import { Button } from '@/components/Button';
-import ThemedText from '@/components/ThemedText';
-import { Stack } from 'expo-router';
-import Header from '@/components/Header';
+import { Link, Stack } from 'expo-router';
 import React from 'react';
-import Icon from '@/components/Icon';
-const windowWidth = Dimensions.get('window').width;
-export default function NotFoundScreen() {
+import { Pressable, Text, View } from 'react-native';
 
-    return (
-        <>
-            <Stack.Screen />
-            <Header title=" " showBackButton />
-            <View className="flex-1 items-center justify-center bg-light-primary dark:bg-dark-primary p-global">
-                <View className=" mb-8">
-                    <Icon name="AlertCircle" strokeWidth={1} size={70} />
-                </View>
-                <ThemedText className="text-2xl font-bold mb-2">Page Not Found</ThemedText>
-                <ThemedText className="text-base w-2/3 text-center mb-8 text-light-subtext dark:text-dark-subtext">
-                    The page you're looking for doesn't exist or has been moved.
-                </ThemedText>
-                <View className='flex-row items-center justify-center'>
-                    <Button
-                        title="Back to Home"
-                        href="/"
-                        size="medium"
-                        className="px-6"
-                    /> 
-                </View>
+import GeoGlyph from '@/components/GeoGlyph';
+import Header from '@/components/Header';
+import Icon from '@/components/Icon';
+import { BRICK, INK, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
+
+export default function NotFoundScreen() {
+  return (
+    <>
+      <Stack.Screen />
+      <Header title=" " showBackButton />
+      <View className="flex-1 justify-center px-global" style={{ backgroundColor: PARCHMENT }}>
+        <View className="rounded-3xl p-5" style={{ backgroundColor: PARCHMENT_DEEP }}>
+          <View className="flex-row items-start justify-between">
+            <View
+              className="h-12 w-12 items-center justify-center rounded-full"
+              style={{ backgroundColor: INK }}>
+              <Icon name="AlertCircle" size={19} color={PARCHMENT} />
             </View>
-        </>
-    );
+            <GeoGlyph kind="compass" size={58} color={INK} accent={BRICK} />
+          </View>
+          <Text
+            className="mt-16"
+            style={{ color: INK, fontFamily: SERIF, fontSize: 28, letterSpacing: -0.35 }}>
+            This route is off-map
+          </Text>
+          <Text
+            className="mt-2"
+            style={{
+              color: INK,
+              fontSize: 13,
+              fontStyle: 'italic',
+              lineHeight: 19,
+              opacity: 0.62,
+            }}>
+            The page you were looking for does not exist or has moved.
+          </Text>
+          <Link href="/" asChild>
+            <Pressable
+              className="mt-6 flex-row items-center justify-center rounded-full px-5 py-3.5"
+              style={{ backgroundColor: INK }}>
+              <Text style={{ color: PARCHMENT, fontFamily: SERIF, fontSize: 15 }}>Back home</Text>
+              <Icon name="ArrowRight" size={14} color={PARCHMENT} />
+            </Pressable>
+          </Link>
+        </View>
+      </View>
+    </>
+  );
 }

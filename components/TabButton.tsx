@@ -61,7 +61,7 @@ export const TabButton = forwardRef<View, TabButtonProps>(
               <Icon name={icon} size={26} strokeWidth={isFocused ? 2.1 : 1.7} color={isFocused ? colors.highlight : colors.icon} />
             </View>
             {hasBadge && (
-              <View className="absolute w-3 h-3 border border-light-primary dark:border-dark-primary rounded-full bg-red-500 -top-1 -right-1.5" />
+              <View className="absolute w-3 h-3 border border-light-primary dark:border-dark-primary rounded-full bg-highlight -top-1 -right-1.5" />
             )}
           </View>
         );

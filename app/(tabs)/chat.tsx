@@ -433,7 +433,7 @@ export default function ChatScreen() {
             </View>
           ) : null}
           {error ? (
-            <ThemedText className="mt-2 text-red-500">
+            <ThemedText className="mt-2 text-highlight">
               {formatChatErrorMessage(error)}
             </ThemedText>
           ) : null}

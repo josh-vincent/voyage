@@ -1,0 +1,125 @@
+{
+  "capturedAt": "2026-05-04T17:33:02.615Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Element 1",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.07780320366132723,
+        "width": 0.09950248756218906,
+        "height": 0.04576659038901602
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Offer",
+      "label": "Offer",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.45688224906352026,
+        "y": 0.09000762485530338,
+        "width": 0.0854062891718167,
+        "height": 0.021357748001063714
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Couldn't load this offer",
+      "label": "Couldn't load this offer",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.24875621890547264,
+        "y": 0.5819984628079412,
+        "width": 0.501658349487912,
+        "height": 0.029366883860572797
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "It may have expired.",
+      "label": "It may have expired.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.3366500702663441,
+        "y": 0.615942040624553,
+        "width": 0.3258706847233559,
+        "height": 0.021357765459632437
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

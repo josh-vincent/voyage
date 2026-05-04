@@ -1,13 +1,14 @@
-import { View, ScrollView, Pressable, Text } from 'react-native';
-import { useLocalSearchParams, router } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
+import { useLocalSearchParams, router } from 'expo-router';
+import { View, ScrollView, Pressable, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Icon from '@/components/Icon';
+
 import GeoGlyph from '@/components/GeoGlyph';
+import Icon from '@/components/Icon';
 import { findAirport } from '@/lib/airports';
-import type { FlightOffer, FlightSlice } from '@/lib/flightTypes';
 import { api } from '@/lib/apiBase';
-import { INK, PARCHMENT, PARCHMENT_DEEP, PARCHMENT_COOL, SERIF, MOSS, BRICK } from '@/lib/theme';
+import type { FlightOffer, FlightSlice } from '@/lib/flightTypes';
+import { INK, PARCHMENT, PARCHMENT_DEEP, PARCHMENT_COOL, SERIF, BRICK } from '@/lib/theme';
 
 async function fetchOffer(id: string): Promise<FlightOffer> {
   const res = await fetch(api('/api/flights/offer'), {
@@ -31,11 +32,16 @@ export default function OfferDetail() {
 
   if (q.isLoading) {
     return (
-      <View className="flex-1 bg-light-primary dark:bg-dark-primary">
+      <View className="flex-1" style={{ backgroundColor: PARCHMENT }}>
         <TopBar />
-        <View className="px-global mt-6">
+        <View className="mt-6 px-global">
           <View
-            style={{ height: 28, width: 180, backgroundColor: 'rgba(19,26,42,0.08)', borderRadius: 4 }}
+            style={{
+              height: 28,
+              width: 180,
+              backgroundColor: 'rgba(19,26,42,0.08)',
+              borderRadius: 4,
+            }}
           />
           <View
             style={{
@@ -60,7 +66,7 @@ export default function OfferDetail() {
   }
   if (q.error || !q.data) {
     return (
-      <View className="flex-1 bg-light-primary dark:bg-dark-primary">
+      <View className="flex-1" style={{ backgroundColor: PARCHMENT }}>
         <TopBar />
         <View className="flex-1 items-center justify-center p-8">
           <GeoGlyph kind="compass" size={64} color={INK} accent={BRICK} />
@@ -71,8 +77,7 @@ export default function OfferDetail() {
               fontSize: 18,
               marginTop: 12,
               letterSpacing: -0.2,
-            }}
-          >
+            }}>
             Couldn't load this offer
           </Text>
           <Text
@@ -83,8 +88,7 @@ export default function OfferDetail() {
               marginTop: 4,
               fontSize: 13,
               fontStyle: 'italic',
-            }}
-          >
+            }}>
             {(q.error as Error)?.message ?? 'It may have expired.'}
           </Text>
         </View>
@@ -97,45 +101,41 @@ export default function OfferDetail() {
   const firstDestGlyph = first?.destination;
   const from = findAirport(first?.origin ?? '');
   const to = findAirport(first?.destination ?? '');
-  const totalStops = offer.slices.reduce(
-    (acc, s) => acc + Math.max(0, s.segments.length - 1),
-    0,
-  );
+  const totalStops = offer.slices.reduce((acc, s) => acc + Math.max(0, s.segments.length - 1), 0);
 
   return (
-    <View className="flex-1 bg-light-primary dark:bg-dark-primary">
+    <View className="flex-1" style={{ backgroundColor: PARCHMENT }}>
       <TopBar airlineCode={offer.owner.iata_code} airlineName={offer.owner.name} />
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 120 }}
-      >
+        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 120 }}>
         <View className="mt-2">
           <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.55, fontSize: 13 }}>
             {offer.slices.length > 1 ? 'Round trip' : 'One way'} · {offer.owner.name}
           </Text>
           <Text
             className="mt-1"
-            style={{ fontFamily: SERIF, color: INK, fontSize: 30, letterSpacing: -0.4 }}
-          >
-            {from?.city ?? first?.origin}{' '}
-            <Text style={{ color: INK, opacity: 0.35 }}>→</Text>{' '}
+            style={{ fontFamily: SERIF, color: INK, fontSize: 30, letterSpacing: -0.4 }}>
+            {from?.city ?? first?.origin} <Text style={{ color: INK, opacity: 0.35 }}>→</Text>{' '}
             {to?.city ?? first?.destination}
           </Text>
           <Text
             className="mt-1"
-            style={{ fontFamily: SERIF, color: INK, opacity: 0.65, fontSize: 13, fontStyle: 'italic' }}
-          >
+            style={{
+              fontFamily: SERIF,
+              color: INK,
+              opacity: 0.65,
+              fontSize: 13,
+              fontStyle: 'italic',
+            }}>
             {totalStops === 0
               ? 'Flying direct the whole way'
               : `${totalStops} stop${totalStops > 1 ? 's' : ''} in total`}
           </Text>
         </View>
 
-        <View
-          className="mt-5 rounded-3xl overflow-hidden"
-          style={{ backgroundColor: INK }}
-        >
-          <View className="flex-row items-center px-5 pt-5 pb-3">
+        <View className="mt-5 overflow-hidden rounded-3xl" style={{ backgroundColor: INK }}>
+          <View className="flex-row items-center px-5 pb-3 pt-5">
             <View className="flex-1">
               <Text
                 style={{
@@ -145,8 +145,7 @@ export default function OfferDetail() {
                   fontSize: 11,
                   letterSpacing: 1,
                   textTransform: 'uppercase',
-                }}
-              >
+                }}>
                 Fare summary
               </Text>
               <Text
@@ -156,8 +155,7 @@ export default function OfferDetail() {
                   color: PARCHMENT,
                   fontSize: 34,
                   letterSpacing: -0.5,
-                }}
-              >
+                }}>
                 {offer.totalCurrency} {Math.round(parseFloat(offer.totalAmount))}
               </Text>
               <Text
@@ -168,8 +166,7 @@ export default function OfferDetail() {
                   fontSize: 12,
                   marginTop: 3,
                   fontStyle: 'italic',
-                }}
-              >
+                }}>
                 Total for all passengers · test-mode payment
               </Text>
             </View>
@@ -177,13 +174,12 @@ export default function OfferDetail() {
           </View>
 
           <View
-            className="flex-row mx-5 mb-5 rounded-2xl"
+            className="mx-5 mb-5 flex-row rounded-2xl"
             style={{
               backgroundColor: 'rgba(241,236,228,0.07)',
               borderColor: 'rgba(241,236,228,0.15)',
               borderWidth: 1,
-            }}
-          >
+            }}>
             <FareCell label="Slices" value={String(offer.slices.length)} />
             <Sep />
             <FareCell label="Stops" value={String(totalStops)} />
@@ -197,19 +193,16 @@ export default function OfferDetail() {
         ))}
 
         <View
-          className="mt-4 rounded-3xl p-4 flex-row items-center"
-          style={{ backgroundColor: PARCHMENT_COOL }}
-        >
+          className="mt-4 flex-row items-center rounded-3xl p-4"
+          style={{ backgroundColor: PARCHMENT_COOL }}>
           <View
-            className="w-9 h-9 rounded-full items-center justify-center mr-3"
-            style={{ backgroundColor: 'rgba(19,26,42,0.08)' }}
-          >
+            className="mr-3 h-9 w-9 items-center justify-center rounded-full"
+            style={{ backgroundColor: 'rgba(19,26,42,0.08)' }}>
             <Icon name="Info" size={15} color={INK} />
           </View>
           <Text
             className="flex-1"
-            style={{ fontFamily: SERIF, color: INK, fontSize: 13, lineHeight: 19 }}
-          >
+            style={{ fontFamily: SERIF, color: INK, fontSize: 13, lineHeight: 19 }}>
             Fare rules, baggage and seats are shown on the Duffel receipt once you reserve.
           </Text>
         </View>
@@ -221,9 +214,8 @@ export default function OfferDetail() {
           paddingBottom: insets.bottom + 10,
           borderTopWidth: 1,
           borderTopColor: 'rgba(19,26,42,0.08)',
-          backgroundColor: '#fffefc',
-        }}
-      >
+          backgroundColor: PARCHMENT,
+        }}>
         <View className="flex-1">
           <Text style={{ fontFamily: SERIF, color: INK, fontSize: 22, letterSpacing: -0.3 }}>
             {offer.totalCurrency} {Math.round(parseFloat(offer.totalAmount))}
@@ -235,8 +227,7 @@ export default function OfferDetail() {
               opacity: 0.55,
               fontSize: 12,
               fontStyle: 'italic',
-            }}
-          >
+            }}>
             {offer.expires_at ? 'hold while you book' : 'test-mode checkout'}
           </Text>
         </View>
@@ -244,12 +235,13 @@ export default function OfferDetail() {
           onPress={() =>
             router.push({
               pathname: '/screens/checkout',
-              params: trackedId ? { offerId: offer.id, trackedId: String(trackedId) } : { offerId: offer.id },
+              params: trackedId
+                ? { offerId: offer.id, trackedId: String(trackedId) }
+                : { offerId: offer.id },
             })
           }
-          className="rounded-full px-6 py-3.5 flex-row items-center"
-          style={{ backgroundColor: INK }}
-        >
+          className="flex-row items-center rounded-full px-6 py-3.5"
+          style={{ backgroundColor: INK }}>
           <Text style={{ fontFamily: SERIF, color: PARCHMENT, fontSize: 15 }}>Reserve</Text>
           <Icon name="ArrowRight" size={15} color={PARCHMENT} />
         </Pressable>
@@ -263,13 +255,11 @@ function TopBar({ airlineCode, airlineName }: { airlineCode?: string; airlineNam
   return (
     <View
       className="flex-row items-center px-4 pb-2"
-      style={{ paddingTop: insets.top + 6 }}
-    >
+      style={{ paddingTop: insets.top + 6, backgroundColor: PARCHMENT }}>
       <Pressable
         onPress={() => router.back()}
-        className="w-10 h-10 rounded-full items-center justify-center"
-        style={{ backgroundColor: PARCHMENT_DEEP }}
-      >
+        className="h-10 w-10 items-center justify-center rounded-full"
+        style={{ backgroundColor: PARCHMENT_DEEP }}>
         <Icon name="ArrowLeft" size={16} color={INK} />
       </Pressable>
       <View className="flex-1 items-center">
@@ -282,30 +272,28 @@ function TopBar({ airlineCode, airlineName }: { airlineCode?: string; airlineNam
               fontSize: 13,
               letterSpacing: 1,
               textTransform: 'uppercase',
-            }}
-          >
+            }}>
             {airlineCode} · {airlineName}
           </Text>
         ) : (
           <Text style={{ fontFamily: SERIF, color: INK, fontSize: 13, opacity: 0.55 }}>Offer</Text>
         )}
       </View>
-      <View className="w-10 h-10" />
+      <View className="h-10 w-10" />
     </View>
   );
 }
 
 function FareCell({ label, value }: { label: string; value: string }) {
   return (
-    <View className="flex-1 py-3 items-center">
+    <View className="flex-1 items-center py-3">
       <Text
         style={{
           fontFamily: SERIF,
           color: PARCHMENT,
           fontSize: 18,
           letterSpacing: -0.2,
-        }}
-      >
+        }}>
         {value}
       </Text>
       <Text
@@ -317,8 +305,7 @@ function FareCell({ label, value }: { label: string; value: string }) {
           marginTop: 2,
           letterSpacing: 0.5,
           textTransform: 'uppercase',
-        }}
-      >
+        }}>
         {label}
       </Text>
     </View>
@@ -329,27 +316,23 @@ function Sep() {
   return <View style={{ width: 1, backgroundColor: 'rgba(241,236,228,0.12)' }} />;
 }
 
-function SliceCard({
-  slice,
-  index,
-  total,
-}: {
-  slice: FlightSlice;
-  index: number;
-  total: number;
-}) {
+function SliceCard({ slice, index, total }: { slice: FlightSlice; index: number; total: number }) {
   const label =
-    total > 1 ? (index === 0 ? 'Outbound' : index === 1 ? 'Return' : `Leg ${index + 1}`) : 'The flight';
+    total > 1
+      ? index === 0
+        ? 'Outbound'
+        : index === 1
+          ? 'Return'
+          : `Leg ${index + 1}`
+      : 'The flight';
   const from = findAirport(slice.origin);
   const to = findAirport(slice.destination);
   const dur = parseDurationMin(slice.duration);
   const stops = Math.max(0, slice.segments.length - 1);
   return (
     <View className="mt-4">
-      <View className="flex-row items-baseline mb-2">
-        <Text
-          style={{ fontFamily: SERIF, color: INK, fontSize: 18, letterSpacing: -0.2 }}
-        >
+      <View className="mb-2 flex-row items-baseline">
+        <Text style={{ fontFamily: SERIF, color: INK, fontSize: 18, letterSpacing: -0.2 }}>
           {label}
         </Text>
         <Text
@@ -360,8 +343,7 @@ function SliceCard({
             fontSize: 12,
             marginLeft: 8,
             fontStyle: 'italic',
-          }}
-        >
+          }}>
           {from?.city ?? slice.origin} → {to?.city ?? slice.destination}
           {dur ? ` · ${formatMin(dur)}` : ''}
           {stops > 0 ? ` · ${stops} stop${stops > 1 ? 's' : ''}` : ''}
@@ -374,23 +356,18 @@ function SliceCard({
           ? Math.max(
               0,
               Math.round(
-                (new Date(nextSeg.departing_at).getTime() -
-                  new Date(seg.arriving_at).getTime()) /
-                  60000,
-              ),
+                (new Date(nextSeg.departing_at).getTime() - new Date(seg.arriving_at).getTime()) /
+                  60000
+              )
             )
           : 0;
         return (
           <View key={i}>
-            <View
-              className="rounded-2xl p-4"
-              style={{ backgroundColor: PARCHMENT_DEEP }}
-            >
-              <View className="flex-row items-center mb-3">
+            <View className="rounded-2xl p-4" style={{ backgroundColor: PARCHMENT_DEEP }}>
+              <View className="mb-3 flex-row items-center">
                 <View
-                  className="w-8 h-8 rounded-full items-center justify-center mr-3"
-                  style={{ backgroundColor: PARCHMENT }}
-                >
+                  className="mr-3 h-8 w-8 items-center justify-center rounded-full"
+                  style={{ backgroundColor: PARCHMENT }}>
                   <Icon name="Plane" size={13} color={INK} />
                 </View>
                 <View className="flex-1">
@@ -401,8 +378,7 @@ function SliceCard({
                       fontSize: 14,
                       letterSpacing: -0.1,
                     }}
-                    numberOfLines={1}
-                  >
+                    numberOfLines={1}>
                     {seg.marketingCarrierName} {seg.flightNumber}
                   </Text>
                   <Text
@@ -412,8 +388,7 @@ function SliceCard({
                       opacity: 0.55,
                       fontSize: 11,
                       marginTop: 1,
-                    }}
-                  >
+                    }}>
                     {formatMin(parseDurationMin(seg.duration))}
                   </Text>
                 </View>
@@ -422,8 +397,7 @@ function SliceCard({
               <View className="flex-row">
                 <View className="flex-1">
                   <Text
-                    style={{ fontFamily: SERIF, color: INK, fontSize: 22, letterSpacing: -0.4 }}
-                  >
+                    style={{ fontFamily: SERIF, color: INK, fontSize: 22, letterSpacing: -0.4 }}>
                     {seg.origin}
                   </Text>
                   <Text
@@ -434,13 +408,10 @@ function SliceCard({
                       fontSize: 11,
                       marginTop: 2,
                     }}
-                    numberOfLines={1}
-                  >
+                    numberOfLines={1}>
                     {seg.originName ?? ''}
                   </Text>
-                  <Text
-                    style={{ fontFamily: SERIF, color: INK, fontSize: 13, marginTop: 6 }}
-                  >
+                  <Text style={{ fontFamily: SERIF, color: INK, fontSize: 13, marginTop: 6 }}>
                     {formatDateTime(seg.departing_at)}
                   </Text>
                 </View>
@@ -455,8 +426,7 @@ function SliceCard({
                 </View>
                 <View className="flex-1 items-end">
                   <Text
-                    style={{ fontFamily: SERIF, color: INK, fontSize: 22, letterSpacing: -0.4 }}
-                  >
+                    style={{ fontFamily: SERIF, color: INK, fontSize: 22, letterSpacing: -0.4 }}>
                     {seg.destination}
                   </Text>
                   <Text
@@ -467,13 +437,10 @@ function SliceCard({
                       fontSize: 11,
                       marginTop: 2,
                     }}
-                    numberOfLines={1}
-                  >
+                    numberOfLines={1}>
                     {seg.destinationName ?? ''}
                   </Text>
-                  <Text
-                    style={{ fontFamily: SERIF, color: INK, fontSize: 13, marginTop: 6 }}
-                  >
+                  <Text style={{ fontFamily: SERIF, color: INK, fontSize: 13, marginTop: 6 }}>
                     {formatDateTime(seg.arriving_at)}
                   </Text>
                 </View>
@@ -497,8 +464,7 @@ function SliceCard({
                     opacity: 0.6,
                     fontSize: 12,
                     fontStyle: 'italic',
-                  }}
-                >
+                  }}>
                   Layover in {seg.destination} · {formatMin(layover)}
                 </Text>
               </View>

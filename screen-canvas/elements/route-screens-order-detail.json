@@ -1,0 +1,109 @@
+{
+  "capturedAt": "2026-05-04T17:34:27.713Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Couldn't load this booking",
+      "label": "Couldn't load this booking",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.4603356333018986,
+        "width": 0.7810945273631841,
+        "height": 0.038901601830663615
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "It may have expired or only exists on another device.",
+      "label": "It may have expired or only exists on another device.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.5083905532103654,
+        "width": 0.7810945273631841,
+        "height": 0.043478260869565216
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "All trips",
+      "label": "All trips",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.5793287683133402,
+        "width": 0.7810945273631841,
+        "height": 0.05644547311883224
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

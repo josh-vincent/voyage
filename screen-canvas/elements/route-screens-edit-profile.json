@@ -1,0 +1,205 @@
+{
+  "capturedAt": "2026-05-04T17:31:40.830Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Profile Settings",
+      "label": "Profile Settings",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.15331807780320367,
+        "width": 0.5165837605794271,
+        "height": 0.041189931350114416
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Manage your account settings",
+      "label": "Manage your account settings",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.1945080091533181,
+        "width": 0.5165837605794271,
+        "height": 0.019450800915331808
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Element 3",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.3805970149253731,
+        "y": 0.28718535469107553,
+        "width": 0.23880597014925373,
+        "height": 0.10983981693363844
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Upload photo",
+      "label": "Upload photo",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.3341625270558827,
+        "y": 0.41533180778032036,
+        "width": 0.3316749458882346,
+        "height": 0.05263157894736842
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Personal information, Manage your personal information",
+      "label": "Personal information, Manage your personal information",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.5045766590389016,
+        "width": 0.8805970149253731,
+        "height": 0.08810068649885583
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Interests, Personalize your experience",
+      "label": "Interests, Personalize your experience",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.6018306636155606,
+        "width": 0.8805970149253731,
+        "height": 0.08810068649885583
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Email and phone, Manage your email",
+      "label": "Email and phone, Manage your email",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.6990846681922197,
+        "width": 0.8805970149253731,
+        "height": 0.08810068649885583
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Password, Manage your password",
+      "label": "Password, Manage your password",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.7963386727688787,
+        "width": 0.8805970149253731,
+        "height": 0.08810068649885583
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Element 9",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.07093821510297482,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Save changes",
+      "label": "Save changes",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6451077817091301,
+        "y": 0.08085431005098181,
+        "width": 0.2951906877963697,
+        "height": 0.044241043195571726
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

@@ -1,0 +1,444 @@
+{
+  "capturedAt": "2026-05-04T11:10:21.488Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "At your service",
+      "label": "At your service",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.08924485125858124,
+        "width": 0.6616915422885572,
+        "height": 0.02288329519450801
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "New chat",
+      "label": "New chat",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.11670480549199085,
+        "width": 0.6616915422885572,
+        "height": 0.04538520795529712
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Find deals, track prices, plan itineraries.",
+      "label": "Find deals, track prices, plan itineraries.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.16666666375690523,
+        "width": 0.6616915422885572,
+        "height": 0.021357730542494995
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Start a new chat",
+      "label": "Start a new chat",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.7213930348258707,
+        "y": 0.09382151029748284,
+        "width": 0.09950248756218906,
+        "height": 0.04576659038901602
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Open conversations",
+      "label": "Open conversations",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8407960199004975,
+        "y": 0.09382151029748284,
+        "width": 0.09950248756218906,
+        "height": 0.04576659038901602
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Try one of these",
+      "label": "Try one of these",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.21548436599137855,
+        "width": 0.9203980099502488,
+        "height": 0.02288329519450801
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Ask: Cheapest NYC → Tokyo next month for 2 adults under $800",
+      "label": "Ask: Cheapest NYC → Tokyo next month for 2 adults under $800",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.24980930878314056,
+        "width": 0.9203980099502488,
+        "height": 0.08543097454568614
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Ask: Weekend flight from SFO to Austin",
+      "label": "Ask: Weekend flight from SFO to Austin",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.34439359267734554,
+        "width": 0.9203980099502488,
+        "height": 0.06102213215773384
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Ask: Plan a 4-day trip to Lisbon on a budget",
+      "label": "Ask: Plan a 4-day trip to Lisbon on a budget",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.4145690341835982,
+        "width": 0.9203980099502488,
+        "height": 0.061022097240596394
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Ask: Watch London prices from JFK for the next 3 weeks",
+      "label": "Ask: Watch London prices from JFK for the next 3 weeks",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.48474446696056656,
+        "width": 0.9203980099502488,
+        "height": 0.08543099200425486
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "Ask the concierge",
+      "label": "Ask the concierge",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.795957284606567,
+        "width": 0.7810945273631841,
+        "height": 0.05186877916279319
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "Send message",
+      "label": "Send message",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8407960199004975,
+        "y": 0.7929061784897025,
+        "width": 0.11940298507462686,
+        "height": 0.05491990846681922
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "Conversations",
+      "label": "Conversations",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.0896262395231893,
+        "width": 0,
+        "height": 0.035850489985206305
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-14",
+      "name": "Close conversations",
+      "label": "Close conversations",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.08924485125858124,
+        "width": 0,
+        "height": 0.036613272311212815
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-15",
+      "name": "New chat",
+      "label": "New chat",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.14416475972540047,
+        "width": 0,
+        "height": 0.051868796621361915
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-16",
+      "name": "Cheapest NYC → Tokyo next month for 2 adults u…, 23 Apr · 2 msg",
+      "label": "Cheapest NYC → Tokyo next month for 2 adults u…, 23 Apr · 2 msg",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.2257818400996228,
+        "width": 0,
+        "height": 0.06292906178489703
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-17",
+      "name": "Element 17",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.24141875775509622,
+        "width": 0,
+        "height": 0.032036613272311214
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-18",
+      "name": "Cheapest NYC → Tokyo next month for 2 adults u…, 23 Apr · 1 msg",
+      "label": "Cheapest NYC → Tokyo next month for 2 adults u…, 23 Apr · 1 msg",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.32074751515683103,
+        "width": 0,
+        "height": 0.06292906178489703
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-19",
+      "name": "Element 19",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.33638443281230446,
+        "width": 0,
+        "height": 0.032036613272311214
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-20",
+      "name": "Hi, 23 Apr · 1 msg",
+      "label": "Hi, 23 Apr · 1 msg",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.41571319021403924,
+        "width": 0,
+        "height": 0.04042713156553919
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-21",
+      "name": "Element 21",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.41990846136341925,
+        "width": 0,
+        "height": 0.032036613272311214
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-22",
+      "name": "Search",
+      "label": "Search",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-23",
+      "name": "Tracked",
+      "label": "Tracked",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.19983416884692748,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-24",
+      "name": "Trips",
+      "label": "Trips",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.39966833769385496,
+        "y": 0.8993135011441648,
+        "width": 0.2006633246122901,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-25",
+      "name": "Assistant",
+      "label": "Assistant",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6003316623061451,
+        "y": 0.8993135011441648,
+        "width": 0.19983414986833412,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-26",
+      "name": "Profile",
+      "label": "Profile",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8001658121744791,
+        "y": 0.8993135011441648,
+        "width": 0.19983418782552084,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-28",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

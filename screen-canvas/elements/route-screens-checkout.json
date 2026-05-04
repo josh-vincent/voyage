@@ -1,0 +1,58 @@
+{
+  "capturedAt": "2026-05-04T11:10:40.665Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "In progress",
+      "label": "In progress",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.47512437810945274,
+        "y": 0.488558352402746,
+        "width": 0.04975124378109453,
+        "height": 0.02288329519450801
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.44317315026697174,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

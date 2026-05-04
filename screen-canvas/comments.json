@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-05-04T17:37:33.845Z",
+  "app": "/Users/miniai/jv/voyage",
+  "comments": [
+    {
+      "id": "comment-1777915137332",
+      "routeId": "route-screens-signup",
+      "author": "Screen Canvas",
+      "body": "These elements are al missing the syyling of the rest of our pages",
+      "targets": [
+        {
+          "routeId": "route-screens-signup",
+          "route": "/screens/signup",
+          "screenshot": "latest/screens/route-screens-signup.png",
+          "sourceFile": "app/screens/signup.tsx",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "routeId": "route-screens-welcome",
+          "elementId": "argent-6",
+          "route": "/screens/welcome",
+          "screenshot": "latest/screens/route-screens-welcome.png",
+          "sourceFile": "app/screens/welcome.tsx",
+          "target": {
+            "x": 0.05970149253731343,
+            "y": 0.4931350114416476,
+            "width": 0.8805970149253731,
+            "height": 0.059496567505720827
+          },
+          "elementSelection": {
+            "componentName": "Payment Confirmations, Receipts and payment processing updates",
+            "context": {
+              "route": "/screens/welcome",
+              "elementId": "argent-6"
+            }
+          }
+        },
+        {
+          "routeId": "route-screens-welcome",
+          "route": "/screens/welcome",
+          "screenshot": "latest/screens/route-screens-welcome.png",
+          "sourceFile": "app/screens/welcome.tsx",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        }
+      ],
+      "status": "open",
+      "sourceFile": "app/screens/signup.tsx",
+      "createdAt": "2026-05-04T17:18:57.332Z",
+      "updatedAt": "2026-05-04T17:18:57.341Z"
+    },
+    {
+      "id": "comment-1777916253831",
+      "routeId": "route-screens-checkout",
+      "author": "Screen Canvas",
+      "body": "now these pages still have hints of red please fix this",
+      "targets": [
+        {
+          "routeId": "route-screens-checkout",
+          "route": "/screens/checkout",
+          "screenshot": "latest/screens/route-screens-checkout.png",
+          "sourceFile": "app/screens/checkout.tsx",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "routeId": "route-screens-profile-notifications",
+          "route": "/screens/profile/notifications",
+          "screenshot": "latest/screens/route-screens-profile-notifications.png",
+          "sourceFile": "app/screens/profile/notifications.tsx",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "routeId": "route-group-tabs-chat",
+          "elementId": "argent-25",
+          "route": "/(tabs)/chat",
+          "screenshot": "latest/screens/route-group-tabs-chat.png",
+          "sourceFile": "app/(tabs)/chat.tsx",
+          "target": {
+            "x": 0.6003316623061451,
+            "y": 0.8993135011441648,
+            "width": 0.19983414986833412,
+            "height": 0.06178489702517163
+          },
+          "elementSelection": {
+            "componentName": "Assistant",
+            "context": {
+              "route": "/(tabs)/chat",
+              "elementId": "argent-25"
+            }
+          }
+        }
+      ],
+      "status": "open",
+      "sourceFile": "app/screens/checkout.tsx",
+      "createdAt": "2026-05-04T17:37:33.832Z",
+      "updatedAt": "2026-05-04T17:37:33.839Z"
+    }
+  ]
+}

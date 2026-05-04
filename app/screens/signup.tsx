@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
-import { View, Pressable, StyleSheet, Text } from 'react-native';
 import { Link, router } from 'expo-router';
-import Input from '@/components/forms/Input';
-import ThemedText from '@/components/ThemedText';
-import { Button } from '@/components/Button';
-import useThemeColors from '@/app/contexts/ThemeColors';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from 'react-native';
+
 import Header from '@/components/Header';
+import Input from '@/components/forms/Input';
+import { BRICK, INK, MOSS, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
 
 export default function SignupScreen() {
-  const insets = useSafeAreaInsets();
-  const colors = useThemeColors();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -21,12 +17,13 @@ export default function SignupScreen() {
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [strengthText, setStrengthText] = useState('');
 
-  const validateEmail = (email: string) => {
+  const validateEmail = (value: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) {
+    if (!value) {
       setEmailError('Email is required');
       return false;
-    } else if (!emailRegex.test(email)) {
+    }
+    if (!emailRegex.test(value)) {
       setEmailError('Please enter a valid email');
       return false;
     }
@@ -34,53 +31,49 @@ export default function SignupScreen() {
     return true;
   };
 
-  const checkPasswordStrength = (password: string) => {
+  const checkPasswordStrength = (value: string) => {
     let strength = 0;
-    let feedback = [];
+    const feedback = [];
 
-    // Length check
-    if (password.length >= 8) {
+    if (value.length >= 8) {
       strength += 25;
     } else {
       feedback.push('At least 8 characters');
     }
 
-    // Uppercase check
-    if (/[A-Z]/.test(password)) {
+    if (/[A-Z]/.test(value)) {
       strength += 25;
     } else {
       feedback.push('Add uppercase letter');
     }
 
-    // Lowercase check
-    if (/[a-z]/.test(password)) {
+    if (/[a-z]/.test(value)) {
       strength += 25;
     } else {
       feedback.push('Add lowercase letter');
     }
 
-    // Numbers or special characters check
-    if (/[0-9!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    if (/[0-9!@#$%^&*(),.?":{}|<>]/.test(value)) {
       strength += 25;
     } else {
       feedback.push('Add number or special character');
     }
 
     setPasswordStrength(strength);
-    setStrengthText(feedback.join(' • ') || 'Strong password!');
+    setStrengthText(feedback.join(' / ') || 'Strong password');
     return strength >= 75;
   };
 
-  const validatePassword = (password: string) => {
-    if (!password) {
+  const validatePassword = (value: string) => {
+    if (!value) {
       setPasswordError('Password is required');
       return false;
-    } else if (password.length < 8) {
+    }
+    if (value.length < 8) {
       setPasswordError('Password must be at least 8 characters');
       return false;
     }
-    const isStrong = checkPasswordStrength(password);
-    if (!isStrong) {
+    if (!checkPasswordStrength(value)) {
       setPasswordError('Please create a stronger password');
       return false;
     }
@@ -88,11 +81,12 @@ export default function SignupScreen() {
     return true;
   };
 
-  const validateConfirmPassword = (confirmPassword: string) => {
-    if (!confirmPassword) {
+  const validateConfirmPassword = (value: string) => {
+    if (!value) {
       setConfirmPasswordError('Confirm password is required');
       return false;
-    } else if (confirmPassword !== password) {
+    }
+    if (value !== password) {
       setConfirmPasswordError('Passwords do not match');
       return false;
     }
@@ -107,118 +101,118 @@ export default function SignupScreen() {
 
     if (isEmailValid && isPasswordValid && isConfirmPasswordValid) {
       setIsLoading(true);
-      // Simulate API call
       setTimeout(() => {
         setIsLoading(false);
-        // Navigate to home screen after successful login
         router.replace('/(tabs)/(home)');
       }, 1500);
     }
   };
 
-  const handleSocialLogin = (provider: string) => {
-    console.log(`Login with ${provider}`);
-    // Implement social login logic here
-  };
-
   return (
-
     <>
       <Header showBackButton />
-      <View className="flex-1 bg-light-primary dark:bg-dark-primary p-6">
+      <ScrollView
+        className="flex-1"
+        style={{ backgroundColor: PARCHMENT }}
+        contentContainerStyle={{ padding: 24, paddingBottom: 48 }}
+        showsVerticalScrollIndicator={false}>
+        <View className="mt-4">
+          <Text style={{ color: INK, fontFamily: SERIF, fontSize: 34, letterSpacing: -0.4 }}>
+            Create your account
+          </Text>
+          <Text
+            className="mt-2"
+            style={{ color: INK, fontSize: 13, fontStyle: 'italic', opacity: 0.6 }}>
+            Save watched routes, trips, and your travel preferences.
+          </Text>
 
+          <View className="mt-8 rounded-3xl p-4" style={{ backgroundColor: PARCHMENT_DEEP }}>
+            <Input
+              label="Email"
+              value={email}
+              onChangeText={(text) => {
+                setEmail(text);
+                if (emailError) validateEmail(text);
+              }}
+              error={emailError}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoComplete="email"
+              containerClassName="mb-4"
+            />
 
-        <View className="mt-8">
-          <ThemedText className="text-3xl font-bold mb-1">Create new account</ThemedText>
-          <ThemedText className="text-light-subtext dark:text-dark-subtext mb-14">Create an account to continue</ThemedText>
+            <Input
+              label="Password"
+              value={password}
+              onChangeText={(text) => {
+                setPassword(text);
+                checkPasswordStrength(text);
+                if (passwordError) validatePassword(text);
+              }}
+              error={passwordError}
+              isPassword
+              autoCapitalize="none"
+              containerClassName="mb-4"
+            />
 
-          <Input
-            label="Email"
-            //leftIcon="mail"
-            value={email}
-            onChangeText={(text) => {
-              setEmail(text);
-              if (emailError) validateEmail(text);
-            }}
-            error={emailError}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoComplete="email"
-            containerClassName='mb-4'
-          />
+            <Input
+              label="Confirm password"
+              value={confirmPassword}
+              onChangeText={(text) => {
+                setConfirmPassword(text);
+                if (confirmPasswordError) validateConfirmPassword(text);
+              }}
+              error={confirmPasswordError}
+              containerClassName="mb-4"
+              isPassword
+              autoCapitalize="none"
+            />
 
-          <Input
-            label="Password"
-            //leftIcon="lock"
-            value={password}
-            onChangeText={(text) => {
-              setPassword(text);
-              checkPasswordStrength(text);
-              if (passwordError) validatePassword(text);
-            }}
-            error={passwordError}
-            isPassword={true}
-            autoCapitalize="none"
-            containerClassName='mb-4'
-          />
-
-          <Input
-            label="Confirm password"
-            //leftIcon="lock"
-            value={confirmPassword}
-            onChangeText={(text) => {
-              setConfirmPassword(text);
-              if (confirmPasswordError) validateConfirmPassword(text);
-            }}
-            error={confirmPasswordError}
-            containerClassName='mb-4'
-            isPassword={true}
-            autoCapitalize="none"
-          />
-          {password.length > 0 && (
-            <View className="mb-4">
-              <View className="w-full h-1 bg-light-secondary dark:bg-dark-secondary rounded-full overflow-hidden">
+            {password.length > 0 && (
+              <View className="mb-4">
                 <View
-                  className={`h-full rounded-full ${passwordStrength >= 75 ? 'bg-green-500' : passwordStrength >= 50 ? 'bg-yellow-500' : 'bg-red-500'}`}
-                  style={{ width: `${passwordStrength}%` }}
-                />
+                  className="h-1 w-full overflow-hidden rounded-full"
+                  style={{ backgroundColor: 'rgba(19,26,42,0.1)' }}>
+                  <View
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${passwordStrength}%`,
+                      backgroundColor:
+                        passwordStrength >= 75 ? MOSS : passwordStrength >= 50 ? BRICK : '#b84a3a',
+                    }}
+                  />
+                </View>
+                <Text className="mt-2" style={{ color: INK, fontSize: 12, opacity: 0.55 }}>
+                  {strengthText}
+                </Text>
               </View>
-              <ThemedText className="text-xs mt-1 text-light-subtext dark:text-dark-subtext">
-                {strengthText}
-              </ThemedText>
-            </View>
-          )}
+            )}
 
+            <Pressable
+              onPress={handleSignup}
+              disabled={isLoading}
+              className="mt-2 h-14 flex-row items-center justify-center rounded-2xl"
+              style={{ backgroundColor: INK, opacity: isLoading ? 0.65 : 1 }}>
+              {isLoading ? (
+                <ActivityIndicator color={PARCHMENT} />
+              ) : (
+                <Text style={{ color: PARCHMENT, fontFamily: SERIF, fontSize: 15 }}>Sign up</Text>
+              )}
+            </Pressable>
+          </View>
 
-          <Button
-            title="Sign up"
-            onPress={handleSignup}
-            loading={isLoading}
-            size="large"
-            className="mb-6"
-          />
-
-
-
-          <View className="flex-row justify-center">
-            <ThemedText className="text-light-subtext dark:text-dark-subtext">Already have an account? </ThemedText>
+          <View className="mt-6 flex-row justify-center">
+            <Text style={{ color: INK, fontSize: 13, opacity: 0.6 }}>
+              Already have an account?{' '}
+            </Text>
             <Link href="/screens/login" asChild>
               <Pressable>
-                <ThemedText className="underline">Log in</ThemedText>
+                <Text style={{ color: INK, fontFamily: SERIF, fontSize: 13 }}>Log in</Text>
               </Pressable>
             </Link>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  googleIcon: {
-    width: 20,
-    height: 20,
-    backgroundColor: '#4285F4',
-    borderRadius: 2,
-  },
-});

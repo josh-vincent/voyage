@@ -1,0 +1,517 @@
+{
+  "capturedAt": "2026-05-04T17:32:21.752Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Native features",
+      "label": "Native features",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.16247139588100687,
+        "width": 0.8805970149253731,
+        "height": 0.051868796621361915
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Validate native modules before the first App Store build.",
+      "label": "Validate native modules before the first App Store build.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.22349351494481418,
+        "width": 0.8805970149253731,
+        "height": 0.021739130434782608
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Notifications",
+      "label": "Notifications",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 0.29328756965270575,
+        "width": 0.681592039800995,
+        "height": 0.029366883860572797
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Status: Not requested yet",
+      "label": "Status: Not requested yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 0.32265446442488405,
+        "width": 0.681592039800995,
+        "height": 0.020594965675057208
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Token: Not available yet",
+      "label": "Token: Not available yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.09950248756218906,
+        "y": 0.35697940503432496,
+        "width": 0.8009950248756219,
+        "height": 0.020594965675057208
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Register for push notifications",
+      "label": "Register for push notifications",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.06965174129353234,
+        "y": 0.37757437070938216,
+        "width": 0.8308457711442786,
+        "height": 0.048817684775904605
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Biometrics",
+      "label": "Biometrics",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 0.4744469753937536,
+        "width": 0.681592039800995,
+        "height": 0.02936691877771024
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Not checked yet",
+      "label": "Not checked yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 0.5038138701659318,
+        "width": 0.681592039800995,
+        "height": 0.020594965675057208
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Check availability",
+      "label": "Check availability",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.09950248756218906,
+        "y": 0.5381388107753727,
+        "width": 0.40049751243781095,
+        "height": 0.048817684775904605
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Authenticate",
+      "label": "Authenticate",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.5,
+        "y": 0.5381388107753727,
+        "width": 0.40049751243781095,
+        "height": 0.048817684775904605
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "Maps",
+      "label": "Maps",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 0.6350114416475973,
+        "width": 0.681592039800995,
+        "height": 0.02936691877771024
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "Location permission: Not requested yet",
+      "label": "Location permission: Not requested yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 0.6643783364197755,
+        "width": 0.681592039800995,
+        "height": 0.020594965675057208
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "Request map location access",
+      "label": "Request map location access",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.06965174129353234,
+        "y": 0.6849732999125117,
+        "width": 0.8308457711442786,
+        "height": 0.04881764985876716
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-14",
+      "name": "Tokyo",
+      "label": "Tokyo",
+      "role": "supportsZoom",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.46102819237147596,
+        "y": 0.8142639235810049,
+        "width": 0.07794361525704811,
+        "height": 0.039979103955487774
+      },
+      "traits": [
+        "supportsZoom"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-15",
+      "name": "Tracking",
+      "label": "Tracking",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.7512437810945274,
+        "y": 0.7658276154192961,
+        "width": 0.10945273631840796,
+        "height": 0.05034324942791762
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "VKPointFeature",
+      "name": "Higashikurume",
+      "label": "Higashikurume",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.2048390038716284,
+        "y": 0.7379849743378977,
+        "width": 0.07462686567164178,
+        "height": 0.034324942791762014
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "VKPointFeature",
+      "name": "Kodaira",
+      "label": "Kodaira",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.09247616130440077,
+        "y": 0.7737385888940997,
+        "width": 0.07462686567164178,
+        "height": 0.034324942791762014
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "VKPointFeature",
+      "name": "Nishitokyo",
+      "label": "Nishitokyo",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.22325914199732178,
+        "y": 0.777297005508714,
+        "width": 0.07462686567164178,
+        "height": 0.034324942791762014
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "VKPointFeature",
+      "name": "Tokyo, Tokyo",
+      "label": "Tokyo, Tokyo",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.46268656716431367,
+        "y": 0.8371472219580504,
+        "width": 0.07462686567164178,
+        "height": 0.034324942791762014
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "VKPointFeature",
+      "name": "Fuchu",
+      "label": "Fuchu",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.09284456406679895,
+        "y": 0.8457541632371509,
+        "width": 0.07462686567164178,
+        "height": 0.034324942791762014
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "VKPointFeature",
+      "name": "Chofu",
+      "label": "Chofu",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.22841678067264512,
+        "y": 0.8684602502064627,
+        "width": 0.07462686567164178,
+        "height": 0.034324942791762014
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-22",
+      "name": "Tokyo",
+      "label": "Tokyo",
+      "role": "supportsZoom",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.46102819237147596,
+        "y": 0.8142639235810049,
+        "width": 0.07794361525704811,
+        "height": 0.039979103955487774
+      },
+      "traits": [
+        "supportsZoom"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-23",
+      "name": "Legal",
+      "label": "Legal",
+      "role": "link",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.2742519821495954,
+        "y": 0.9373681557987774,
+        "width": 0.07108275362508214,
+        "height": 0.012288597683066362
+      },
+      "traits": [
+        "link"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-24",
+      "name": "Widgets",
+      "label": "Widgets",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 1,
+        "width": 0.681592039800995,
+        "height": 0
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-25",
+      "name": "Not updated yet",
+      "label": "Not updated yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.21890547263681592,
+        "y": 1,
+        "width": 0.681592039800995,
+        "height": 0
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-26",
+      "name": "On iOS, add the Trip Status widget from the Home Screen widget gallery after installing the app.",
+      "label": "On iOS, add the Trip Status widget from the Home Screen widget gallery after installing the app.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.09950248756218906,
+        "y": 1,
+        "width": 0.8009950248756219,
+        "height": 0
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-27",
+      "name": "Update widget snapshot",
+      "label": "Update widget snapshot",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.06965174129353234,
+        "y": 1,
+        "width": 0.8308457711442786,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-28",
+      "name": "Running on ios with project ID 94443fbd-292b-4373-92c6-4a0164fe7bd3.",
+      "label": "Running on ios with project ID 94443fbd-292b-4373-92c6-4a0164fe7bd3.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 1,
+        "width": 0.8805970149253731,
+        "height": 0
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-29",
+      "name": "Element 29",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.07093821510297482,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-31",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-32",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

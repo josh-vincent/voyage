@@ -1,0 +1,282 @@
+{
+  "capturedAt": "2026-05-04T17:23:00.539Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Notifications",
+      "label": "Notifications",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.18077803203661327,
+        "width": 0.4336649956394784,
+        "height": 0.041189931350114416
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Stay updated on your bookings and travel plans",
+      "label": "Stay updated on your bookings and travel plans",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.2219679633867277,
+        "width": 0.7628523793386582,
+        "height": 0.019450800915331808
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Booking & Travel",
+      "label": "Booking & Travel",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.28718535469107553,
+        "width": 0.8805970149253731,
+        "height": 0.029366883860572797
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Booking Updates, Confirmations, changes, and cancellations",
+      "label": "Booking Updates, Confirmations, changes, and cancellations",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.3348588878011813,
+        "width": 0.8805970149253731,
+        "height": 0.08695652173913043
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Host Messages, Messages from your hosts and property owners",
+      "label": "Host Messages, Messages from your hosts and property owners",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.43096872325347274,
+        "width": 0.8805970149253731,
+        "height": 0.10983981693363844
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Payment Confirmations, Receipts and payment processing updates",
+      "label": "Payment Confirmations, Receipts and payment processing updates",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.5499618669941987,
+        "width": 0.8805970149253731,
+        "height": 0.08695655665626788
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Review Requests, Reminders to review your stays and experiences",
+      "label": "Review Requests, Reminders to review your stays and experiences",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.6460716893525636,
+        "width": 0.8805970149253731,
+        "height": 0.10983981693363844
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Check-in Reminders, Important information before your arrival",
+      "label": "Check-in Reminders, Important information before your arrival",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.7650648243640052,
+        "width": 0.8805970149253731,
+        "height": 0.08695652173913043
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Promotions & Marketing",
+      "label": "Promotions & Marketing",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.934401243720502,
+        "width": 0.8805970149253731,
+        "height": 0.02936691877771024
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Special Offers, Discounts and deals on accommodations",
+      "label": "Special Offers, Discounts and deals on accommodations",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.9820747768306077,
+        "width": 0.8805970149253731,
+        "height": 0.017925223169392268
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "Host Promotions, Exclusive offers from your favorite hosts",
+      "label": "Host Promotions, Exclusive offers from your favorite hosts",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 1,
+        "width": 0.8805970149253731,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "Travel Tips, Destination guides and travel recommendations",
+      "label": "Travel Tips, Destination guides and travel recommendations",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 1,
+        "width": 0.8805970149253731,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "Marketing Emails, Newsletters and destination inspiration",
+      "label": "Marketing Emails, Newsletters and destination inspiration",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 1,
+        "width": 0.8805970149253731,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-14",
+      "name": "Element 14",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.07093821510297482,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-15",
+      "name": "Save changes",
+      "label": "Save changes",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6326699707638564,
+        "y": 0.07971014474567614,
+        "width": 0.30762853669883006,
+        "height": 0.04691075514874142
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-17",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-18",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

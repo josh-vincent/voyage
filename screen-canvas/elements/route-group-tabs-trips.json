@@ -1,0 +1,179 @@
+{
+  "capturedAt": "2026-05-04T11:10:29.777Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Your trips",
+      "label": "Your trips",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.08924485125858124,
+        "width": 0.8805970149253731,
+        "height": 0.02288329519450801
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Quiet for now.",
+      "label": "Quiet for now.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.11670480549199085,
+        "width": 0.8805970149253731,
+        "height": 0.04538520795529712
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "No bookings yet",
+      "label": "No bookings yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.304311780787226,
+        "y": 0.34515637500335206,
+        "width": 0.39054726368159204,
+        "height": 0.03241801316459883
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "When you book something, it lives here with the boarding-pass view, countdown, and the little things left to do before wheels up.",
+      "label": "When you book something, it lives here with the boarding-pass view, countdown, and the little things left to do before wheels up.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.38672768878718533,
+        "width": 0.7810945273631841,
+        "height": 0.06864988558352403
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Find a flight",
+      "label": "Find a flight",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.3515754623792658,
+        "y": 0.4782608870237861,
+        "width": 0.2968490752414684,
+        "height": 0.04233409610983982
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Search",
+      "label": "Search",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Tracked",
+      "label": "Tracked",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.19983416884692748,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Trips",
+      "label": "Trips",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.39966833769385496,
+        "y": 0.8993135011441648,
+        "width": 0.2006633246122901,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Assistant",
+      "label": "Assistant",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6003316623061451,
+        "y": 0.8993135011441648,
+        "width": 0.19983414986833412,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Profile",
+      "label": "Profile",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8001658121744791,
+        "y": 0.8993135011441648,
+        "width": 0.19983418782552084,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.44317315026697174,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    }
+  ]
+}

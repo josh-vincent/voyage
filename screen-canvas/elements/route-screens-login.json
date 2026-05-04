@@ -1,0 +1,240 @@
+{
+  "capturedAt": "2026-05-04T17:32:08.167Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Welcome back",
+      "label": "Welcome back",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.18077803203661327,
+        "width": 0.8805970149253731,
+        "height": 0.05530129090053811
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Sign in to keep watching fares and trips.",
+      "label": "Sign in to keep watching fares and trips.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.24523264537959677,
+        "width": 0.8805970149253731,
+        "height": 0.017925253721887514
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Element 3",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10199004975124377,
+        "y": 0.31922196796338675,
+        "width": 0.7960199004975125,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Element 4",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10199004975124377,
+        "y": 0.40160183066361554,
+        "width": 0.7960199004975125,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Forgot password?",
+      "label": "Forgot password?",
+      "role": "link",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.09950248756218906,
+        "y": 0.482837528604119,
+        "width": 0.8009950248756219,
+        "height": 0.021357730542494995
+      },
+      "traits": [
+        "link"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Login",
+      "label": "Login",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.09950248756218906,
+        "y": 0.5270785717996908,
+        "width": 0.8009950248756219,
+        "height": 0.06407326146175987
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Don't have an account? ",
+      "label": "Don't have an account? ",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.25538971175008746,
+        "y": 0.6369183712747605,
+        "width": 0.36318407960199006,
+        "height": 0.02135769562535755
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Sign up",
+      "label": "Sign up",
+      "role": "link",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6194029850746269,
+        "y": 0.6369183712747605,
+        "width": 0.12520732215387903,
+        "height": 0.02135769562535755
+      },
+      "traits": [
+        "link"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Element 9",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8208955223880597,
+        "y": 0.42105263157894735,
+        "width": 0.04975124378109453,
+        "height": 0.02288329519450801
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Email",
+      "label": "Email",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.3180778032036613,
+        "width": 0.01990049751243781,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "Password",
+      "label": "Password",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.40045766590389015,
+        "width": 0.01990049751243781,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "Element 12",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.07093821510297482,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-14",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-15",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

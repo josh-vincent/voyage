@@ -1,0 +1,153 @@
+{
+  "generatedAt": "2026-05-04T11:49:24.465Z",
+  "app": "/Users/miniai/jv/voyage",
+  "annotations": [
+    {
+      "id": "annotation-1777895203202",
+      "routeId": "route-screens-settings",
+      "elementId": "argent-11",
+      "type": "pin",
+      "tool": "pin",
+      "bounds": {
+        "x": 0.677156025981851,
+        "y": 0.5430870164250512,
+        "width": 0.024,
+        "height": 0.024
+      },
+      "body": "",
+      "status": "open",
+      "route": "/screens/settings",
+      "screenshot": "latest/screens/route-screens-settings.png",
+      "sourceFile": "app/screens/settings.tsx",
+      "elementSelection": {
+        "componentName": "Beach reset, Toes in sand by Sunday",
+        "context": {
+          "route": "/screens/settings",
+          "elementId": "argent-11"
+        }
+      },
+      "createdAt": "2026-05-04T11:46:43.202Z",
+      "updatedAt": "2026-05-04T11:46:43.225Z"
+    },
+    {
+      "id": "annotation-1777895207206",
+      "routeId": "route-screens-settings",
+      "elementId": "argent-10",
+      "type": "pin",
+      "tool": "pin",
+      "bounds": {
+        "x": 0.2528963095515167,
+        "y": 0.5606553956096438,
+        "width": 0.024,
+        "height": 0.024
+      },
+      "body": "",
+      "status": "open",
+      "route": "/screens/settings",
+      "screenshot": "latest/screens/route-screens-settings.png",
+      "sourceFile": "app/screens/settings.tsx",
+      "elementSelection": {
+        "componentName": "City break, Culture + late dinners",
+        "context": {
+          "route": "/screens/settings",
+          "elementId": "argent-10"
+        }
+      },
+      "createdAt": "2026-05-04T11:46:47.206Z",
+      "updatedAt": "2026-05-04T11:46:47.211Z"
+    },
+    {
+      "id": "annotation-1777895267830",
+      "routeId": "route-screens-welcome",
+      "elementId": "argent-5",
+      "type": "pin",
+      "tool": "pin",
+      "bounds": {
+        "x": 0.5656207342575222,
+        "y": 0.4340124878735643,
+        "width": 0.024,
+        "height": 0.024
+      },
+      "body": "",
+      "status": "resolved",
+      "route": "/screens/welcome",
+      "screenshot": "latest/screens/route-screens-welcome.png",
+      "sourceFile": "app/screens/welcome.tsx",
+      "elementSelection": {
+        "componentName": "Host Messages, Messages from your hosts and property owners",
+        "context": {
+          "route": "/screens/welcome",
+          "elementId": "argent-5"
+        }
+      },
+      "createdAt": "2026-05-04T11:47:47.830Z",
+      "updatedAt": "2026-05-04T11:48:19.783Z"
+    },
+    {
+      "id": "annotation-1777895352243",
+      "routeId": "route-group-tabs-group-home",
+      "elementId": "argent-2",
+      "type": "circle",
+      "tool": "circle",
+      "bounds": {
+        "x": 0.6451529508418219,
+        "y": 0.584009979522246,
+        "width": 0.3548470491581781,
+        "height": 0.4159900204777541
+      },
+      "points": [
+        {
+          "x": 0.6446323834943686,
+          "y": 0.17589335496685427
+        }
+      ],
+      "body": "",
+      "status": "open",
+      "route": "/(tabs)/(home)",
+      "screenshot": "latest/screens/route-group-tabs-group-home.png",
+      "sourceFile": "app/(tabs)/(home)/index.tsx",
+      "elementSelection": {
+        "componentName": "Where's next?",
+        "context": {
+          "route": "/(tabs)/(home)",
+          "elementId": "argent-2"
+        }
+      },
+      "createdAt": "2026-05-04T11:49:12.243Z",
+      "updatedAt": "2026-05-04T11:49:24.459Z"
+    },
+    {
+      "id": "annotation-1777895359510",
+      "routeId": "route-group-tabs-group-home",
+      "elementId": "argent-4",
+      "type": "circle",
+      "tool": "circle",
+      "bounds": {
+        "x": 0.21331997694183577,
+        "y": 0.2940411150761239,
+        "width": 0.37874247334391387,
+        "height": 0.6473398205056731
+      },
+      "points": [
+        {
+          "x": 0.21331997694183577,
+          "y": 0.2940411150761239
+        }
+      ],
+      "body": "",
+      "status": "open",
+      "route": "/(tabs)/(home)",
+      "screenshot": "latest/screens/route-group-tabs-group-home.png",
+      "sourceFile": "app/(tabs)/(home)/index.tsx",
+      "elementSelection": {
+        "componentName": "For you today, Back to Miami, You looked recently · from New York, Show me flights",
+        "context": {
+          "route": "/(tabs)/(home)",
+          "elementId": "argent-4"
+        }
+      },
+      "createdAt": "2026-05-04T11:49:19.510Z",
+      "updatedAt": "2026-05-04T11:49:21.768Z"
+    }
+  ]
+}

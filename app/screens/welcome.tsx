@@ -1,67 +1,102 @@
-import { View, Text, FlatList, Dimensions, Image, Pressable, SafeAreaView } from 'react-native';
-import { useState, useRef } from 'react';
-import ThemedText from '@/components/ThemedText';
-import { StatusBar } from 'expo-status-bar';
-import ThemeToggle from '@/components/ThemeToggle';
 import { AntDesign } from '@expo/vector-icons';
-import useThemeColors from '../contexts/ThemeColors';
 import { router } from 'expo-router';
 import React from 'react';
-import Icon from '@/components/Icon';
-const { width } = Dimensions.get('window');
-const windowWidth = Dimensions.get('window').width;
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Pressable, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Icon, { IconName } from '@/components/Icon';
+import ThemeToggle from '@/components/ThemeToggle';
+import { BRICK, INK, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
 
+type AuthOptionProps = {
+  label: string;
+  icon?: IconName;
+  brandIcon?: 'google' | 'apple';
+  onPress: () => void;
+};
 
 export default function OnboardingScreen() {
-    const colors = useThemeColors();
-    const insets = useSafeAreaInsets();
-    return (
-        <SafeAreaView style={{ paddingTop: insets.top, paddingBottom: insets.bottom }} className='flex-1 bg-light-primary dark:bg-dark-primary'>
+  return (
+    <SafeAreaView style={{ backgroundColor: PARCHMENT }} className="flex-1">
+      <View className="flex-1 px-global">
+        <View className="w-full flex-row justify-end pt-2">
+          <ThemeToggle />
+        </View>
 
-            <View className="flex-1 relative bg-light-primary dark:bg-dark-primary">
-                <View className='w-full flex-row justify-end px-4 pt-2'>
-                    <ThemeToggle />
-                </View>
-
-
-                <View className='flex flex-col items-start w-full justify-center gap-2 flex-1 px-global pb-20'>
-                    <View className='mb-8'>
-                        <ThemedText className='text-4xl font-bold'>Welcome back</ThemedText>
-                        <ThemedText className='text-base text-light-subtext dark:text-dark-subtext'>Sign in to your account to continue</ThemedText>
-                    </View>
-                    <Pressable onPress={() => router.push('/screens/signup')} className='w-full  border border-black dark:border-white rounded-2xl flex flex-row items-center justify-center py-4'>
-                        <View className='absolute left-4 top-4.5'>
-                            <Icon name="Mail" size={20} color={colors.text} />
-                        </View>
-                        <ThemedText className='text-base font-medium pr-2'>Continue with Email</ThemedText>
-                    </Pressable>
-                    <Pressable onPress={() => router.push('/(tabs)/(home)')} className='w-full border border-black dark:border-white rounded-2xl flex flex-row items-center justify-center py-4'>
-                        <View className='absolute left-4 top-4.5'>
-                            <Icon name="Facebook" size={22} color={colors.text} />
-                        </View>
-                        <ThemedText className='text-base font-medium pr-2'>Continue with Facebook</ThemedText>
-
-                    </Pressable>
-                    <Pressable onPress={() => router.push('/(tabs)/(home)')} className='w-full border border-black dark:border-white rounded-2xl flex flex-row items-center justify-center py-4'>
-                        <View className='absolute left-4 top-4.5'>
-                            <AntDesign name="google" size={22} color={colors.text} />
-                        </View>
-                        <ThemedText className='text-base font-medium pr-2'>Continue with Google</ThemedText>
-
-                    </Pressable>
-
-
-                    <Pressable onPress={() => router.push('/(tabs)/(home)')} className='w-full border border-black dark:border-white rounded-2xl flex flex-row items-center justify-center py-4'>
-                        <View className='absolute left-4 top-4.5'>
-                            <AntDesign name="apple" size={22} color={colors.text} />
-                        </View>
-                        <ThemedText className='text-base font-medium pr-2'>Continue with Apple</ThemedText>
-
-                    </Pressable>
-                </View>
+        <View className="flex-1 justify-center pb-16">
+          <View
+            className="mb-4 overflow-hidden rounded-3xl"
+            style={{ backgroundColor: INK, padding: 22 }}>
+            <View
+              className="mb-14 h-14 w-14 items-center justify-center rounded-full"
+              style={{ backgroundColor: PARCHMENT }}>
+              <Text style={{ color: INK, fontFamily: SERIF, fontSize: 21 }}>V</Text>
             </View>
-        </SafeAreaView>
-    );
+            <Text
+              style={{
+                color: PARCHMENT,
+                fontFamily: SERIF,
+                fontSize: 34,
+                letterSpacing: -0.4,
+              }}>
+              Welcome back
+            </Text>
+            <Text
+              className="mt-2"
+              style={{ color: PARCHMENT, fontSize: 13, fontStyle: 'italic', opacity: 0.65 }}>
+              Sign in and pick up the trip thread where you left it.
+            </Text>
+          </View>
+
+          <View className="gap-2">
+            <AuthOption
+              label="Continue with Email"
+              icon="Mail"
+              onPress={() => router.push('/screens/signup')}
+            />
+            <AuthOption
+              label="Continue with Facebook"
+              icon="Facebook"
+              onPress={() => router.push('/(tabs)/(home)')}
+            />
+            <AuthOption
+              label="Continue with Google"
+              brandIcon="google"
+              onPress={() => router.push('/(tabs)/(home)')}
+            />
+            <AuthOption
+              label="Continue with Apple"
+              brandIcon="apple"
+              onPress={() => router.push('/(tabs)/(home)')}
+            />
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+function AuthOption({ label, icon, brandIcon, onPress }: AuthOptionProps) {
+  return (
+    <Pressable
+      onPress={onPress}
+      className="w-full flex-row items-center rounded-2xl px-4 py-4"
+      style={{ backgroundColor: PARCHMENT_DEEP }}>
+      <View
+        className="mr-3 h-9 w-9 items-center justify-center rounded-full"
+        style={{ backgroundColor: 'rgba(19,26,42,0.06)' }}>
+        {icon ? (
+          <Icon name={icon} size={16} color={INK} />
+        ) : (
+          <AntDesign name={brandIcon} size={18} color={INK} />
+        )}
+      </View>
+      <Text style={{ color: INK, fontFamily: SERIF, fontSize: 15, letterSpacing: -0.1 }}>
+        {label}
+      </Text>
+      <View className="ml-auto">
+        <Icon name="ArrowRight" size={14} color={BRICK} />
+      </View>
+    </Pressable>
+  );
 }

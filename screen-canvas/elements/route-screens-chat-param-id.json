@@ -1,0 +1,351 @@
+{
+  "capturedAt": "2026-05-04T11:10:35.237Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Hey there! How are you?",
+      "label": "Hey there! How are you?",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.16819221967963388,
+        "width": 0.39303482587064675,
+        "height": 0.019450800915331808
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "9:30 AM",
+      "label": "9:30 AM",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.19221967963386727,
+        "width": 0.39303482587064675,
+        "height": 0.018306636155606407
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Hi! I'm doing great, thanks for asking. How about you?",
+      "label": "Hi! I'm doing great, thanks for asking. How about you?",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.263681592039801,
+        "y": 0.2471395881006865,
+        "width": 0.6567164179104478,
+        "height": 0.03852021939694472
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "9:31 AM",
+      "label": "9:31 AM",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.263681592039801,
+        "y": 0.29023646217189064,
+        "width": 0.6567164179104478,
+        "height": 0.018306618697037685
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "I'm good too! Just wanted to discuss the project updates.",
+      "label": "I'm good too! Just wanted to discuss the project updates.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.34515637500335206,
+        "width": 0.6567164179104478,
+        "height": 0.038520236855513444
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "9:32 AM",
+      "label": "9:32 AM",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.38825324907455616,
+        "width": 0.6567164179104478,
+        "height": 0.018306636155606407
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Sure! I've been working on the new features we discussed last week. Made some good progress!",
+      "label": "Sure! I've been working on the new features we discussed last week. Made some good progress!",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.263681592039801,
+        "y": 0.4431731619060176,
+        "width": 0.6567164179104478,
+        "height": 0.0575896029614202
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "9:33 AM",
+      "label": "9:33 AM",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.263681592039801,
+        "y": 0.5053394457295503,
+        "width": 0.6567164179104478,
+        "height": 0.018306636155606407
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "That's great to hear! Could you share some details about what you've completed so far?",
+      "label": "That's great to hear! Could you share some details about what you've completed so far?",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.5602593323731586,
+        "width": 0.6567164179104478,
+        "height": 0.057589637878557635
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "9:34 AM",
+      "label": "9:34 AM",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.6224256161966913,
+        "width": 0.6567164179104478,
+        "height": 0.018306636155606407
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "Of course! I've implemented the user authentication system and started working on the dashboard layout. I'll send you the documentation later today.",
+      "label": "Of course! I've implemented the user authentication system and started working on the dashboard layout. I'll send you the documentation later today.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.263681592039801,
+        "y": 0.6773455377574371,
+        "width": 0.6567164179104478,
+        "height": 0.07665903890160183
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "9:35 AM",
+      "label": "9:35 AM",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.263681592039801,
+        "y": 0.7585812356979404,
+        "width": 0.6567164179104478,
+        "height": 0.018306636155606407
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "Perfect! Looking forward to reviewing it. Let me know if you need any help or clarification.",
+      "label": "Perfect! Looking forward to reviewing it. Let me know if you need any help or clarification.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.8135011441647597,
+        "width": 0.6567164179104478,
+        "height": 0.0575896029614202
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-14",
+      "name": "9:36 AM",
+      "label": "9:36 AM",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.07960199004975124,
+        "y": 0.8756674279882924,
+        "width": 0.6567164179104478,
+        "height": 0.018306636155606407
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-15",
+      "name": "Element 15",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.1791044776119403,
+        "y": 0.08009153318077804,
+        "width": 0.10945273631840796,
+        "height": 0.04576659038901602
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-16",
+      "name": "Element 16",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.07093821510297482,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-17",
+      "name": "Element 17",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8706467661691543,
+        "y": 0.08237986270022883,
+        "width": 0.06965174129353234,
+        "height": 0.032036613272311214
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-18",
+      "name": "Type a message...",
+      "label": "Type a message...",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.9176201372997712,
+        "width": 0.8009950248756219,
+        "height": 0.034324942791762014
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-19",
+      "name": "notEnabled",
+      "role": "notEnabled",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8805970149253731,
+        "y": 0.919908466819222,
+        "width": 0.05970149253731343,
+        "height": 0.02745995423340961
+      },
+      "traits": [
+        "notEnabled"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.44317315026697174,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-21",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

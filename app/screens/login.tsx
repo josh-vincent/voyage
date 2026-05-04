@@ -1,28 +1,25 @@
+import { Link, router } from 'expo-router';
 import React, { useState } from 'react';
-import { View, Pressable, StyleSheet, Text } from 'react-native';
-import { Stack, Link, router } from 'expo-router';
-import Input from '@/components/forms/Input';
-import ThemedText from '@/components/ThemedText';
-import { Button } from '@/components/Button';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from 'react-native';
+
 import Header from '@/components/Header';
+import Input from '@/components/forms/Input';
+import { INK, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
 
 export default function LoginScreen() {
-  const insets = useSafeAreaInsets();
-  const colors = useThemeColors();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const validateEmail = (email: string) => {
+  const validateEmail = (value: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) {
+    if (!value) {
       setEmailError('Email is required');
       return false;
-    } else if (!emailRegex.test(email)) {
+    }
+    if (!emailRegex.test(value)) {
       setEmailError('Please enter a valid email');
       return false;
     }
@@ -30,11 +27,12 @@ export default function LoginScreen() {
     return true;
   };
 
-  const validatePassword = (password: string) => {
-    if (!password) {
+  const validatePassword = (value: string) => {
+    if (!value) {
       setPasswordError('Password is required');
       return false;
-    } else if (password.length < 6) {
+    }
+    if (value.length < 6) {
       setPasswordError('Password must be at least 6 characters');
       return false;
     }
@@ -48,80 +46,90 @@ export default function LoginScreen() {
 
     if (isEmailValid && isPasswordValid) {
       setIsLoading(true);
-      // Simulate API call
       setTimeout(() => {
         setIsLoading(false);
-        // Navigate to home screen after successful login
         router.replace('/(tabs)/(home)');
       }, 1500);
     }
   };
 
-  const handleSocialLogin = (provider: string) => {
-    console.log(`Login with ${provider}`);
-    // Implement social login logic here
-  };
-
   return (
     <>
       <Header showBackButton />
-      <View className="flex-1 bg-light-primary dark:bg-dark-primary p-6">
+      <ScrollView
+        className="flex-1"
+        style={{ backgroundColor: PARCHMENT }}
+        contentContainerStyle={{ padding: 24, paddingBottom: 48 }}
+        showsVerticalScrollIndicator={false}>
+        <View className="mt-4">
+          <Text style={{ color: INK, fontFamily: SERIF, fontSize: 34, letterSpacing: -0.4 }}>
+            Welcome back
+          </Text>
+          <Text
+            className="mt-2"
+            style={{ color: INK, fontSize: 13, fontStyle: 'italic', opacity: 0.6 }}>
+            Sign in to keep watching fares and trips.
+          </Text>
 
+          <View className="mt-8 rounded-3xl p-4" style={{ backgroundColor: PARCHMENT_DEEP }}>
+            <Input
+              label="Email"
+              value={email}
+              onChangeText={(text) => {
+                setEmail(text);
+                if (emailError) validateEmail(text);
+              }}
+              error={emailError}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoComplete="email"
+              containerClassName="mb-4"
+            />
 
-        <View className="mt-8">
-          <ThemedText className="text-3xl font-bold mb-1">Welcome back</ThemedText>
-          <ThemedText className="text-light-subtext dark:text-dark-subtext mb-14">Sign in to your account</ThemedText>
+            <Input
+              label="Password"
+              value={password}
+              onChangeText={(text) => {
+                setPassword(text);
+                if (passwordError) validatePassword(text);
+              }}
+              error={passwordError}
+              isPassword
+              autoCapitalize="none"
+              containerClassName="mb-4"
+            />
 
-          <Input
-            label="Email"
-            value={email}
-            onChangeText={(text) => {
-              setEmail(text);
-              if (emailError) validateEmail(text);
-            }}
-            error={emailError}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoComplete="email"
-            containerClassName='mb-4'
-          />
+            <Link href="/screens/forgot-password" asChild>
+              <Pressable className="mb-5">
+                <Text style={{ color: INK, fontFamily: SERIF, fontSize: 13 }}>
+                  Forgot password?
+                </Text>
+              </Pressable>
+            </Link>
 
-          <Input
-            label="Password"
-            value={password}
-            onChangeText={(text) => {
-              setPassword(text);
-              if (passwordError) validatePassword(text);
-            }}
-            error={passwordError}
-            isPassword={true}
-            autoCapitalize="none"
-            containerClassName='mb-4'
-          />
+            <Pressable
+              onPress={handleLogin}
+              disabled={isLoading}
+              className="h-14 flex-row items-center justify-center rounded-2xl"
+              style={{ backgroundColor: INK, opacity: isLoading ? 0.65 : 1 }}>
+              {isLoading ? (
+                <ActivityIndicator color={PARCHMENT} />
+              ) : (
+                <Text style={{ color: PARCHMENT, fontFamily: SERIF, fontSize: 15 }}>Login</Text>
+              )}
+            </Pressable>
+          </View>
 
-          <Link className='underline text-black dark:text-white text-sm mb-4' href="/screens/forgot-password">
-            Forgot Password?
-          </Link>
-
-
-          <Button
-            title="Login"
-            onPress={handleLogin}
-            loading={isLoading}
-            size="large"
-            className="mb-6"
-          />
-
-          <View className="flex-row justify-center">
-            <ThemedText className="text-light-subtext dark:text-dark-subtext">Don't have an account? </ThemedText>
+          <View className="mt-6 flex-row justify-center">
+            <Text style={{ color: INK, fontSize: 13, opacity: 0.6 }}>Don't have an account? </Text>
             <Link href="/screens/signup" asChild>
               <Pressable>
-                <ThemedText className="underline">Sign up</ThemedText>
+                <Text style={{ color: INK, fontFamily: SERIF, fontSize: 13 }}>Sign up</Text>
               </Pressable>
             </Link>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }

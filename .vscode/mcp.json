@@ -7,7 +7,7 @@
         "mcp"
       ],
       "env": {
-        "ARGENT_MCP_LOG": "/Users/mini/.argent/mcp-calls.log"
+        "ARGENT_MCP_LOG": "/Users/miniai/.argent/mcp-calls.log"
       }
     }
   }

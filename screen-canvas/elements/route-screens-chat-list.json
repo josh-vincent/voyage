@@ -1,0 +1,176 @@
+{
+  "capturedAt": "2026-05-04T17:31:27.246Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Messages",
+      "label": "Messages",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.04975124378109453,
+        "y": 0.16247139588100687,
+        "width": 0.900497512437811,
+        "height": 0.04881770223447333
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Travel threads and trip support in one place.",
+      "label": "Travel threads and trip support in one place.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.04975124378109453,
+        "y": 0.2158657527897396,
+        "width": 0.900497512437811,
+        "height": 0.017925236263318794
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "John Doe, 2m ago, Hey, how are you doing? Just checking in to see if you received the files I sent.",
+      "label": "John Doe, 2m ago, Hey, how are you doing? Just checking in to see if you received the files I sent.",
+      "role": "link",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.04975124378109453,
+        "y": 0.2612509563803946,
+        "width": 0.900497512437811,
+        "height": 0.09153319823660076
+      },
+      "traits": [
+        "link"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Jane Smith, 1h ago, The meeting has been rescheduled to tomorrow at 2 PM.",
+      "label": "Jane Smith, 1h ago, The meeting has been rescheduled to tomorrow at 2 PM.",
+      "role": "link",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.04975124378109453,
+        "y": 0.3619374465069454,
+        "width": 0.900497512437811,
+        "height": 0.09153318077803203
+      },
+      "traits": [
+        "link"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Mike Johnson, 2h ago, Thanks for your help!",
+      "label": "Mike Johnson, 2h ago, Thanks for your help!",
+      "role": "link",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.04975124378109453,
+        "y": 0.4626239628213494,
+        "width": 0.900497512437811,
+        "height": 0.09153318077803203
+      },
+      "traits": [
+        "link"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Element 6",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.07322654462242563,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Messages",
+      "label": "Messages",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.1791044776119403,
+        "y": 0.08924485125858124,
+        "width": 0.21641791044776118,
+        "height": 0.032036613272311214
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

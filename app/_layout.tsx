@@ -14,6 +14,10 @@ import { FlightSearchProvider } from './contexts/FlightSearchContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import useThemedNavigation from './hooks/useThemedNavigation';
 
+import {
+  ReactNativeGrabGate,
+  ReactNativeGrabScreenGate,
+} from '@/components/dev/ReactNativeGrabGate';
 import { handleDeepLink } from '@/lib/links';
 import { PriceWatcher } from '@/utils/priceWatcher';
 import { syncTripStatusWidgetFromStorage } from '@/utils/trackedStorage';
@@ -49,10 +53,10 @@ function ThemedLayout() {
   }, []);
 
   return (
-    <>
+    <ReactNativeGrabScreenGate id="root-stack">
       <ThemedStatusBar />
       <Stack screenOptions={screenOptions} />
-    </>
+    </ReactNativeGrabScreenGate>
   );
 }
 
@@ -68,16 +72,18 @@ export default function RootLayout() {
     <GestureHandlerRootView
       className={`bg-light-primary dark:bg-dark-primary ${Platform.OS === 'ios' ? 'pb-0 ' : ''}`}
       style={{ flex: 1 }}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <ActiveTripProvider>
-            <FlightSearchProvider>
-              <PriceWatcher />
-              <ThemedLayout />
-            </FlightSearchProvider>
-          </ActiveTripProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
+      <ReactNativeGrabGate>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider>
+            <ActiveTripProvider>
+              <FlightSearchProvider>
+                <PriceWatcher />
+                <ThemedLayout />
+              </FlightSearchProvider>
+            </ActiveTripProvider>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </ReactNativeGrabGate>
     </GestureHandlerRootView>
   );
 }

@@ -1,0 +1,169 @@
+{
+  "capturedAt": "2026-05-04T11:11:21.289Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Page Not Found",
+      "label": "Page Not Found",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.535850507443775,
+        "width": 0.4394693706759173,
+        "height": 0.036613272311212815
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "The page you're looking for doesn't exist or has been moved.",
+      "label": "The page you're looking for doesn't exist or has been moved.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.581617097832791,
+        "width": 0.8805970149253731,
+        "height": 0.05491987354968178
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Back to Home",
+      "label": "Back to Home",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.024046447146591262,
+        "y": 0.6735316435859733,
+        "width": 0.34991709391276044,
+        "height": 0.04691075514874142
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Element 4",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.07322654462242563,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": " ",
+      "label": " ",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.08924485125858124,
+        "width": 0.010779442478768268,
+        "height": 0.032036613272311214
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Element 6",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.07780320366132723,
+        "width": 0.09950248756218906,
+        "height": 0.04576659038901602
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Offer",
+      "label": "Offer",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.45688224906352026,
+        "y": 0.09000762485530338,
+        "width": 0.0854062891718167,
+        "height": 0.021357748001063714
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Couldn't load this offer",
+      "label": "Couldn't load this offer",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.24875621890547264,
+        "y": 0.5819984628079412,
+        "width": 0.501658349487912,
+        "height": 0.029366883860572797
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "It may have expired.",
+      "label": "It may have expired.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.3366500702663441,
+        "y": 0.615942040624553,
+        "width": 0.3258706847233559,
+        "height": 0.021357765459632437
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.44317315026697174,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    }
+  ]
+}

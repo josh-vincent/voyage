@@ -1,0 +1,139 @@
+{
+  "capturedAt": "2026-05-04T17:31:54.502Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Nothing here yet",
+      "label": "Nothing here yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.5301296661865793,
+        "width": 0.7810945273631841,
+        "height": 0.038901601830663615
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "This placeholder is ready for a future Voyage workflow.",
+      "label": "This placeholder is ready for a future Voyage workflow.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.5781845860950461,
+        "width": 0.7810945273631841,
+        "height": 0.04347822595242778
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Back home",
+      "label": "Back home",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.6491228011980209,
+        "width": 0.7810945273631841,
+        "height": 0.05644550803596968
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Element 4",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.07322654462242563,
+        "width": 0.05970149253731343,
+        "height": 0.06407322654462243
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": " ",
+      "label": " ",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.1791044776119403,
+        "y": 0.08924485125858124,
+        "width": 0.010779442478768268,
+        "height": 0.032036613272311214
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

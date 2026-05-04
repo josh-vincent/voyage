@@ -65,6 +65,7 @@
     "react-native-calendars": "^1.1312.1",
     "react-native-css-interop": "^0.1.22",
     "react-native-gesture-handler": "~2.30.0",
+    "react-native-grab": "^1.1.1",
     "react-native-markdown-display": "^7.0.2",
     "react-native-modal": "^14.0.0-rc.0",
     "react-native-modal-datetime-picker": "^18.0.0",

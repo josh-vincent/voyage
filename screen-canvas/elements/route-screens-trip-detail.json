@@ -1,0 +1,294 @@
+{
+  "capturedAt": "2026-05-04T11:11:29.375Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Late-night planning?,",
+      "label": "Late-night planning?,",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.10755148741418764,
+        "width": 0.8805970149253731,
+        "height": 0.025934398310680958
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Where's next?",
+      "label": "Where's next?",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.1380625469460913,
+        "width": 0.8805970149253731,
+        "height": 0.04576659911830038
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "I'll watch prices and bring deals back to you.",
+      "label": "I'll watch prices and bring deals back to you.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.19298245323058943,
+        "width": 0.8805970149253731,
+        "height": 0.024408842387952302
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "For you today, Weekend escape, Two nights, somewhere warm · from New York, Show me flights",
+      "label": "For you today, Weekend escape, Two nights, somewhere warm · from New York, Show me flights",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.2494279176201373,
+        "width": 0.8805970149253731,
+        "height": 0.2406559994346217
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "City break, Culture + late dinners",
+      "label": "City break, Culture + late dinners",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.5083905532103654,
+        "width": 0.373134328358209,
+        "height": 0.1350114067304598
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Beach reset, Toes in sand by Sunday",
+      "label": "Beach reset, Toes in sand by Sunday",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.4527363184079602,
+        "y": 0.5083905532103654,
+        "width": 0.373134328358209,
+        "height": 0.1350114067304598
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Mountain air, Cool, quiet, pine",
+      "label": "Mountain air, Cool, quiet, pine",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.845771144278607,
+        "y": 0.5083905532103654,
+        "width": 0.154228855721393,
+        "height": 0.1350114067304598
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Sunshine break, Chase the sun",
+      "label": "Sunshine break, Chase the sun",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.5083905532103654,
+        "width": 0,
+        "height": 0.1350114067304598
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Europe this month, Fly cheap, wander far",
+      "label": "Europe this month, Fly cheap, wander far",
+      "kind": "runtime",
+      "bounds": {
+        "x": 1,
+        "y": 0.5083905532103654,
+        "width": 0,
+        "height": 0.1350114067304598
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Want me to…",
+      "label": "Want me to…",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.6754385732131365,
+        "width": 0.8805970149253731,
+        "height": 0.02936691877771024
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "Find you something, \"Cheapest to Tokyo in June under $800\"",
+      "label": "Find you something, \"Cheapest to Tokyo in June under $800\"",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.7162471177648898,
+        "width": 0.8805970149253731,
+        "height": 0.08237986270022883
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "Keep watch over 0 routes, Daily, weekly, or on demand",
+      "label": "Keep watch over 0 routes, Daily, weekly, or on demand",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.8077802941782797,
+        "width": 0.8805970149253731,
+        "height": 0.08237986270022883
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "flying from New York",
+      "label": "flying from New York",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.3383084577114428,
+        "y": 0.9267734553775744,
+        "width": 0.32338308457711445,
+        "height": 0.019450800915331808
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-14",
+      "name": "Search",
+      "label": "Search",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-15",
+      "name": "Tracked",
+      "label": "Tracked",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.19983416884692748,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-16",
+      "name": "Trips",
+      "label": "Trips",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.39966833769385496,
+        "y": 0.8993135011441648,
+        "width": 0.2006633246122901,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-17",
+      "name": "Assistant",
+      "label": "Assistant",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6003316623061451,
+        "y": 0.8993135011441648,
+        "width": 0.19983414986833412,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-18",
+      "name": "Profile",
+      "label": "Profile",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8001658121744791,
+        "y": 0.8993135011441648,
+        "width": 0.19983418782552084,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.44317315026697174,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "capturedAt": "2026-05-04T11:10:24.271Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Watching",
+      "label": "Watching",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.08924485125858124,
+        "width": 0.8805970149253731,
+        "height": 0.041189931350114416
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "I'll keep an eye on prices and ping you when they drop.",
+      "label": "I'll keep an eye on prices and ping you when they drop.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.13501144164759726,
+        "width": 0.8805970149253731,
+        "height": 0.02288329519450801
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Nothing on the watchlist yet",
+      "label": "Nothing on the watchlist yet",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.11525704967441844,
+        "y": 0.3501144164759725,
+        "width": 0.7686567164179104,
+        "height": 0.03585050744377503
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Save a route and I'll keep watch for soft mornings, sudden drops, and the moment a fare gets interesting.",
+      "label": "Save a route and I'll keep watch for soft mornings, sudden drops, and the moment a fare gets interesting.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.10945273631840796,
+        "y": 0.39511822453898204,
+        "width": 0.7810945273631841,
+        "height": 0.053394343814806206
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Find me a deal",
+      "label": "Find me a deal",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.34328358208955223,
+        "y": 0.47139588100686497,
+        "width": 0.31343283582089554,
+        "height": 0.03775743707093822
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Search",
+      "label": "Search",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Tracked",
+      "label": "Tracked",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.19983416884692748,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Trips",
+      "label": "Trips",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.39966833769385496,
+        "y": 0.8993135011441648,
+        "width": 0.2006633246122901,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "Assistant",
+      "label": "Assistant",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6003316623061451,
+        "y": 0.8993135011441648,
+        "width": 0.19983414986833412,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Profile",
+      "label": "Profile",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8001658121744791,
+        "y": 0.8993135011441648,
+        "width": 0.19983418782552084,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

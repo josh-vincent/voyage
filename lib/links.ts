@@ -75,6 +75,13 @@ export function handleDeepLink(url: string): boolean {
     const path = (parsed.path ?? '').replace(/^\/+/, '');
     const id = path || (parsed.queryParams?.id as string | undefined);
     if (!host) return false;
+    if (host === 'canvas') {
+      const targetPath = parsed.queryParams?.path;
+      if (typeof targetPath === 'string' && targetPath.startsWith('/')) {
+        router.push(targetPath as never);
+        return true;
+      }
+    }
     if (host === 'trips' && id) {
       router.push({ pathname: '/screens/trip-detail', params: { id } });
       return true;

@@ -1,0 +1,185 @@
+{
+  "capturedAt": "2026-05-04T17:22:40.716Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "Switch to dark theme",
+      "label": "Switch to dark theme",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.7412935323383084,
+        "y": 0.08009153318077804,
+        "width": 0.19900497512437812,
+        "height": 0.05491990846681922
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "V",
+      "label": "V",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.16334991549971092,
+        "y": 0.25209763830259135,
+        "width": 0.04145938246997435,
+        "height": 0.03394356035804312
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Welcome back",
+      "label": "Welcome back",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.11442786069651742,
+        "y": 0.365369949515406,
+        "width": 0.7711442786069652,
+        "height": 0.055301308359106835
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Sign in and pick up the trip thread where you left it.",
+      "label": "Sign in and pick up the trip thread where you left it.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.11442786069651742,
+        "y": 0.42982455849374734,
+        "width": 0.7711442786069652,
+        "height": 0.03585047252663759
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Continue with Email",
+      "label": "Continue with Email",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.5,
+        "width": 0.900497512437811,
+        "height": 0.07780320366132723
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "Continue with Facebook",
+      "label": "Continue with Facebook",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.5778032036613272,
+        "width": 0.900497512437811,
+        "height": 0.07780320366132723
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": ", Continue with Google",
+      "label": ", Continue with Google",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.6556064073226545,
+        "width": 0.900497512437811,
+        "height": 0.07780320366132723
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": ", Continue with Apple",
+      "label": ", Continue with Apple",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.7334096109839817,
+        "width": 0.900497512437811,
+        "height": 0.07780320366132723
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}

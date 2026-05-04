@@ -1,0 +1,532 @@
+{
+  "capturedAt": "2026-05-04T11:10:27.024Z",
+  "provider": "argent",
+  "screen": {
+    "width": 402,
+    "height": 874
+  },
+  "elements": [
+    {
+      "id": "argent-1",
+      "name": "The traveler",
+      "label": "The traveler",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.08924485125858124,
+        "width": 0.5323383084577115,
+        "height": 0.02288329519450801
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-2",
+      "name": "Hello, wanderer",
+      "label": "Hello, wanderer",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.11670480549199085,
+        "width": 0.5323383084577115,
+        "height": 0.09725400457665904
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-3",
+      "name": "Everything you've set in motion, in one place.",
+      "label": "Everything you've set in motion, in one place.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.05970149253731343,
+        "y": 0.21853546910755148,
+        "width": 0.5323383084577115,
+        "height": 0.04538520795529712
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-4",
+      "name": "Toggle color theme",
+      "label": "Toggle color theme",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6218905472636815,
+        "y": 0.08924485125858124,
+        "width": 0.19900497512437812,
+        "height": 0.05491990846681922
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-5",
+      "name": "Open notifications",
+      "label": "Open notifications",
+      "role": "button",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8407960199004975,
+        "y": 0.09382151029748284,
+        "width": 0.09950248756218906,
+        "height": 0.04576659038901602
+      },
+      "traits": [
+        "button"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-6",
+      "name": "T",
+      "label": "T",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.13101160704199946,
+        "y": 0.32761251462678886,
+        "width": 0.03565505488001885,
+        "height": 0.029366883860572797
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-7",
+      "name": "Traveler",
+      "label": "Traveler",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.23880597014925373,
+        "y": 0.31426392649076623,
+        "width": 0.5522388059701493,
+        "height": 0.03241801316459883
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-8",
+      "name": "Based nowhere in particular",
+      "label": "Based nowhere in particular",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.23880597014925373,
+        "y": 0.34897025826321043,
+        "width": 0.5522388059701493,
+        "height": 0.021357730542494995
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-9",
+      "name": "0",
+      "label": "0",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.20812603964734433,
+        "y": 0.40350877774934746,
+        "width": 0.03814262655837026,
+        "height": 0.04233409610983982
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-10",
+      "name": "TRIPS",
+      "label": "TRIPS",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.1782752933786876,
+        "y": 0.4481312033786381,
+        "width": 0.09784411909568369,
+        "height": 0.017925271180456236
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-11",
+      "name": "0",
+      "label": "0",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.48092868672081485,
+        "y": 0.40350877774934746,
+        "width": 0.03814264553696362,
+        "height": 0.04233409610983982
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-12",
+      "name": "TRACKED",
+      "label": "TRACKED",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.4212271894388531,
+        "y": 0.4481312033786381,
+        "width": 0.15671641791044777,
+        "height": 0.017925271180456236
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-13",
+      "name": "1",
+      "label": "1",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.7603648266389003,
+        "y": 0.40350877774934746,
+        "width": 0.024875621890547265,
+        "height": 0.04233409610983982
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-14",
+      "name": "RECENT",
+      "label": "RECENT",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.7048092742464436,
+        "y": 0.4481312033786381,
+        "width": 0.13598670769686722,
+        "height": 0.017925271180456236
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-15",
+      "name": "Plan your next trip, Ask the concierge for deals, itineraries, alerts.",
+      "label": "Plan your next trip, Ask the concierge for deals, itineraries, alerts.",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.5221205303270702,
+        "width": 0.9203980099502488,
+        "height": 0.12090006463860484
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-16",
+      "name": "Your trips, Nothing booked yet",
+      "label": "Your trips, Nothing booked yet",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.6567505895409486,
+        "width": 0.44776119402985076,
+        "height": 0.14874141876430205
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-17",
+      "name": "Tracked routes, None watched",
+      "label": "Tracked routes, None watched",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.5124378109452736,
+        "y": 0.6567505895409486,
+        "width": 0.44776119402985076,
+        "height": 0.14874141876430205
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-18",
+      "name": "Your account",
+      "label": "Your account",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.8329519625386602,
+        "width": 0.9203980099502488,
+        "height": 0.02936691877771024
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-19",
+      "name": "Account settings, Profile, security, preferences",
+      "label": "Account settings, Profile, security, preferences",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.8714721644770362,
+        "width": 0.9203980099502488,
+        "height": 0.0816170629156536
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-20",
+      "name": "Edit profile, Name, photo, contact info",
+      "label": "Edit profile, Name, photo, contact info",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 0.9542334183402683,
+        "width": 0.9203980099502488,
+        "height": 0.04576658165973169
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-21",
+      "name": "Notifications, Price drops, reminders",
+      "label": "Notifications, Price drops, reminders",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 1,
+        "width": 0.9203980099502488,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-22",
+      "name": "Support",
+      "label": "Support",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 1,
+        "width": 0.9203980099502488,
+        "height": 0
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-23",
+      "name": "Get help, Docs, contact, FAQs",
+      "label": "Get help, Docs, contact, FAQs",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 1,
+        "width": 0.9203980099502488,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-24",
+      "name": "Sign out, See you on the next trip",
+      "label": "Sign out, See you on the next trip",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 1,
+        "width": 0.9203980099502488,
+        "height": 0
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-25",
+      "name": "Voyage — a small atlas of where you're going.",
+      "label": "Voyage — a small atlas of where you're going.",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.03980099502487562,
+        "y": 1,
+        "width": 0.9203980099502488,
+        "height": 0
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-26",
+      "name": "Search",
+      "label": "Search",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-27",
+      "name": "Tracked",
+      "label": "Tracked",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.19983416884692748,
+        "y": 0.8993135011441648,
+        "width": 0.19983416884692748,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-28",
+      "name": "Trips",
+      "label": "Trips",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.39966833769385496,
+        "y": 0.8993135011441648,
+        "width": 0.2006633246122901,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-29",
+      "name": "Assistant",
+      "label": "Assistant",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.6003316623061451,
+        "y": 0.8993135011441648,
+        "width": 0.19983414986833412,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "argent-30",
+      "name": "Profile",
+      "label": "Profile",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8001658121744791,
+        "y": 0.8993135011441648,
+        "width": 0.19983418782552084,
+        "height": 0.06178489702517163
+      },
+      "traits": [],
+      "status": "captured"
+    },
+    {
+      "id": "gearshape.fill",
+      "name": "gearshape.fill",
+      "label": "gearshape.fill",
+      "role": "image",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8656716417910447,
+        "y": 0.4275362318840579,
+        "width": 0.06467661691542288,
+        "height": 0.029748283752860413
+      },
+      "traits": [
+        "image"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-32",
+      "name": "Tools",
+      "label": "Tools",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.8623548922056384,
+        "y": 0.48016781083142634,
+        "width": 0.07131011608623554,
+        "height": 0.015255530129671985
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    },
+    {
+      "id": "argent-33",
+      "name": "Refreshing...",
+      "label": "Refreshing...",
+      "role": "staticText",
+      "kind": "runtime",
+      "bounds": {
+        "x": 0.41127694859038144,
+        "y": 0,
+        "width": 0.1782752902155887,
+        "height": 0.016399694889397402
+      },
+      "traits": [
+        "staticText"
+      ],
+      "status": "captured"
+    }
+  ]
+}
