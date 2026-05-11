@@ -45,6 +45,12 @@ export default function Layout() {
             </TabButton>
           </TabTrigger>
 
+          <TabTrigger name="agent-sim" href="/agent-sim" asChild>
+            <TabButton labelAnimated={false} icon="ScanSearch" hasBadge>
+              Agent
+            </TabButton>
+          </TabTrigger>
+
           <TabTrigger name="profile" href="/profile" asChild>
             <TabButton labelAnimated={false} icon="CircleUser">
               Profile

@@ -78,7 +78,7 @@ export const TabButton = forwardRef<View, TabButtonProps>(
 
     return (
       <Pressable
-        className={`w-1/5 overflow-hidden ${isFocused ? '' : ''}`}
+        className={`flex-1 overflow-hidden ${isFocused ? '' : ''}`}
         ref={ref}
         {...props}
         onPress={onPress}>
