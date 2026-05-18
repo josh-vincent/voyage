@@ -1,28 +1,31 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View } from 'react-native';
-
-import { Button } from '@/components/Button';
+import { Alert, Pressable, Text, View } from 'react-native';
 import Header from '@/components/Header';
 import ThemedScroller from '@/components/ThemeScroller';
 import ThemedText from '@/components/ThemedText';
 import Switch from '@/components/forms/Switch';
 import Section from '@/components/layout/Section';
-import { INK, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
+import { useThemeColors } from '@/contexts/ThemeColors';
+import { INK, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
 
 const NotificationsScreen = () => {
   const navigation = useNavigation();
+  const themeColors = useThemeColors();
+  const isDark = themeColors.isDark;
+  const rowBg = isDark ? themeColors.secondary : PARCHMENT_DEEP;
+  const headingColor = isDark ? themeColors.text : INK;
 
   const [notifications, setNotifications] = useState({
     pushEnabled: true,
-    bookingUpdates: true,
-    hostMessages: true,
+    bookingConfirmations: true,
+    priceDrops: true,
     paymentConfirmations: true,
-    reviewRequests: true,
+    scheduleChanges: true,
     checkInReminders: true,
     specialOffers: false,
-    hostPromotions: false,
-    travelTips: false,
+    fareSales: false,
+    travelInspiration: false,
     marketingEmails: false,
   });
 
@@ -34,48 +37,54 @@ const NotificationsScreen = () => {
   };
 
   const saveSettings = () => {
-    navigation.goBack();
+    Alert.alert('Saved', 'Notification preferences saved (mock).', [
+      { text: 'OK', onPress: () => navigation.goBack() },
+    ]);
   };
 
   return (
     <View className="bg-light-bg dark:bg-dark-bg flex-1">
       <Header
         showBackButton
-        rightComponents={[<Button title="Save changes" onPress={saveSettings} />]}
+        rightComponents={[
+          <Pressable onPress={saveSettings} style={{ backgroundColor: INK, paddingHorizontal: 16, paddingVertical: 10, borderRadius: 999 }}>
+            <Text style={{ color: PARCHMENT, fontFamily: SERIF, fontSize: 13 }}>Save changes</Text>
+          </Pressable>
+        ]}
       />
       <ThemedScroller>
         <Section
           titleSize="3xl"
           className="mt-10 pb-10"
           title="Notifications"
-          subtitle="Stay updated on your bookings and travel plans"
+          subtitle="Stay on top of your tracked routes and trips"
         />
 
         <View className="mb-8">
           <ThemedText
             className="mb-4"
-            style={{ color: INK, fontFamily: SERIF, fontSize: 18, letterSpacing: -0.2 }}>
-            Booking & Travel
+            style={{ color: headingColor, fontFamily: SERIF, fontSize: 18, letterSpacing: -0.2 }}>
+            Flights & Trips
           </ThemedText>
 
           <Switch
-            label="Booking Updates"
-            description="Confirmations, changes, and cancellations"
-            value={notifications.bookingUpdates}
-            onChange={(value) => handleToggle('bookingUpdates', value)}
+            label="Booking Confirmations"
+            description="Order confirmations, e-tickets, and itinerary changes"
+            value={notifications.bookingConfirmations}
+            onChange={(value) => handleToggle('bookingConfirmations', value)}
             disabled={!notifications.pushEnabled}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
 
           <Switch
-            label="Host Messages"
-            description="Messages from your hosts and property owners"
-            value={notifications.hostMessages}
-            onChange={(value) => handleToggle('hostMessages', value)}
+            label="Price Drops"
+            description="Alerts when fares drop on your tracked routes"
+            value={notifications.priceDrops}
+            onChange={(value) => handleToggle('priceDrops', value)}
             disabled={!notifications.pushEnabled}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
 
           <Switch
@@ -85,62 +94,62 @@ const NotificationsScreen = () => {
             onChange={(value) => handleToggle('paymentConfirmations', value)}
             disabled={!notifications.pushEnabled}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
 
           <Switch
-            label="Review Requests"
-            description="Reminders to review your stays and experiences"
-            value={notifications.reviewRequests}
-            onChange={(value) => handleToggle('reviewRequests', value)}
+            label="Schedule Changes"
+            description="Gate, time, and aircraft updates from your airline"
+            value={notifications.scheduleChanges}
+            onChange={(value) => handleToggle('scheduleChanges', value)}
             disabled={!notifications.pushEnabled}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
 
           <Switch
             label="Check-in Reminders"
-            description="Important information before your arrival"
+            description="Nudge to check in 24 hours before departure"
             value={notifications.checkInReminders}
             onChange={(value) => handleToggle('checkInReminders', value)}
             disabled={!notifications.pushEnabled}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
         </View>
 
         <View className="mt-8">
           <ThemedText
             className="mb-4"
-            style={{ color: INK, fontFamily: SERIF, fontSize: 18, letterSpacing: -0.2 }}>
-            Promotions & Marketing
+            style={{ color: headingColor, fontFamily: SERIF, fontSize: 18, letterSpacing: -0.2 }}>
+            Promotions & Inspiration
           </ThemedText>
 
           <Switch
             label="Special Offers"
-            description="Discounts and deals on accommodations"
+            description="Limited-time fare deals matching your interests"
             value={notifications.specialOffers}
             onChange={(value) => handleToggle('specialOffers', value)}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
 
           <Switch
-            label="Host Promotions"
-            description="Exclusive offers from your favorite hosts"
-            value={notifications.hostPromotions}
-            onChange={(value) => handleToggle('hostPromotions', value)}
+            label="Fare Sales"
+            description="Airline-wide promotions on routes you fly"
+            value={notifications.fareSales}
+            onChange={(value) => handleToggle('fareSales', value)}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
 
           <Switch
-            label="Travel Tips"
-            description="Destination guides and travel recommendations"
-            value={notifications.travelTips}
-            onChange={(value) => handleToggle('travelTips', value)}
+            label="Travel Inspiration"
+            description="Destination guides and concierge ideas from your AI assistant"
+            value={notifications.travelInspiration}
+            onChange={(value) => handleToggle('travelInspiration', value)}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
 
           <Switch
@@ -149,7 +158,7 @@ const NotificationsScreen = () => {
             value={notifications.marketingEmails}
             onChange={(value) => handleToggle('marketingEmails', value)}
             className="mb-2 rounded-2xl px-4 py-4"
-            style={{ backgroundColor: PARCHMENT_DEEP }}
+            style={{ backgroundColor: rowBg }}
           />
         </View>
       </ThemedScroller>

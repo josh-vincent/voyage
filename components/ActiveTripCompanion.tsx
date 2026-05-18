@@ -22,7 +22,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useActiveTrip } from '@/app/contexts/ActiveTripContext';
+import { useActiveTrip } from '@/contexts/ActiveTripContext';
 import ActionSheetThemed from '@/components/ActionSheetThemed';
 import GeoGlyph from '@/components/GeoGlyph';
 import Icon, { type IconName } from '@/components/Icon';
@@ -30,6 +30,8 @@ import ThemedText from '@/components/ThemedText';
 import { saveToDeviceCalendar, type CalendarEvent } from '@/lib/calendarActions';
 import { checkInUrl, shareTrip } from '@/lib/links';
 import { INK, BRICK, BRICK_LIGHT, MOSS, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
+import { getTripById } from '@/utils/tripStorage';
+import type { ItinerarySlot } from '@/lib/tripTypes';
 
 type SectionMenu = 'day' | 'explore' | 'nearby' | 'trip';
 
@@ -112,6 +114,108 @@ export default function ActiveTripCompanion() {
         ? BRICK
         : 'rgba(241,236,228,0.22)';
 
+  // Pick the active/next slice for the mini-player route label.
+  const activeSlice = useMemo(() => {
+    if (!activeTrip) return null;
+    const slices = activeTrip.order.slices;
+    const now = Date.now();
+    // Prefer a slice currently in progress (departing_at <= now <= arriving_at).
+    const inFlight = slices.find((s) => {
+      const dep = Date.parse(s.departing_at);
+      const arr = Date.parse(s.arriving_at);
+      return Number.isFinite(dep) && Number.isFinite(arr) && dep <= now && now <= arr;
+    });
+    if (inFlight) return inFlight;
+    // Otherwise pick the next future slice.
+    const upcoming = slices
+      .filter((s) => {
+        const dep = Date.parse(s.departing_at);
+        return Number.isFinite(dep) && dep > now;
+      })
+      .sort((a, b) => Date.parse(a.departing_at) - Date.parse(b.departing_at))[0];
+    if (upcoming) return upcoming;
+    // Fall back to the last slice when all are past.
+    return slices[slices.length - 1] ?? null;
+  }, [activeTrip]);
+
+  // Timing copy derived from the active slice (not the whole trip's arrivalAt).
+  const sliceTimingLabel = useMemo(() => {
+    if (!activeSlice) return activeTrip?.timingLabel ?? '';
+    const now = Date.now();
+    const dep = Date.parse(activeSlice.departing_at);
+    const arr = Date.parse(activeSlice.arriving_at);
+    const fmt = (ts: number) =>
+      new Date(ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    const fmtFull = (ts: number) =>
+      new Date(ts).toLocaleString([], {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+      });
+    if (Number.isFinite(dep) && Number.isFinite(arr) && dep <= now && now <= arr) {
+      return `Lands at ${fmt(arr)}`;
+    }
+    if (Number.isFinite(dep) && dep > now) {
+      const diff = dep - now;
+      const hours = Math.round(diff / 3_600_000);
+      if (hours <= 24) return `Boarding in ${Math.max(hours, 1)}h · ${fmt(dep)}`;
+      const days = Math.ceil(diff / 86_400_000);
+      if (days === 1) return `Boards tomorrow · ${fmtFull(dep)}`;
+      return `Boards in ${days} days · ${fmtFull(dep)}`;
+    }
+    // Past slice — show landed.
+    return Number.isFinite(arr) ? `Landed ${fmt(arr)}` : (activeTrip?.timingLabel ?? '');
+  }, [activeSlice, activeTrip]);
+
+  // Route label derived from the active slice only.
+  const sliceRouteLabel = activeSlice
+    ? `${activeSlice.origin} → ${activeSlice.destination}`
+    : (activeTrip?.routeLabel ?? '');
+
+  // Next itinerary slot from the linked Trip (via tripId).
+  const [nextSlotLine, setNextSlotLine] = useState<string | null>(null);
+  useEffect(() => {
+    if (!activeTrip) return;
+    let cancelled = false;
+    getTripById(activeTrip.tripId)
+      .then((linkedTrip) => {
+        if (cancelled || !linkedTrip) return;
+        const now = Date.now();
+        const todayDate = new Date(now).toISOString().slice(0, 10);
+        const nowTime = new Date(now).toTimeString().slice(0, 5); // "HH:MM"
+        let found: (ItinerarySlot & { date: string }) | null = null;
+        for (const day of linkedTrip.itineraryDays) {
+          for (const slot of day.slots) {
+            if (!slot.time) continue;
+            // Compare date+time to now.
+            if (day.date > todayDate || (day.date === todayDate && slot.time >= nowTime)) {
+              if (
+                !found ||
+                day.date < found.date ||
+                (day.date === found.date && slot.time < found.time!)
+              ) {
+                found = { ...slot, date: day.date };
+              }
+            }
+          }
+        }
+        if (found) {
+          const label = found.time
+            ? `${found.time} · ${found.title}`
+            : found.title;
+          setNextSlotLine(label);
+        } else {
+          setNextSlotLine(null);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [activeTrip]);
+
   if (!activeTrip || !selectedDay) return null;
 
   const trip = activeTrip;
@@ -162,15 +266,15 @@ export default function ActiveTripCompanion() {
                 </Text>
               </View>
             </View>
-            <ThemedText style={styles.miniTitle}>{trip.routeLabel}</ThemedText>
+            <ThemedText style={styles.miniTitle}>{sliceRouteLabel}</ThemedText>
             <ThemedText style={styles.miniSubtitle}>
-              {trip.timingLabel} · {selectedDay.dateLabel}
+              {sliceTimingLabel} · {selectedDay.dateLabel}
             </ThemedText>
           </View>
 
           <View style={styles.miniRight}>
             <GeoGlyph
-              iata={trip.order.slices[trip.order.slices.length - 1]?.destination}
+              iata={activeSlice?.destination ?? trip.order.slices[trip.order.slices.length - 1]?.destination}
               size={46}
               color={PARCHMENT}
               accent={BRICK_LIGHT}
@@ -200,7 +304,7 @@ export default function ActiveTripCompanion() {
                       <Text style={styles.heroEyebrow}>{activeTrip.statusLabel}</Text>
                       <ThemedText style={styles.heroTitle}>{activeTrip.headline}</ThemedText>
                       <ThemedText style={styles.heroMeta}>
-                        {activeTrip.timingLabel} · {activeTrip.bookingLabel}
+                        {sliceTimingLabel} · {activeTrip.bookingLabel}
                       </ThemedText>
                     </View>
                     <Pressable onPress={collapse} style={styles.closeButton}>
@@ -210,11 +314,21 @@ export default function ActiveTripCompanion() {
 
                   <View style={styles.heroRail}>
                     <View>
-                      <Text style={styles.heroRoute}>{activeTrip.routeLabel}</Text>
-                      <ThemedText style={styles.heroRouteCopy}>{selectedDay.summary}</ThemedText>
+                      <Text style={styles.heroRoute}>{sliceRouteLabel}</Text>
+                      <ThemedText style={styles.heroRouteCopy}>{sliceTimingLabel}</ThemedText>
+                      {nextSlotLine ? (
+                        <ThemedText
+                          style={[
+                            styles.heroRouteCopy,
+                            { marginTop: 6, opacity: 0.65, fontSize: 12 },
+                          ]}>
+                          Next: {nextSlotLine}
+                        </ThemedText>
+                      ) : null}
                     </View>
                     <GeoGlyph
                       iata={
+                        activeSlice?.destination ??
                         activeTrip.order.slices[activeTrip.order.slices.length - 1]?.destination
                       }
                       size={82}
@@ -333,12 +447,15 @@ export default function ActiveTripCompanion() {
                     <PillAction
                       label="Open trip details"
                       icon="Plane"
-                      onPress={() =>
-                        router.push({
-                          pathname: '/screens/trip-detail',
-                          params: { id: trip.tripId },
-                        })
-                      }
+                      onPress={async () => {
+                        const t = await getTripById(trip.tripId);
+                        const orderId = t?.orderIds[0];
+                        if (orderId) {
+                          router.push({ pathname: '/screens/trip-detail', params: { id: orderId } });
+                        } else {
+                          router.push({ pathname: '/screens/itinerary/[tripId]', params: { tripId: trip.tripId } });
+                        }
+                      }}
                     />
                   </View>
                 </SectionFrame>
@@ -443,7 +560,7 @@ export default function ActiveTripCompanion() {
     label: string;
     detail: string;
     icon: IconName;
-    onPress: () => void;
+    onPress: () => void | Promise<void>;
   }[] {
     switch (menu) {
       case 'day':
@@ -473,8 +590,15 @@ export default function ActiveTripCompanion() {
             label: 'Open trip detail',
             detail: 'Jump to the booked-flight detail page.',
             icon: 'Plane',
-            onPress: () =>
-              router.push({ pathname: '/screens/trip-detail', params: { id: trip.tripId } }),
+            onPress: async () => {
+              const t = await getTripById(trip.tripId);
+              const orderId = t?.orderIds[0];
+              if (orderId) {
+                router.push({ pathname: '/screens/trip-detail', params: { id: orderId } });
+              } else {
+                router.push({ pathname: '/screens/itinerary/[tripId]', params: { tripId: trip.tripId } });
+              }
+            },
           },
         ];
       case 'nearby':
@@ -516,8 +640,22 @@ export default function ActiveTripCompanion() {
             label: 'Open trip details',
             detail: 'See the full booking ledger and flight actions.',
             icon: 'ReceiptText',
+            onPress: async () => {
+              const t = await getTripById(trip.tripId);
+              const orderId = t?.orderIds[0];
+              if (orderId) {
+                router.push({ pathname: '/screens/trip-detail', params: { id: orderId } });
+              } else {
+                router.push({ pathname: '/screens/itinerary/[tripId]', params: { tripId: trip.tripId } });
+              }
+            },
+          },
+          {
+            label: 'Open itinerary',
+            detail: 'Day-by-day plan with slots.',
+            icon: 'Calendar',
             onPress: () =>
-              router.push({ pathname: '/screens/trip-detail', params: { id: trip.tripId } }),
+              router.push({ pathname: '/screens/itinerary/[tripId]', params: { tripId: trip.tripId } }),
           },
         ];
     }
@@ -645,10 +783,10 @@ function PillAction({
 }: {
   label: string;
   icon: IconName;
-  onPress: () => void;
+  onPress: () => void | Promise<void>;
 }) {
   return (
-    <Pressable onPress={onPress} style={styles.pillAction}>
+    <Pressable onPress={() => { Promise.resolve(onPress()).catch(() => {}); }} style={styles.pillAction}>
       <Icon name={icon} size={16} color={INK} />
       <Text style={styles.pillActionLabel}>{label}</Text>
     </Pressable>

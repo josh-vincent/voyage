@@ -6,7 +6,7 @@ import { Button } from './Button';
 import useShadow, { shadowPresets } from '@/utils/useShadow';
 import Icon from './Icon';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 import Favorite from './Favorite';
 const { width: windowWidth } = Dimensions.get('window');
 interface CardProps {

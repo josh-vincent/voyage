@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Platform, StatusBar as RNStatusBar } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as NavigationBar from 'expo-navigation-bar';
-import { useTheme } from '@/app/contexts/ThemeContext';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import { useTheme } from '@/contexts/ThemeContext';
+import useThemeColors from '@/contexts/ThemeColors';
 
 /**
  * A hook that handles theme-dependent styling for navigation and status bars

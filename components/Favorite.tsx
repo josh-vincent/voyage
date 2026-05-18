@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Pressable, View, Text } from 'react-native';
 import Icon from './Icon';
 import { Button } from './Button';
-import { useThemeColors } from '@/app/contexts/ThemeColors';
+import { useThemeColors } from '@/contexts/ThemeColors';
 import ActionSheetThemed from './ActionSheetThemed';
 import { ActionSheetRef } from 'react-native-actions-sheet';
 import ThemedText from './ThemedText';

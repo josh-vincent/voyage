@@ -2,7 +2,7 @@ import { Link } from 'expo-router';
 import { View, Text, Image, TouchableOpacity, Dimensions, Pressable } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import ThemedText from './ThemedText';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 import ImageCarousel from './ImageCarousel';
 
 const windowWidth = Dimensions.get('window').width;

@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, Pressable, Animated, Platform, ViewStyle } from 'react-native';
 import ActionSheet, { ActionSheetRef } from 'react-native-actions-sheet';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 import Icon from '@/components/Icon';
 import ThemedText from '@/components/ThemedText';
 import * as NavigationBar from 'expo-navigation-bar';
-import { useTheme } from '@/app/contexts/ThemeContext';
+import { useTheme } from '@/contexts/ThemeContext';
 import { InputVariant } from './Input';
 
 interface SelectOption {

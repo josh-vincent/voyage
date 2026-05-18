@@ -9,15 +9,17 @@ import React, { useEffect } from 'react';
 import { Platform, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { ActiveTripProvider } from './contexts/ActiveTripContext';
-import { FlightSearchProvider } from './contexts/FlightSearchContext';
-import { ThemeProvider } from './contexts/ThemeContext';
+import { ActiveTripProvider } from '@/contexts/ActiveTripContext';
+import { FlightSearchProvider } from '@/contexts/FlightSearchContext';
+import { PremiumProvider } from '@/contexts/PremiumContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import useThemedNavigation from './hooks/useThemedNavigation';
 
 import {
   ReactNativeGrabGate,
   ReactNativeGrabScreenGate,
 } from '@/components/dev/ReactNativeGrabGate';
+import { seedDevDataIfNeeded } from '@/lib/devSeed';
 import { handleDeepLink } from '@/lib/links';
 import { PriceWatcher } from '@/utils/priceWatcher';
 import { syncTripStatusWidgetFromStorage } from '@/utils/trackedStorage';
@@ -64,7 +66,16 @@ export default function RootLayout() {
   const [fontsLoaded] = useFonts({ YoungSerif_400Regular });
 
   useEffect(() => {
-    syncTripStatusWidgetFromStorage();
+    (async () => {
+      if (__DEV__) {
+        try {
+          await seedDevDataIfNeeded();
+        } catch (e) {
+          console.warn('[devSeed] failed', e);
+        }
+      }
+      await syncTripStatusWidgetFromStorage();
+    })();
   }, []);
 
   if (!fontsLoaded) return <View style={{ flex: 1 }} />;
@@ -75,12 +86,14 @@ export default function RootLayout() {
       <ReactNativeGrabGate>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
-            <ActiveTripProvider>
-              <FlightSearchProvider>
-                <PriceWatcher />
-                <ThemedLayout />
-              </FlightSearchProvider>
-            </ActiveTripProvider>
+            <PremiumProvider>
+              <ActiveTripProvider>
+                <FlightSearchProvider>
+                  <PriceWatcher />
+                  <ThemedLayout />
+                </FlightSearchProvider>
+              </ActiveTripProvider>
+            </PremiumProvider>
           </ThemeProvider>
         </QueryClientProvider>
       </ReactNativeGrabGate>

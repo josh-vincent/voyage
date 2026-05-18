@@ -1,4 +1,4 @@
-import { useThemeColors } from 'app/contexts/ThemeColors';
+import { useThemeColors } from '@/contexts/ThemeColors';
 import ActiveTripCompanion from 'components/ActiveTripCompanion';
 import { TabButton } from 'components/TabButton';
 import { Tabs, TabList, TabTrigger, TabSlot } from 'expo-router/ui';
@@ -42,12 +42,6 @@ export default function Layout() {
           <TabTrigger name="chat" href="/(tabs)/chat" asChild>
             <TabButton labelAnimated={false} icon="Sparkles">
               Assistant
-            </TabButton>
-          </TabTrigger>
-
-          <TabTrigger name="agent-sim" href="/agent-sim" asChild>
-            <TabButton labelAnimated={false} icon="ScanSearch" hasBadge>
-              Agent
             </TabButton>
           </TabTrigger>
 

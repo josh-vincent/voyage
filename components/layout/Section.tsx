@@ -3,6 +3,7 @@ import { View, ViewStyle } from 'react-native';
 import ThemedText from '../ThemedText';
 import Icon, { IconName } from '../Icon';
 import { Link } from 'expo-router';
+import { SERIF } from '@/lib/theme';
 
 type TitleSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
 
@@ -82,7 +83,10 @@ export const Section: React.FC<SectionProps> = ({
                             <>
                                 {title && (
                                     <View className='flex-row items-center w-full justify-start'>
-                                        <ThemedText className={`${getTitleClass()} font-semibold`}>
+                                        <ThemedText
+                                            className={`${getTitleClass()} ${(titleSize === '2xl' || titleSize === '3xl') ? '' : 'font-semibold'}`}
+                                            style={(titleSize === '2xl' || titleSize === '3xl') ? { fontFamily: SERIF } : undefined}
+                                        >
                                             {title}
                                         </ThemedText>
                                         {link && (

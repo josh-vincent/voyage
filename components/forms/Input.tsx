@@ -3,7 +3,7 @@ import { View, TextInput as RNTextInput, Animated, Pressable, TextInputProps } f
 import { styled } from 'nativewind';
 import Icon, { IconName } from '../Icon';
 import ThemedText from '../ThemedText';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 
 export type InputVariant = 'animated' | 'classic' | 'underlined';
 

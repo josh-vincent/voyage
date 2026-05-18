@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { AppState, type AppStateStatus } from 'react-native';
-import * as Notifications from 'expo-notifications';
+import { AppState, Platform, type AppStateStatus } from 'react-native';
 import { listTracked, updateTrackedPrice } from './trackedStorage';
 import type { TrackedRoute } from '@/lib/flightTypes';
 import { api } from '@/lib/apiBase';
+import { addNotification } from './notificationsStorage';
+import { findAirport } from '@/lib/airports';
 
 const HOUR = 60 * 60 * 1000;
 const DAY = 24 * HOUR;
@@ -18,6 +19,8 @@ function isDue(route: TrackedRoute): boolean {
 }
 
 async function checkTracked() {
+  const Notifications =
+    Platform.OS === 'web' ? null : await import('expo-notifications').catch(() => null);
   const tracked = await listTracked();
   if (tracked.length === 0) return;
 
@@ -45,13 +48,29 @@ async function checkTracked() {
       const previous = route.lastPrice;
       if (lowest > 0 && lowest < previous) {
         const savings = previous - lowest;
-        await Notifications.scheduleNotificationAsync({
-          content: {
-            title: `Price dropped ${offers[0].totalCurrency} ${savings.toFixed(0)}`,
-            body: `${route.origin} → ${route.destination} · now ${offers[0].totalCurrency} ${lowest.toFixed(0)}`,
-          },
-          trigger: null,
-        });
+        const from = findAirport(route.origin)?.city ?? route.origin;
+        const to = findAirport(route.destination)?.city ?? route.destination;
+        if (Notifications) {
+          await Notifications.scheduleNotificationAsync({
+            content: {
+              title: `Price dropped ${offers[0].totalCurrency} ${savings.toFixed(0)}`,
+              body: `${route.origin} → ${route.destination} · now ${offers[0].totalCurrency} ${lowest.toFixed(0)}`,
+            },
+            trigger: null,
+          });
+        }
+        try {
+          await addNotification({
+            type: 'price_drop',
+            title: `${from} → ${to} dropped ${offers[0].totalCurrency} ${savings.toFixed(0)}`,
+            message: `Now ${offers[0].totalCurrency} ${lowest.toFixed(0)} on ${route.cabin.replace('_', ' ')}.`,
+            time: 'just now',
+            icon: 'TrendingDown',
+            refs: { trackedId: route.id },
+          });
+        } catch {
+          // notifications storage shouldn't block price updates
+        }
       }
       await updateTrackedPrice(route.id, lowest, offers[0].totalCurrency);
     } catch {
@@ -64,14 +83,20 @@ export function PriceWatcher() {
   const appState = useRef(AppState.currentState);
 
   useEffect(() => {
-    Notifications.setNotificationHandler({
-      handleNotification: async () => ({
-        shouldShowBanner: true,
-        shouldShowList: true,
-        shouldPlaySound: false,
-        shouldSetBadge: false,
-      }),
-    });
+    if (Platform.OS !== 'web') {
+      import('expo-notifications')
+        .then((Notifications) => {
+          Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+              shouldShowBanner: true,
+              shouldShowList: true,
+              shouldPlaySound: false,
+              shouldSetBadge: false,
+            }),
+          });
+        })
+        .catch(() => {});
+    }
 
     checkTracked();
 

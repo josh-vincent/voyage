@@ -1,6 +1,7 @@
 import { tool } from 'ai';
 import { z } from 'zod';
 import type { ToolFactory } from './types';
+import { mockHolidaysFor } from '@/lib/devSeed';
 
 type NagerHoliday = {
   date: string;
@@ -87,11 +88,24 @@ export const holidayTools: ToolFactory = (ctx) => ({
           all = all.concat(got);
         }
       } catch (e: any) {
-        return {
-          countryCode: cc,
-          holidays: [],
-          message: `Couldn\'t fetch holidays for ${cc}: ${e?.message ?? 'network error'}`,
-        };
+        const fallback = mockHolidaysFor(cc);
+        if (fallback) {
+          all = fallback.map((h) => ({
+            date: h.date,
+            localName: h.name,
+            name: h.name,
+            countryCode: cc,
+            fixed: true,
+            global: true,
+            types: ['Public'],
+          }));
+        } else {
+          return {
+            countryCode: cc,
+            holidays: [],
+            message: `Couldn\'t fetch holidays for ${cc}: ${e?.message ?? 'network error'}`,
+          };
+        }
       }
 
       let filtered = all;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ScrollView, Pressable, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '@/components/Header';
@@ -7,6 +7,7 @@ import { Button } from '@/components/Button';
 import ThemedScroller from '@/components/ThemeScroller';
 import Icon from '@/components/Icon';
 import AnimatedView from '@/components/AnimatedView';
+import { SUPPORTED_CURRENCIES, getCurrency, setCurrency } from '@/utils/currencyStorage';
 
 interface Currency {
     code: string;
@@ -17,23 +18,14 @@ const CurrencyScreen = () => {
     const navigation = useNavigation();
     const [selectedCurrency, setSelectedCurrency] = useState("USD");
 
-    const currencies: Currency[] = [
-        { code: "USD", title: "United States Dollar" },
-        { code: "EUR", title: "Euro" },
-        { code: "GBP", title: "British Pound" },
-        { code: "CAD", title: "Canadian Dollar" },
-        { code: "AUD", title: "Australian Dollar" },
-        { code: "CHF", title: "Swiss Franc" },
-        { code: "JPY", title: "Japanese Yen" },
-        { code: "CNY", title: "Chinese Yuan" },
-        { code: "INR", title: "Indian Rupee" },
-        { code: "BRL", title: "Brazilian Real" },
-        { code: "ZAR", title: "South African Rand" },
-        { code: "MXN", title: "Mexican Peso" },
-    ];
+    useEffect(() => {
+        getCurrency().then(setSelectedCurrency);
+    }, []);
 
-    const saveSettings = () => {
-        // Here you would save the selected currency
+    const currencies: Currency[] = SUPPORTED_CURRENCIES;
+
+    const saveSettings = async () => {
+        await setCurrency(selectedCurrency);
         navigation.goBack();
     };
 

@@ -63,3 +63,37 @@ export function deriveChatTitle(messages: StoredChatMessage[]): string {
 export function newChatId(): string {
   return `chat_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`;
 }
+
+/**
+ * Returns a title that is unique among the given list of existing chats
+ * (excluding the chat with `excludeId`, so re-saving the same chat doesn't
+ * count as a collision with itself).
+ *
+ * Collision resolution: append " · <time>" (e.g. " · 2:05pm") on first
+ * collision, then " (2)", " (3)" … for further collisions.
+ */
+export function uniqueChatTitle(
+  baseTitle: string,
+  existingChats: StoredChat[],
+  excludeId: string,
+  createdAt: number,
+): string {
+  const others = existingChats.filter((c) => c.id !== excludeId);
+  const takenTitles = new Set(others.map((c) => c.title));
+
+  if (!takenTitles.has(baseTitle)) return baseTitle;
+
+  // First collision: append abbreviated time
+  const d = new Date(createdAt);
+  const h = d.getHours();
+  const m = d.getMinutes().toString().padStart(2, '0');
+  const ampm = h < 12 ? 'am' : 'pm';
+  const h12 = h % 12 === 0 ? 12 : h % 12;
+  const withTime = `${baseTitle} · ${h12}:${m}${ampm}`;
+  if (!takenTitles.has(withTime)) return withTime;
+
+  // Further collisions: numeric suffix
+  let n = 2;
+  while (takenTitles.has(`${withTime} (${n})`)) n++;
+  return `${withTime} (${n})`;
+}

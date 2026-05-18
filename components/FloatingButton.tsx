@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { View, TouchableOpacity, Animated, StyleSheet, ViewStyle } from 'react-native';
 import { Link } from 'expo-router';
 import ThemedText from './ThemedText';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 import Icon, { IconName } from './Icon';
 
 interface FloatingButtonProps {

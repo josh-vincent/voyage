@@ -6,6 +6,7 @@ import ThemedText from '@/components/ThemedText';
 import Icon from '@/components/Icon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
+import { SERIF } from '@/lib/theme';
 
 // Step component that will be used as children
 export interface StepProps {
@@ -20,7 +21,10 @@ export const Step: React.FC<StepProps> = ({ children }) => {
 
 // Add this to help with type checking
 const isStepComponent = (child: any): child is React.ReactElement<StepProps> => {
-  return isValidElement(child) && (child.type === Step || (typeof child.type === 'function' && child.type.name === 'Step'));
+  return (
+    isValidElement(child) &&
+    (child.type === Step || (typeof child.type === 'function' && child.type.name === 'Step'))
+  );
 };
 
 interface StepData {
@@ -50,17 +54,20 @@ export default function MultiStep({
   onStepChange,
 }: MultiStepProps) {
   // Filter and validate children to only include Step components
-  const validChildren = Children.toArray(children)
-    .filter(isStepComponent);
-  
+  const validChildren = Children.toArray(children).filter(isStepComponent);
+
   // Extract step data from children
   const steps: StepData[] = validChildren.map((child, index) => {
-    const { title, optional, children: stepContent } = (child as React.ReactElement<StepProps>).props;
+    const {
+      title,
+      optional,
+      children: stepContent,
+    } = (child as React.ReactElement<StepProps>).props;
     return {
       key: `step-${index}`,
       title: title || `Step ${index + 1}`,
       optional,
-      component: stepContent
+      component: stepContent,
     };
   });
 
@@ -69,7 +76,11 @@ export default function MultiStep({
     steps.push({
       key: 'empty-step',
       title: 'Empty',
-      component: <View><ThemedText>No steps provided</ThemedText></View>
+      component: (
+        <View>
+          <ThemedText>No steps provided</ThemedText>
+        </View>
+      ),
     });
   }
 
@@ -87,7 +98,7 @@ export default function MultiStep({
     // Reset and start fade/slide animations
     fadeAnim.setValue(0);
     slideAnim.setValue(50);
-    
+
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -98,7 +109,7 @@ export default function MultiStep({
         toValue: 0,
         duration: 200,
         useNativeDriver: true,
-      })
+      }),
     ]).start();
 
     // Animate progress indicators
@@ -117,7 +128,7 @@ export default function MultiStep({
     } else {
       const nextStep = currentStepIndex + 1;
       const canProceed = onStepChange ? onStepChange(nextStep) : true;
-      
+
       if (canProceed) {
         setCurrentStepIndex(nextStep);
       }
@@ -145,7 +156,9 @@ export default function MultiStep({
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={{paddingBottom: insets.bottom}} className={`flex-1 bg-light-primary dark:bg-dark-primary ${className}`}>
+    <View
+      style={{ paddingBottom: insets.bottom }}
+      className={`flex-1 bg-light-primary dark:bg-dark-primary ${className}`}>
       {showHeader && (
         <Header
           rightComponents={[
@@ -153,26 +166,15 @@ export default function MultiStep({
               <Pressable
                 key="close"
                 onPress={() => router.back()}
-                className="p-2 rounded-full active:bg-light-secondary dark:active:bg-dark-secondary"
-                hitSlop={8}
-              >
-                <Icon
-                  name="X"
-                  size={24}
-                  className="text-light-text dark:text-dark-text"
-                />
+                className="rounded-full p-2 active:bg-light-secondary active:dark:bg-dark-secondary"
+                hitSlop={8}>
+                <Icon name="X" size={24} className="text-light-text dark:text-dark-text" />
               </Pressable>
-            ) : undefined
+            ) : undefined,
           ]}
           leftComponent={[
             currentStep.optional && !isLastStep && (
-              <Button
-                key="skip"
-                title="Skip"
-                variant="ghost"
-                onPress={handleSkip}
-                size="small"
-              />
+              <Button key="skip" title="Skip" variant="ghost" onPress={handleSkip} size="small" />
             ),
             !isFirstStep && (
               <Icon
@@ -187,39 +189,34 @@ export default function MultiStep({
         />
       )}
 
-      
-
       {/* Step Content */}
       <Animated.View
         className="flex-1"
         style={{
           opacity: fadeAnim,
           transform: [{ translateY: slideAnim }],
-        }}
-      >
+        }}>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-        >
+          showsVerticalScrollIndicator={false}>
           {currentStep.component}
         </ScrollView>
       </Animated.View>
 
       {/* Step Indicators */}
       {showStepIndicator && (
-        <View className="px-4 py-3 flex-row justify-center">
+        <View className="flex-row justify-center px-4 py-3">
           {steps.map((_, index) => (
             <Animated.View
               key={index}
-              className="h-1 rounded-full flex-1 mx-1 overflow-hidden bg-neutral-500 dark:bg-dark-secondary"
+              className="mx-1 h-1 flex-1 overflow-hidden rounded-full bg-neutral-500 dark:bg-dark-secondary"
               style={{
                 width: 20,
                 opacity: index === currentStepIndex ? 1 : 0.5,
-              }}
-            >
+              }}>
               <Animated.View
-                className="h-full bg-light-accent dark:bg-dark-accent"
+                className="bg-light-accent dark:bg-dark-accent h-full"
                 style={{
                   width: progressAnims[index].interpolate({
                     inputRange: [0, 1],
@@ -233,15 +230,15 @@ export default function MultiStep({
       )}
 
       {/* Bottom Navigation */}
-      <View className="px-4 py-3 border-t border-light-secondary dark:border-dark-secondary">
+      <View className="border-t border-light-secondary px-4 py-3 dark:border-dark-secondary">
         <Button
-          title={isLastStep ? "Complete" : "Next"}
+          title={isLastStep ? 'Complete' : 'Next'}
           onPress={handleNext}
           className="w-full"
           size="large"
-          textClassName='text-white'
+          variant="ink"
         />
       </View>
     </View>
   );
-} 
+}

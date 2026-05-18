@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Pressable } from 'react-native';
 import ThemedText from '../ThemedText';
 import Icon from '../Icon';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 
 interface CheckboxProps {
     label: string;

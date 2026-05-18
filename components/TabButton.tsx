@@ -1,4 +1,4 @@
-import { useThemeColors } from 'app/contexts/ThemeColors';
+import { useThemeColors } from '@/contexts/ThemeColors';
 import { TabTriggerSlotProps } from 'expo-router/ui';
 import { ComponentProps, forwardRef, useEffect, useState, ReactNode } from 'react';
 import { Text, Pressable, View, Animated } from 'react-native';

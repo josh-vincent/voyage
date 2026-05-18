@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { View, TouchableOpacity, Platform, Animated, Pressable } from 'react-native';
 import Modal from 'react-native-modal';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useThemeColors } from '@/app/contexts/ThemeColors';
+import { useThemeColors } from '@/contexts/ThemeColors';
 import { formatToYYYYMMDD } from '@/utils/date';
 import ThemedText from '@/components/ThemedText';
 import { Button } from '@/components/Button';

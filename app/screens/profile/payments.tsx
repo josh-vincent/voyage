@@ -1,171 +1,146 @@
-import React, { useState } from 'react';
-import { View, Modal, TouchableOpacity, ScrollView, Text, Dimensions, Pressable } from 'react-native';
-import Header from '@/components/Header';
-import ThemedText from '@/components/ThemedText';
-import { Button } from '@/components/Button';
-import Icon from '@/components/Icon';
-import Input from '@/components/forms/Input';
-import Toggle from '@/components/Toggle';
-import { shadowPresets } from '@/utils/useShadow';
+import React, { useCallback, useState } from 'react';
+import { Dimensions, Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useFocusEffect } from 'expo-router';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import useThemeColors from '@/app/contexts/ThemeColors';
-import Section from '@/components/layout/Section';
-import { CardScroller } from '@/components/CardScroller';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { Button } from '@/components/Button';
+import { CardScroller } from '@/components/CardScroller';
+import Header from '@/components/Header';
+import Icon from '@/components/Icon';
+import Section from '@/components/layout/Section';
+import ThemedText from '@/components/ThemedText';
+import Toggle from '@/components/Toggle';
+import Input from '@/components/forms/Input';
+import useThemeColors from '@/contexts/ThemeColors';
+import { shadowPresets } from '@/utils/useShadow';
+import { INK, PARCHMENT } from '@/lib/theme';
+import {
+  addPaymentMethod,
+  listPaymentMethods,
+  removePaymentMethod,
+  setDefaultPaymentMethod,
+  subscribePaymentMethods,
+  type PaymentBrand,
+  type PaymentMethod,
+} from '@/utils/paymentMethodsStorage';
+
 const { width } = Dimensions.get('window');
-// Sample payment methods
-const initialPaymentMethods = [
-  {
-    id: '1',
-    type: 'credit_card',
-    cardNumber: '4242',
-    cardHolder: 'John Doe',
-    expiryDate: '05/25',
-    isDefault: true,
-    brand: 'Visa'
-  },
-  {
-    id: '2',
-    type: 'credit_card',
-    cardNumber: '5678',
-    cardHolder: 'John Doe',
-    expiryDate: '08/24',
-    isDefault: false,
-    brand: 'Mastercard'
-  }
-];
+
+const BRAND_GRADIENT: Record<PaymentBrand, [string, string]> = {
+  visa: ['#1E1B17', '#2E2A22'],
+  mastercard: ['#5C3D2E', '#7A5444'],
+  amex: ['#2E3A59', '#4F6488'],
+  discover: ['#8C6A3A', '#A8834E'],
+  other: ['#9b9b9b', '#cccccc'],
+};
+
+const BRAND_LABEL: Record<PaymentBrand, string> = {
+  visa: 'Visa',
+  mastercard: 'Mastercard',
+  amex: 'Amex',
+  discover: 'Discover',
+  other: 'Card',
+};
+
+function detectBrand(cardNumber: string): PaymentBrand {
+  const stripped = cardNumber.replace(/\D/g, '');
+  if (/^4/.test(stripped)) return 'visa';
+  if (/^(5[1-5]|2[2-7])/.test(stripped)) return 'mastercard';
+  if (/^3[47]/.test(stripped)) return 'amex';
+  if (/^6(?:011|5)/.test(stripped)) return 'discover';
+  return 'other';
+}
 
 export default function PaymentsScreen() {
-
   const colors = useThemeColors();
-  const [paymentMethods, setPaymentMethods] = useState(initialPaymentMethods);
+  const [methods, setMethods] = useState<PaymentMethod[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
   const [cardHolder, setCardHolder] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
-  const [isDefault, setIsDefault] = useState(false);
+  const [makeDefault, setMakeDefault] = useState(false);
 
-  // Get card brand icon based on card number
-  const getCardBrandIcon = (brand: string) => {
-    switch (brand) {
-      case 'Visa':
-        return 'CreditCard' as const; // Using Icon component - ideally would use specific card logos
-      case 'Mastercard':
-        return 'CreditCard' as const;
-      case 'Amex':
-        return 'CreditCard' as const;
-      default:
-        return 'CreditCard' as const;
-    }
-  };
+  const load = useCallback(async () => {
+    setMethods(await listPaymentMethods());
+  }, []);
 
-  // Handle add new card
+  useFocusEffect(
+    useCallback(() => {
+      load();
+      const unsub = subscribePaymentMethods(load);
+      return unsub;
+    }, [load]),
+  );
+
   const handleAddCard = () => {
     setCardNumber('');
     setCardHolder('');
     setExpiryDate('');
     setCvv('');
-    setIsDefault(paymentMethods.length === 0);
+    setMakeDefault(methods.length === 0);
     setIsModalVisible(true);
   };
 
-  // Handle save card
-  const handleSaveCard = () => {
-    // Simple validation
-    if (!cardNumber || !cardHolder || !expiryDate || !cvv) {
-      // Would show validation errors in a real app
-      return;
-    }
-
-    const maskedCardNumber = '•••• •••• •••• ' + cardNumber.slice(-4);
-
-    const newCard = {
-      id: `${Date.now()}`,
-      type: 'credit_card',
-      cardNumber: maskedCardNumber,
+  const handleSaveCard = async () => {
+    if (!cardNumber || !cardHolder || !expiryDate || !cvv) return;
+    const [mm, yy] = expiryDate.split('/').map((s) => s.trim());
+    const year = yy?.length === 2 ? 2000 + Number(yy) : Number(yy ?? new Date().getFullYear());
+    await addPaymentMethod({
+      brand: detectBrand(cardNumber),
+      cardLast4: cardNumber.replace(/\D/g, '').slice(-4),
       cardHolder,
-      expiryDate,
-      isDefault,
-      brand: 'Visa' // Would determine based on card number in real app
-    };
-
-    if (isDefault) {
-      // Update other methods to not be default
-      setPaymentMethods(prevMethods =>
-        prevMethods.map(method => ({ ...method, isDefault: false }))
-      );
-    }
-
-    setPaymentMethods(prevMethods => [...prevMethods, newCard]);
+      expiryMonth: Number(mm) || 1,
+      expiryYear: Number.isFinite(year) ? year : new Date().getFullYear() + 1,
+      isDefault: makeDefault,
+    });
     setIsModalVisible(false);
-  };
-
-  // Handle set default
-  const handleSetDefault = (id: string) => {
-    setPaymentMethods(prevMethods =>
-      prevMethods.map(method => ({
-        ...method,
-        isDefault: method.id === id
-      }))
-    );
-  };
-
-  // Handle delete card
-  const handleDeleteCard = (id: string) => {
-    setPaymentMethods(prevMethods =>
-      prevMethods.filter(method => method.id !== id)
-    );
+    load();
   };
 
   return (
-    <View className="flex-1 bg-light-primary dark:bg-dark-primary">
+    <View className="flex-1 dark:bg-dark-primary" style={{ backgroundColor: PARCHMENT }}>
       <Header title="Payment Methods" showBackButton />
 
       <ScrollView className="flex-1">
-        {/*<Section
-          title="Your cards"
-          className="px-global pt-10"
-          titleSize='xl'
-          />*/}
+        <Section title="Your cards" className="px-global pt-10" titleSize="xl" />
 
         <View className="px-global mt-4">
-          <CardScroller>
-            {paymentMethods.map(method => (
-              <CardPreview
-                key={method.id}
-                cardNumber={method.cardNumber}
-                cardHolder={method.cardHolder}
-                expiryDate={method.expiryDate}
-                brand={method.brand}
-                isDefault={method.isDefault}
-                onSetDefault={() => handleSetDefault(method.id)}
-                onDelete={() => handleDeleteCard(method.id)}
-              />
-            ))}
-          </CardScroller>
-          {/*<Button
+          {methods.length === 0 ? (
+            <View
+              className="rounded-2xl p-6 items-center bg-light-secondary/30 dark:bg-dark-secondary"
+              style={{ height: 160 }}>
+              <Icon name="CreditCard" size={28} />
+              <ThemedText className="mt-3 text-sm opacity-70">
+                No payment methods yet. Add one to speed up checkout.
+              </ThemedText>
+            </View>
+          ) : (
+            <CardScroller>
+              {methods.map((m) => (
+                <CardPreview
+                  key={m.id}
+                  method={m}
+                  onSetDefault={() => setDefaultPaymentMethod(m.id).then(load)}
+                  onDelete={() => removePaymentMethod(m.id).then(load)}
+                />
+              ))}
+            </CardScroller>
+          )}
+          <Button
             title="Add New Card"
             iconStart="Plus"
             variant="outline"
             className="mt-4"
             onPress={handleAddCard}
-          />*/}
+          />
         </View>
 
-
-       {/*} <Section
-          title="Digital Wallets"
-          className="px-global mt-14"
-        />*/}
+        <Section title="Digital Wallets" className="px-global mt-14" />
 
         <View className="px-global pb-8 mt-4">
-          {/* Apple Pay - only on iOS */}
-
-          <TouchableOpacity
-            className="flex-row items-center border-b border-light-secondary dark:border-dark-secondary py-4"
-          >
+          <TouchableOpacity className="flex-row items-center border-b border-light-secondary dark:border-dark-secondary py-4">
             <View className="w-12 h-12 rounded-lg bg-light-secondary dark:bg-dark-secondary items-center justify-center mr-4">
               <AntDesign name="apple" size={24} color={colors.icon} />
             </View>
@@ -178,11 +153,7 @@ export default function PaymentsScreen() {
             <Icon name="ChevronRight" size={20} />
           </TouchableOpacity>
 
-
-          {/* Google Pay - available on both platforms */}
-          <TouchableOpacity
-            className="flex-row items-center border-b border-light-secondary dark:border-dark-secondary py-4"
-          >
+          <TouchableOpacity className="flex-row items-center border-b border-light-secondary dark:border-dark-secondary py-4">
             <View className="w-12 h-12 rounded-lg bg-light-secondary dark:bg-dark-secondary items-center justify-center mr-4">
               <AntDesign name="google" size={24} color={colors.icon} />
             </View>
@@ -194,16 +165,10 @@ export default function PaymentsScreen() {
             </View>
             <Icon name="ChevronRight" size={20} />
           </TouchableOpacity>
-
         </View>
       </ScrollView>
 
-      {/* Add Card Modal */}
-      <Modal
-        visible={isModalVisible}
-        transparent
-        animationType="fade"
-      >
+      <Modal visible={isModalVisible} transparent animationType="fade">
         <View className="flex-1 bg-black/50 justify-center h-screen p-global">
           <View className="bg-light-primary dark:bg-dark-primary rounded-xl p-4">
             <View className="flex-row justify-between items-center mb-6">
@@ -213,7 +178,7 @@ export default function PaymentsScreen() {
               </TouchableOpacity>
             </View>
 
-            <ScrollView className=" pt-4">
+            <ScrollView className="pt-4">
               <Input
                 label="Card Number"
                 value={cardNumber}
@@ -226,10 +191,8 @@ export default function PaymentsScreen() {
                 label="Cardholder Name"
                 value={cardHolder}
                 onChangeText={setCardHolder}
-                placeholder="John Doe"
+                placeholder="Alex Morgan"
               />
-
-              {/* Inputs in a row with the fixed input component */}
 
               <Input
                 label="Expiry Date"
@@ -251,13 +214,9 @@ export default function PaymentsScreen() {
                 inRow={true}
               />
 
-
               <View className="flex-row items-center justify-between py-4 mb-4">
                 <ThemedText>Set as default payment method</ThemedText>
-                <Toggle
-                  value={isDefault}
-                  onChange={setIsDefault}
-                />
+                <Toggle value={makeDefault} onChange={setMakeDefault} />
               </View>
             </ScrollView>
 
@@ -268,11 +227,7 @@ export default function PaymentsScreen() {
                 className="flex-1"
                 onPress={() => setIsModalVisible(false)}
               />
-              <Button
-                title="Save Card"
-                className="flex-1"
-                onPress={handleSaveCard}
-              />
+              <Button title="Save Card" className="flex-1" onPress={handleSaveCard} />
             </View>
           </View>
         </View>
@@ -281,43 +236,54 @@ export default function PaymentsScreen() {
   );
 }
 
-const CardPreview = (props: {
-  cardNumber: string;
-  cardHolder: string;
-  expiryDate: string;
-  brand: string;
-  isDefault: boolean;
+const CardPreview = ({
+  method,
+  onSetDefault,
+  onDelete,
+}: {
+  method: PaymentMethod;
   onSetDefault: () => void;
   onDelete: () => void;
 }) => {
+  const gradient = BRAND_GRADIENT[method.brand] ?? BRAND_GRADIENT.other;
+  const mm = String(method.expiryMonth).padStart(2, '0');
+  const yy = String(method.expiryYear % 100).padStart(2, '0');
   return (
     <View
-      className={`h-60 rounded-2xl flex flex-col justify-end ${props.brand === 'Visa' ? 'bg-lime-300' : 'bg-sky-300'}`}
-      style={{ width: width - 40, ...shadowPresets.large }}
-    >
-      <LinearGradient colors={[ props.brand === 'Visa' ? '#BBF451' : '#74D4FF', props.brand === 'Visa' ? '#DEFF9F' : '#ACE3FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} 
-      className='h-full rounded-2xl p-6 flex flex-col justify-end'>
-
-        <Text className="font-outfit-bold text-xl">•••• •••• •••• {props.cardNumber}</Text>
-        <View className='flex-row justify-between'>
-          <Text>{props.cardHolder}</Text>
-          <Text>{props.expiryDate}</Text>
+      className="h-60 rounded-2xl flex flex-col justify-end"
+      style={{ width: width - 40, ...shadowPresets.large }}>
+      <LinearGradient
+        colors={gradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        className="h-full rounded-2xl p-6 flex flex-col justify-end">
+        <Text className="font-outfit-bold text-xl" style={{ color: PARCHMENT }}>•••• •••• •••• {method.cardLast4}</Text>
+        <View className="flex-row justify-between mt-1">
+          <Text style={{ color: PARCHMENT }}>{method.cardHolder}</Text>
+          <Text style={{ color: PARCHMENT }}>{`${mm}/${yy}`}</Text>
         </View>
 
-        <View className='absolute top-6 right-6 flex-row w-full justify-between'>
-          <Text className='font-outfit-bold text-lg'>{props.brand}</Text>
-          {/*<TouchableOpacity onPress={props.onDelete} className='ml-auto mr-4'>
-            <Icon name="Trash2" size={20} color="black" />
-          </TouchableOpacity>*/}
-          {props.isDefault ?
-            <View className='px-2 py-1 bg-black rounded-full items-center justify-center'>
-              <Text className='text-white text-xs'>Default</Text>
-            </View>
-            :
-            <Pressable onPress={props.onSetDefault} className='px-2 py-1 bg-white rounded-full items-center justify-center'>
-              <Text className='text-black text-xs'>Set as default</Text>
+        <View className="absolute top-6 right-6 flex-row w-full justify-between pl-12">
+          <Text className="font-outfit-bold text-lg" style={{ color: PARCHMENT }}>{BRAND_LABEL[method.brand]}</Text>
+          <View className="flex-row items-center">
+            {method.isDefault ? (
+              <View className="px-2 py-1 rounded-full items-center justify-center" style={{ backgroundColor: INK }}>
+                <Text className="text-xs" style={{ color: PARCHMENT }}>Default</Text>
+              </View>
+            ) : (
+              <Pressable
+                onPress={onSetDefault}
+                className="px-2 py-1 bg-white rounded-full items-center justify-center">
+                <Text className="text-black text-xs">Set as default</Text>
+              </Pressable>
+            )}
+            <Pressable
+              onPress={onDelete}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              className="ml-2 w-7 h-7 rounded-full bg-white/70 items-center justify-center">
+              <Icon name="Trash2" size={12} color="#000" />
             </Pressable>
-          }
+          </View>
         </View>
       </LinearGradient>
     </View>

@@ -1,5 +1,20 @@
 import type { Tool } from 'ai';
 
+export type TravelerProfileSummary = {
+  givenName?: string;
+  familyName?: string;
+  preferredCabin?: 'economy' | 'premium_economy' | 'business' | 'first';
+  seatPreference?: string;       // human label like "Aisle"
+  bagPreference?: string;        // human label like "1 checked"
+  dietary?: string[];            // human labels like ["Vegetarian", "Halal"]
+  hasPassport?: boolean;
+  passportCountry?: string;
+  knownTravellerNumber?: string;
+  frequentFlyers?: Array<{ carrierCode: string; carrierName: string; tier?: string }>;
+  savedActivityCount?: number;
+  savedStayCount?: number;
+};
+
 export type TripSummary = {
   bookingReference: string;
   passengerName?: string;
@@ -41,6 +56,7 @@ export type VoyageContext = {
   countryCode?: string;
   city?: string;
   locale?: string;
+  travelerProfile?: TravelerProfileSummary;
   upcomingTrips?: TripSummary[];
   watchedRoutes?: WatchedRouteSummary[];
   calendarAccess?: CalendarAccess;

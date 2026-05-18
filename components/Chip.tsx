@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Text, View, TouchableOpacity, ViewStyle, Image, ImageSourcePropType } from 'react-native';
 import { Link } from 'expo-router';
 import Icon, { IconName } from './Icon';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 type ChipSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 interface ChipProps {

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Pressable, Animated, Switch as RNSwitch, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import ThemedText from '../ThemedText';
 import Icon, { IconName } from '../Icon';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 
 interface SwitchProps {
   value?: boolean;

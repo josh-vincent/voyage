@@ -10,7 +10,7 @@ import Animated, {
   runOnJS
 } from 'react-native-reanimated';
 import Icon, { IconName } from './Icon';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 
 const StyledAnimatedView = styled(Animated.View);
 const StyledView = styled(View);

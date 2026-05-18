@@ -1,6 +1,7 @@
 import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
-import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Chip } from '@/components/Chip';
 import Expandable from '@/components/Expandable';
@@ -12,7 +13,14 @@ import Section from '@/components/layout/Section';
 import { INK, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
 
 export default function EditProfileScreen() {
+  const navigation = useNavigation();
   const [profileImage, setProfileImage] = useState<string | null>(null);
+
+  const onSave = () => {
+    Alert.alert('Saved', 'Profile changes saved (mock).', [
+      { text: 'OK', onPress: () => navigation.goBack() },
+    ]);
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -33,7 +41,12 @@ export default function EditProfileScreen() {
       <Header
         showBackButton
         rightComponents={[
-          <Pressable className="rounded-full px-4 py-2.5" style={{ backgroundColor: INK }}>
+          <Pressable
+            onPress={onSave}
+            accessibilityLabel="Save profile changes"
+            accessibilityRole="button"
+            className="rounded-full px-4 py-2.5"
+            style={{ backgroundColor: INK }}>
             <Text style={{ color: PARCHMENT, fontFamily: SERIF, fontSize: 13 }}>Save changes</Text>
           </Pressable>,
         ]}
@@ -87,14 +100,12 @@ export default function EditProfileScreen() {
             <Input
               label="First Name"
               value="John"
-              keyboardType="email-address"
-              autoCapitalize="none"
+              autoCapitalize="words"
             />
             <Input
               label="Last Name"
               value="Doe"
-              keyboardType="email-address"
-              autoCapitalize="none"
+              autoCapitalize="words"
             />
           </View>
         </Expandable>
@@ -134,7 +145,7 @@ export default function EditProfileScreen() {
             <Input
               label="Phone"
               value="+1234567890"
-              keyboardType="email-address"
+              keyboardType="phone-pad"
               autoCapitalize="none"
             />
           </View>
@@ -149,13 +160,13 @@ export default function EditProfileScreen() {
             <Input
               label="Current password"
               value="********"
-              keyboardType="email-address"
+              isPassword
               autoCapitalize="none"
             />
             <Input
               label="New password"
               value="********"
-              keyboardType="email-address"
+              isPassword
               autoCapitalize="none"
             />
           </View>

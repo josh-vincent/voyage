@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import { PARCHMENT } from '@/lib/theme';
 import Header from '@/components/Header';
 import ThemedText from '@/components/ThemedText';
 import Expandable from '@/components/Expandable';
@@ -13,43 +14,43 @@ import Divider from '@/components/layout/Divider';
 const faqData = [
   {
     id: '1',
-    question: 'How do I check in to my accommodation?',
-    answer: 'Check-in instructions will be provided by your host before your arrival. This typically includes key pickup location, door codes, or meeting arrangements. You can find these details in your booking confirmation email or in the app under your trip details.'
+    question: 'How do I search for flights?',
+    answer: 'Open the Search tab, type or pick your origin and destination airports, choose dates and passengers, and tap "Show me flights". Voyage queries Duffel for live offers and ranks them by price; the lowest fare gets a green ribbon.'
   },
   {
     id: '2',
-    question: 'What is the cancellation policy?',
-    answer: 'Cancellation policies vary by property and host. You can view the specific policy for your booking in your trip details. Most properties offer free cancellation up to a certain date, with varying refund amounts after that period.'
+    question: 'What does Watch price do?',
+    answer: 'Tapping Watch price on any offer adds that route to Tracked. Voyage will keep an eye on the fare and ping you when it drops. You can re-poll on demand with Check now, change the cadence (Daily / Weekly / Manual) with Scan, or stop watching with the trash icon.'
   },
   {
     id: '3',
-    question: 'How do I contact my host?',
-    answer: 'You can message your host directly through the app once your booking is confirmed. Go to your trip details and tap "Contact Host" to send a message. For urgent matters, some hosts also provide phone numbers.'
+    question: 'How does the AI Assistant work?',
+    answer: 'The Assistant tab is a chat that can search flights, look up offers, plan itineraries, and start price tracking — all by routing through Duffel and the AI gateway. Try one of the suggested prompts ("Cheapest to Tokyo in June under $800") or type your own.'
   },
   {
     id: '4',
-    question: 'What should I do if there\'s an issue with my accommodation?',
-    answer: 'First, try to resolve the issue by contacting your host directly. If the problem cannot be resolved, contact our customer support team immediately. We\'re available 24/7 to help with any accommodation issues during your stay.'
+    question: 'What is Voyage\'s cancellation policy?',
+    answer: 'Cancellations are governed by each Duffel offer\'s fare rules — visible on the offer-detail screen once you tap a result. Some test-mode offers are flagged "expires soon" and need to be reserved before a deadline. Real bookings inherit the airline\'s rules.'
   },
   {
     id: '5',
-    question: 'How do I modify or cancel my booking?',
-    answer: 'You can modify or cancel your booking by going to "Your Trips" in the app and selecting the booking you want to change. Keep in mind that changes may be subject to the host\'s availability and cancellation policy.'
+    question: 'How do I view a booked trip?',
+    answer: 'Booked offers land on the Trips tab. Tap a trip to see the boarding-pass view, countdown to departure, and a checklist of items left to do before wheels up. Tracked routes you\'ve actually booked also surface a "Booked · view trip" pill on the Tracked tab.'
   },
   {
     id: '6',
     question: 'How does payment work?',
-    answer: 'Payment is processed securely through our platform. You\'ll be charged when your booking is confirmed, with some properties requiring a deposit upfront and the balance closer to your stay date. You can view all payment details in your booking confirmation.'
+    answer: 'Voyage uses your saved payment method (Settings → Payments) for Duffel bookings. In test mode no real charge occurs; for live orders you are billed when the booking is confirmed. You can manage cards or set up Apple/Google Pay from the Payments page.'
   },
   {
     id: '7',
-    question: 'What amenities are included in my stay?',
-    answer: 'Amenities vary by property and are listed in each property\'s description. Common amenities include WiFi, kitchen access, and parking. Check your specific booking details to see what\'s included with your accommodation.'
+    question: 'Why does an offer say "expires soon"?',
+    answer: 'Duffel holds offer prices for a short window — sometimes minutes, sometimes hours. The "expires soon" badge means the fare is close to that deadline. Reserve quickly or expect the offer to refresh at a different price.'
   },
   {
     id: '8',
-    question: 'How do I leave a review?',
-    answer: 'After your stay, you\'ll receive a notification to review your experience. You can also leave a review by going to your completed trips and selecting "Write a Review". Reviews help other travelers and improve the quality of our platform.'
+    question: 'How do I change the display currency?',
+    answer: 'Go to Settings → Currency, pick a currency, and tap Save. The new code (e.g. EUR - Euro) is stored locally and the Settings row updates immediately. Live Duffel quotes are still in their native currency for now.'
   }
 ];
 
@@ -58,16 +59,16 @@ const contactInfo = [
   {
     id: 'email',
     type: 'Email Support',
-    value: 'support@propia.com',
+    value: 'support@voyage.app',
     icon: 'Mail' as const,
-    action: () => Linking.openURL('mailto:support@propia.com')
+    action: () => Linking.openURL('mailto:support@voyage.app')
   },
   {
     id: 'phone',
-    type: 'Emergency Hotline',
-    value: '+1 (800) 555-STAY',
+    type: 'Travel Hotline',
+    value: '+1 (800) 555-FARE',
     icon: 'Phone' as const,
-    action: () => Linking.openURL('tel:+18005557829')
+    action: () => Linking.openURL('tel:+18005553273')
   },
   {
     id: 'hours',
@@ -80,7 +81,7 @@ const contactInfo = [
 
 export default function HelpScreen() {
   return (
-    <View className="flex-1 bg-light-primary dark:bg-dark-primary">
+    <View className="flex-1 dark:bg-dark-primary" style={{ backgroundColor: PARCHMENT }}>
       <Header title="Help & Support" showBackButton />
       
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -107,11 +108,11 @@ export default function HelpScreen() {
           </View>
           
           {/* Contact Section */}
-          <Section 
-            title="Contact Us" 
-            titleSize="xl" 
+          <Section
+            title="Contact Us"
+            titleSize="xl"
             className="px-global pb-2 mt-14"
-            subtitle="We're here to help with your booking and travel needs"
+            subtitle="We're here to help with your flights and travel needs"
           />
           
           <View className="px-global pb-8">
@@ -143,7 +144,7 @@ export default function HelpScreen() {
               title="Contact Support" 
               iconStart="MessageCircle"
               className="mt-8"
-              onPress={() => Linking.openURL('mailto:support@propia.com')}
+              onPress={() => Linking.openURL('mailto:support@voyage.app')}
             />
           </View>
         </AnimatedView>

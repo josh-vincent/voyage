@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Animated, Easing, StyleSheet, Dimensions } from 'react-native';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 
 const windowWidth = Dimensions.get('window').width;
 

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { View, Pressable, StyleProp, ViewStyle } from 'react-native';
 import ThemedText from '../ThemedText';
 import Icon, { IconName } from '../Icon';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 import AnimatedView from '../AnimatedView';
 
 interface SelectableProps {

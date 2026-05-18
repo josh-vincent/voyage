@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { CalendarList, DateData } from 'react-native-calendars';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 import ThemedText from './ThemedText';
 
 interface DateRange {

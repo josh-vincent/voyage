@@ -2,6 +2,7 @@ import { tool } from 'ai';
 import { z } from 'zod';
 import type { ToolFactory } from './types';
 import { findAirport, AIRPORTS } from '@/lib/airports';
+import { mockWeatherFor } from '@/lib/devSeed';
 
 export const weatherTools: ToolFactory = (ctx) => ({
   weatherAt: tool({
@@ -32,7 +33,22 @@ export const weatherTools: ToolFactory = (ctx) => ({
         if (!res.ok) throw new Error(`Open-Meteo ${res.status}`);
         const data: any = await res.json();
         const daily = data.daily;
-        if (!daily?.time?.length) return { found: false, location, target };
+        if (!daily?.time?.length) {
+          const mock = mockWeatherFor(coords.label.split(',')[0].trim());
+          if (mock) {
+            return {
+              found: true,
+              location: coords.label,
+              date: target,
+              tempMaxC: mock.tempC + 3,
+              tempMinC: mock.tempC - 3,
+              precipMm: Math.round(mock.precipPct / 10),
+              summary: mock.condition,
+              source: 'mock',
+            };
+          }
+          return { found: false, location, target };
+        }
         return {
           found: true,
           location: coords.label,
@@ -43,6 +59,19 @@ export const weatherTools: ToolFactory = (ctx) => ({
           summary: weatherCodeToText(daily.weathercode?.[0]),
         };
       } catch (e: any) {
+        const mock = mockWeatherFor(coords.label.split(',')[0].trim());
+        if (mock) {
+          return {
+            found: true,
+            location: coords.label,
+            date: target,
+            tempMaxC: mock.tempC + 3,
+            tempMinC: mock.tempC - 3,
+            precipMm: Math.round(mock.precipPct / 10),
+            summary: mock.condition,
+            source: 'mock',
+          };
+        }
         return { found: false, location, error: e?.message ?? 'Weather lookup failed' };
       }
     },

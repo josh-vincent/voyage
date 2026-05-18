@@ -12,6 +12,11 @@ import { calendarTools } from './calendar';
 import { calendarGapTools } from './calendarGaps';
 import { holidayTools } from './holidays';
 import { tripTools } from './trips';
+import { actionTools } from './actions';
+import { stayTools } from './stays';
+import { tripManagementTools } from './tripManagement';
+import { profileTools } from './profile';
+import { practicalTools } from './practical';
 
 const FACTORIES: ToolFactory[] = [
   timeTools,
@@ -26,6 +31,11 @@ const FACTORIES: ToolFactory[] = [
   calendarGapTools,
   holidayTools,
   tripTools,
+  actionTools,
+  stayTools,
+  tripManagementTools,
+  profileTools,
+  practicalTools,
 ];
 
 export function buildTools(ctx: VoyageContext): ToolMap {

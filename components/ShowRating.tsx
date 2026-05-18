@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ThemedText from './ThemedText';
-import { useThemeColors } from '@/app/contexts/ThemeColors';
+import { useThemeColors } from '@/contexts/ThemeColors';
 
 interface ShowRatingProps {
     rating: number;

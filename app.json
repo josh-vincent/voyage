@@ -89,7 +89,8 @@
         {
           "calendarPermission": "Voyage uses your calendar to save flights and trip plans."
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",

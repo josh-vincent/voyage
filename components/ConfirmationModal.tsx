@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, Pressable, Platform } from 'react-native';
 import ActionSheet, { ActionSheetRef } from 'react-native-actions-sheet';
-import useThemeColors from '@/app/contexts/ThemeColors';
+import useThemeColors from '@/contexts/ThemeColors';
 import ThemedText from '@/components/ThemedText';
 import * as NavigationBar from 'expo-navigation-bar';
-import { useTheme } from '@/app/contexts/ThemeContext';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface ConfirmationModalProps {
     isVisible: boolean;

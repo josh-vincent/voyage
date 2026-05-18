@@ -23,6 +23,7 @@ import Icon from '@/components/Icon';
 import GeoGlyph from '@/components/GeoGlyph';
 import { api } from '@/lib/apiBase';
 import { INK, PARCHMENT, PARCHMENT_DEEP, SERIF } from '@/lib/theme';
+import { useThemeColors } from '@/contexts/ThemeColors';
 import {
   listRecents,
   listTracked,
@@ -47,9 +48,20 @@ import {
   listChats,
   newChatId,
   saveChat,
+  uniqueChatTitle,
   type StoredChat,
   type StoredChatMessage,
 } from '@/lib/chatStorage';
+import { getOwnerProfile } from '@/utils/travelerProfileStorage';
+import { listSavedActivities } from '@/utils/discoverStorage';
+import { listSavedStays } from '@/utils/staysStorage';
+import {
+  DIETARY_LABEL,
+  SEAT_PREFERENCE_LABEL,
+  BAG_PREFERENCE_LABEL,
+  type TravelerProfile,
+} from '@/lib/travelerProfileTypes';
+import type { TravelerProfileSummary } from '@/lib/chatTools/types';
 
 const QUICK_PROMPTS = [
   'Cheapest NYC → Tokyo next month for 2 adults under $800',
@@ -77,6 +89,7 @@ function formatChatErrorMessage(error: Error | null | undefined): string | null 
 
 export default function ChatScreen() {
   const insets = useSafeAreaInsets();
+  const themeColors = useThemeColors();
   const params = useLocalSearchParams<{ chatId?: string }>();
   const [input, setInput] = useState('');
   const [homeAirport, setHomeAirport] = useState<string | undefined>(undefined);
@@ -85,6 +98,9 @@ export default function ChatScreen() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [upcomingTrips, setUpcomingTrips] = useState<StoredOrder[]>([]);
   const [watchedRoutes, setWatchedRoutes] = useState<TrackedRoute[]>([]);
+  const [traveler, setTraveler] = useState<TravelerProfile | null>(null);
+  const [savedActivityCount, setSavedActivityCount] = useState(0);
+  const [savedStayCount, setSavedStayCount] = useState(0);
   const drawerX = useRef(new Animated.Value(DRAWER_WIDTH)).current;
   const lastSavedRef = useRef<string>('');
 
@@ -115,6 +131,22 @@ export default function ChatScreen() {
     loadUserState();
   }, [loadUserState]);
 
+  const loadTravelerProfile = useCallback(async () => {
+    const [profile, activities, stays] = await Promise.all([
+      getOwnerProfile(),
+      listSavedActivities(),
+      listSavedStays(),
+    ]);
+    // Only store the profile if it has meaningful data (givenName set)
+    setTraveler(profile.givenName ? profile : null);
+    setSavedActivityCount(activities.length);
+    setSavedStayCount(stays.length);
+  }, []);
+
+  useEffect(() => {
+    loadTravelerProfile();
+  }, [loadTravelerProfile]);
+
   const timezone = useMemo(() => {
     try {
       return Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -134,6 +166,36 @@ export default function ChatScreen() {
     return m?.[1];
   }, [locale]);
 
+  const profileSummary: TravelerProfileSummary | undefined = useMemo(
+    () =>
+      traveler
+        ? {
+            givenName: traveler.givenName || undefined,
+            familyName: traveler.familyName || undefined,
+            preferredCabin: traveler.preferredCabin,
+            seatPreference:
+              traveler.seatPreference !== 'no_preference'
+                ? SEAT_PREFERENCE_LABEL[traveler.seatPreference]
+                : undefined,
+            bagPreference: traveler.bagPreference
+              ? BAG_PREFERENCE_LABEL[traveler.bagPreference]
+              : undefined,
+            dietary: traveler.dietary.map((d) => DIETARY_LABEL[d]),
+            hasPassport: Boolean(traveler.passport?.number),
+            passportCountry: traveler.passport?.countryCode,
+            knownTravellerNumber: traveler.knownTravellerNumber,
+            frequentFlyers: traveler.frequentFlyers.map((f) => ({
+              carrierCode: f.carrierCode,
+              carrierName: f.carrierName,
+              tier: f.tier,
+            })),
+            savedActivityCount,
+            savedStayCount,
+          }
+        : undefined,
+    [traveler, savedActivityCount, savedStayCount],
+  );
+
   const transport = useMemo(
     () =>
       new DefaultChatTransport({
@@ -144,6 +206,7 @@ export default function ChatScreen() {
             homeAirport,
             timezone,
             locale,
+            travelerProfile: profileSummary,
             upcomingTrips: upcomingTrips.map((o) => ({
               bookingReference: o.bookingReference,
               passengerName: o.passengerName,
@@ -169,7 +232,7 @@ export default function ChatScreen() {
           },
         },
       }),
-    [homeAirport, timezone, locale, upcomingTrips, watchedRoutes],
+    [homeAirport, timezone, locale, profileSummary, upcomingTrips, watchedRoutes],
   );
 
   const { messages, sendMessage, setMessages, status, error } = useChat({ transport });
@@ -181,7 +244,8 @@ export default function ChatScreen() {
   useFocusEffect(
     useCallback(() => {
       refreshPast();
-    }, [refreshPast]),
+      loadTravelerProfile();
+    }, [refreshPast, loadTravelerProfile]),
   );
 
   useEffect(() => {
@@ -214,18 +278,21 @@ export default function ChatScreen() {
     const serialized = JSON.stringify(messages);
     if (serialized === lastSavedRef.current) return;
     lastSavedRef.current = serialized;
-    const chat: StoredChat = {
-      id: chatId,
-      title: deriveChatTitle(messages as StoredChatMessage[]),
-      messages: messages as StoredChatMessage[],
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-    };
+    const now = Date.now();
+    const baseTitle = deriveChatTitle(messages as StoredChatMessage[]);
     getChat(chatId).then((prev) => {
-      saveChat({
-        ...chat,
-        createdAt: prev?.createdAt ?? chat.createdAt,
-      }).then(refreshPast);
+      listChats().then((all) => {
+        const createdAt = prev?.createdAt ?? now;
+        const title = uniqueChatTitle(baseTitle, all, chatId, createdAt);
+        const chat: StoredChat = {
+          id: chatId,
+          title,
+          messages: messages as StoredChatMessage[],
+          createdAt,
+          updatedAt: now,
+        };
+        saveChat(chat).then(refreshPast);
+      });
     });
   }, [messages, status, chatId, refreshPast]);
 
@@ -272,6 +339,7 @@ export default function ChatScreen() {
       timezone,
       locale,
       countryCode,
+      travelerProfile: profileSummary,
       upcomingTrips: upcoming.map((o) => ({
         bookingReference: o.bookingReference,
         passengerName: o.passengerName,
@@ -358,12 +426,14 @@ export default function ChatScreen() {
             >
               {activeTitle}
             </ThemedText>
-            <ThemedText
-              className="opacity-65 mt-1"
-              style={{ fontFamily: SERIF, fontSize: 13, fontStyle: 'italic' }}
-            >
-              Find deals, track prices, plan itineraries.
-            </ThemedText>
+            {messages.length === 0 ? (
+              <ThemedText
+                className="opacity-65 mt-1"
+                style={{ fontFamily: SERIF, fontSize: 13, fontStyle: 'italic' }}
+              >
+                Find deals, track prices, plan itineraries.
+              </ThemedText>
+            ) : null}
           </View>
           <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
             <Pressable
@@ -404,17 +474,17 @@ export default function ChatScreen() {
                   key={p}
                   onPress={() => sendText(p)}
                   className="rounded-2xl p-4 mb-2 flex-row items-center"
-                  style={{ backgroundColor: PARCHMENT_DEEP }}
+                  style={{ backgroundColor: themeColors.isDark ? themeColors.secondary : PARCHMENT_DEEP }}
                   accessibilityRole="button"
                   accessibilityLabel={`Ask: ${p}`}
                 >
                   <ThemedText
                     className="flex-1"
-                    style={{ fontFamily: SERIF, color: INK, fontSize: 15 }}
+                    style={{ fontFamily: SERIF, color: themeColors.isDark ? themeColors.text : INK, fontSize: 15 }}
                   >
                     {p}
                   </ThemedText>
-                  <Icon name="ArrowUpRight" size={14} color={INK} />
+                  <Icon name="ArrowUpRight" size={14} color={themeColors.isDark ? themeColors.text : INK} />
                 </Pressable>
               ))}
             </View>
@@ -452,11 +522,11 @@ export default function ChatScreen() {
               value={input}
               onChangeText={setInput}
               placeholder="Ask the concierge"
-              placeholderTextColor="rgba(19,26,42,0.45)"
+              placeholderTextColor={themeColors.isDark ? themeColors.placeholder : 'rgba(19,26,42,0.45)'}
               className="flex-1 px-4 py-3 rounded-2xl"
               style={{
-                backgroundColor: PARCHMENT_DEEP,
-                color: INK,
+                backgroundColor: themeColors.isDark ? themeColors.secondary : PARCHMENT_DEEP,
+                color: themeColors.isDark ? themeColors.text : INK,
                 fontFamily: SERIF,
                 fontSize: 15,
               }}
@@ -724,6 +794,400 @@ function ToolPart({ part }: { part: any }) {
       </View>
     );
   }
+  // --- thingsToDo ---
+  const PRETTY_TOOL_NAME: Record<string, string> = {
+    thingsToDo: 'things to do',
+    weatherAt: 'weather',
+    countryInfo: 'country info',
+    planItinerary: 'itinerary',
+    publicHolidays: 'public holidays',
+    findCalendarGaps: 'calendar gaps',
+  };
+
+  if (part.state === 'output-available' && toolName === 'thingsToDo') {
+    const output = part.output ?? {};
+    const city: string = output.city ?? '';
+    const activities: any[] = Array.isArray(output.activities) ? output.activities.slice(0, 5) : [];
+    if (!activities.length) {
+      return (
+        <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.55, fontSize: 12, fontStyle: 'italic', marginTop: 6 }}>
+          No activities found for {city || 'that location'}.
+        </Text>
+      );
+    }
+    const PRICE_SYMBOLS: Record<string, string> = { low: '$', medium: '$$', high: '$$$' };
+    const KIND_ICON: Record<string, string> = {
+      food: 'Utensils',
+      culture: 'Landmark',
+      outdoors: 'TreePine',
+      nightlife: 'Music',
+      view: 'Binoculars',
+      shopping: 'ShoppingBag',
+    };
+    return (
+      <View style={{ marginTop: 8 }}>
+        <Text style={{ fontFamily: SERIF, color: INK, fontSize: 15, marginBottom: 6 }}>
+          Ideas for {city}
+        </Text>
+        {activities.map((a: any, i: number) => (
+          <Pressable
+            key={`${a.id ?? i}`}
+            onPress={() =>
+              router.push({ pathname: '/screens/discover/[city]', params: { city } })
+            }
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              backgroundColor: PARCHMENT,
+              borderRadius: 14,
+              paddingHorizontal: 12,
+              paddingVertical: 10,
+              marginBottom: 6,
+            }}
+          >
+            <View
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: 8,
+                backgroundColor: PARCHMENT_DEEP,
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginRight: 10,
+              }}
+            >
+              <Icon name={(KIND_ICON[a.kind] ?? 'Star') as any} size={14} color={INK} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontFamily: SERIF, color: INK, fontSize: 14 }} numberOfLines={1}>
+                {a.title ?? a.name ?? 'Activity'}
+              </Text>
+              <Text style={{ color: INK, opacity: 0.55, fontSize: 11, marginTop: 1 }}>
+                {[a.area, PRICE_SYMBOLS[a.priceLevel ?? a.price_level]].filter(Boolean).join(' · ')}
+              </Text>
+            </View>
+            <Icon name="ChevronRight" size={12} color={INK} />
+          </Pressable>
+        ))}
+      </View>
+    );
+  }
+
+  // --- weatherAt ---
+  if (part.state === 'output-available' && toolName === 'weatherAt') {
+    const output = part.output ?? {};
+    // Handle error results (e.g. tool returned { error: "..." })
+    if (output.error) {
+      return (
+        <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.55, fontSize: 12, fontStyle: 'italic', marginTop: 6 }}>
+          Could not load weather: {output.error}
+        </Text>
+      );
+    }
+    const location: string = output.location ?? output.city ?? '';
+    const tempMin = output.tempMin ?? output.temp_min;
+    const tempMax = output.tempMax ?? output.temp_max;
+    const summary: string = output.summary ?? output.description ?? '';
+    const precipPct = output.precipitationPct ?? output.precip_pct ?? output.precipitation;
+    return (
+      <View
+        style={{
+          marginTop: 8,
+          backgroundColor: PARCHMENT,
+          borderRadius: 16,
+          paddingHorizontal: 14,
+          paddingVertical: 12,
+        }}
+      >
+        <Text style={{ fontFamily: SERIF, color: INK, fontSize: 16, marginBottom: 2 }}>
+          {location}
+        </Text>
+        {tempMin != null && tempMax != null ? (
+          <Text style={{ color: INK, fontSize: 13, marginBottom: 4 }}>
+            {tempMin}° – {tempMax}°
+          </Text>
+        ) : null}
+        {summary ? (
+          <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.75, fontSize: 13 }}>
+            {summary}
+          </Text>
+        ) : null}
+        {precipPct != null ? (
+          <Text style={{ color: INK, opacity: 0.55, fontSize: 12, marginTop: 4 }}>
+            {precipPct}% precipitation
+          </Text>
+        ) : null}
+      </View>
+    );
+  }
+
+  // --- countryInfo ---
+  if (part.state === 'output-available' && toolName === 'countryInfo') {
+    const output = part.output ?? {};
+    if (output.error) {
+      return (
+        <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.55, fontSize: 12, fontStyle: 'italic', marginTop: 6 }}>
+          Could not load country info: {output.error}
+        </Text>
+      );
+    }
+    const rows: Array<{ label: string; value: string | undefined }> = [
+      { label: 'Currency', value: output.currency },
+      { label: 'Plug type', value: output.plugType ?? output.plug_type },
+      { label: 'Driving side', value: output.drivingSide ?? output.driving_side },
+      {
+        label: 'Visa-free?',
+        value:
+          output.visaFree != null
+            ? output.visaFree
+              ? 'Yes'
+              : 'No'
+            : output.visa_free != null
+              ? output.visa_free
+                ? 'Yes'
+                : 'No'
+              : undefined,
+      },
+    ].filter((r) => r.value != null);
+    const countryName: string = output.name ?? output.country ?? '';
+    return (
+      <View style={{ marginTop: 8 }}>
+        {countryName ? (
+          <Text style={{ fontFamily: SERIF, color: INK, fontSize: 15, marginBottom: 6 }}>
+            {countryName}
+          </Text>
+        ) : null}
+        <View
+          style={{
+            backgroundColor: PARCHMENT,
+            borderRadius: 16,
+            paddingHorizontal: 14,
+            paddingVertical: 10,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+          }}
+        >
+          {rows.length === 0 ? (
+            <Text style={{ color: INK, opacity: 0.55, fontSize: 12 }}>No details available.</Text>
+          ) : (
+            rows.map((r) => (
+              <View key={r.label} style={{ width: '50%', paddingVertical: 6 }}>
+                <Text style={{ color: INK, opacity: 0.55, fontSize: 11, marginBottom: 1 }}>
+                  {r.label}
+                </Text>
+                <Text style={{ fontFamily: SERIF, color: INK, fontSize: 14 }}>
+                  {r.value}
+                </Text>
+              </View>
+            ))
+          )}
+        </View>
+      </View>
+    );
+  }
+
+  // --- planItinerary ---
+  if (part.state === 'output-available' && toolName === 'planItinerary') {
+    const output = part.output ?? {};
+    const days: any[] = Array.isArray(output.days) ? output.days : [];
+    const tripIdMatch = typeof output.openInEditor === 'string'
+      ? output.openInEditor.match(/\/itinerary\/([^/?#]+)/)
+      : null;
+    const tripId: string | undefined = output.tripId ?? tripIdMatch?.[1];
+
+    if (!days.length) {
+      return (
+        <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.55, fontSize: 12, fontStyle: 'italic', marginTop: 6 }}>
+          No itinerary days returned.
+        </Text>
+      );
+    }
+    return (
+      <View style={{ marginTop: 8 }}>
+        <Text style={{ fontFamily: SERIF, color: INK, fontSize: 15, marginBottom: 6 }}>
+          Your itinerary
+        </Text>
+        {days.map((day: any, i: number) => {
+          const slotCount =
+            (day.slots ?? day.activities ?? day.items ?? []).length;
+          return (
+            <Pressable
+              key={`day-${i}`}
+              onPress={() => {
+                if (tripId) {
+                  router.push({
+                    pathname: '/screens/itinerary/[tripId]',
+                    params: { tripId },
+                  });
+                }
+              }}
+              style={{
+                backgroundColor: PARCHMENT,
+                borderRadius: 14,
+                paddingHorizontal: 14,
+                paddingVertical: 10,
+                marginBottom: 6,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontFamily: SERIF, color: INK, fontSize: 14 }}>
+                  Day {day.day ?? i + 1}
+                  {day.theme ? ` · ${day.theme}` : ''}
+                </Text>
+                {slotCount > 0 ? (
+                  <Text style={{ color: INK, opacity: 0.55, fontSize: 11, marginTop: 2 }}>
+                    {slotCount} slot{slotCount !== 1 ? 's' : ''}
+                  </Text>
+                ) : null}
+              </View>
+              {tripId ? <Icon name="ChevronRight" size={12} color={INK} /> : null}
+            </Pressable>
+          );
+        })}
+      </View>
+    );
+  }
+
+  // --- publicHolidays ---
+  if (part.state === 'output-available' && toolName === 'publicHolidays') {
+    const output = part.output ?? {};
+    const holidays: any[] = Array.isArray(output.holidays) ? output.holidays : [];
+    if (!holidays.length) {
+      return (
+        <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.55, fontSize: 12, fontStyle: 'italic', marginTop: 6 }}>
+          No public holidays found.
+        </Text>
+      );
+    }
+    return (
+      <View style={{ marginTop: 8 }}>
+        <Text style={{ fontFamily: SERIF, color: INK, fontSize: 15, marginBottom: 6 }}>
+          Public holidays
+        </Text>
+        <View style={{ backgroundColor: PARCHMENT, borderRadius: 16, overflow: 'hidden' }}>
+          {holidays.map((h: any, i: number) => {
+            const dateStr: string = h.date ?? '';
+            let dayOfWeek = '';
+            try {
+              dayOfWeek = new Date(dateStr).toLocaleDateString(undefined, { weekday: 'short' });
+            } catch {
+              // ignore parse errors
+            }
+            return (
+              <View
+                key={`${dateStr}-${i}`}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingHorizontal: 14,
+                  paddingVertical: 10,
+                  borderBottomColor: 'rgba(19,26,42,0.07)',
+                  borderBottomWidth: i < holidays.length - 1 ? 1 : 0,
+                }}
+              >
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontFamily: SERIF, color: INK, fontSize: 14 }}>
+                    {h.name ?? h.title ?? 'Holiday'}
+                  </Text>
+                  <Text style={{ color: INK, opacity: 0.55, fontSize: 11, marginTop: 2 }}>
+                    {[dateStr, dayOfWeek].filter(Boolean).join(' · ')}
+                  </Text>
+                </View>
+                {h.longWeekend ? (
+                  <View
+                    style={{
+                      backgroundColor: PARCHMENT_DEEP,
+                      borderRadius: 8,
+                      paddingHorizontal: 8,
+                      paddingVertical: 3,
+                    }}
+                  >
+                    <Text style={{ color: INK, fontSize: 10, fontFamily: SERIF }}>
+                      long weekend
+                    </Text>
+                  </View>
+                ) : null}
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    );
+  }
+
+  // --- findCalendarGaps ---
+  if (part.state === 'output-available' && toolName === 'findCalendarGaps') {
+    const output = part.output ?? {};
+    const gaps: any[] = Array.isArray(output.gaps) ? output.gaps : [];
+    if (!gaps.length) {
+      return (
+        <Text style={{ fontFamily: SERIF, color: INK, opacity: 0.55, fontSize: 12, fontStyle: 'italic', marginTop: 6 }}>
+          No calendar gaps found.
+        </Text>
+      );
+    }
+    const formatGapDate = (d: string) => {
+      try {
+        return new Date(d).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+      } catch {
+        return d;
+      }
+    };
+    return (
+      <View style={{ marginTop: 8 }}>
+        <Text style={{ fontFamily: SERIF, color: INK, fontSize: 15, marginBottom: 6 }}>
+          Calendar gaps
+        </Text>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+          {gaps.map((g: any, i: number) => {
+            const start: string = g.start ?? g.from ?? '';
+            const end: string = g.end ?? g.to ?? '';
+            const nights: number = g.nights ?? g.days ?? g.duration ?? 0;
+            return (
+              <View
+                key={`gap-${i}`}
+                style={{
+                  backgroundColor: PARCHMENT,
+                  borderRadius: 12,
+                  paddingHorizontal: 12,
+                  paddingVertical: 8,
+                }}
+              >
+                <Text style={{ fontFamily: SERIF, color: INK, fontSize: 13 }}>
+                  {formatGapDate(start)} → {formatGapDate(end)}
+                  {nights > 0 ? ` (${nights}d)` : ''}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    );
+  }
+
+  // --- loading states for new tools ---
+  if (
+    (part.state === 'input-streaming' || part.state === 'input-available') &&
+    PRETTY_TOOL_NAME[toolName]
+  ) {
+    return (
+      <Text
+        style={{
+          fontFamily: SERIF,
+          color: INK,
+          opacity: 0.55,
+          fontSize: 12,
+          fontStyle: 'italic',
+          marginTop: 6,
+        }}
+      >
+        Looking up {PRETTY_TOOL_NAME[toolName]}…
+      </Text>
+    );
+  }
+
   if (part.state === 'input-streaming' || part.state === 'input-available') {
     return (
       <Text

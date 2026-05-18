@@ -16,8 +16,17 @@ module.exports = {
         global: '24px',
       },
       colors: {
-        // Light theme colors
+        // Brand
         highlight: '#c97d4a',
+        // Editorial palette — promote local consts (INK/PARCHMENT) to shared tokens
+        ink: '#131a2a',
+        parchment: {
+          DEFAULT: '#f1ece4',
+          deep: '#e9e3d7',
+        },
+        moss: '#1f6b43',
+        brick: '#b63a30',
+        // Light theme colors
         light: {
           primary: '#ffffff', // White
           secondary: '#F5F5F5', // Light gray

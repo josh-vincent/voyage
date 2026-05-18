@@ -10,7 +10,7 @@ import Divider from './layout/Divider';
 import AnimatedView from './AnimatedView';
 import DateRangeCalendar from './DateRangeCalendar';
 import { Button } from './Button';
-import { useFlightSearch } from '@/app/contexts/FlightSearchContext';
+import { useFlightSearch } from '@/contexts/FlightSearchContext';
 import { searchAirports } from '@/lib/airports';
 import type { CabinClass } from '@/lib/flightTypes';
 
